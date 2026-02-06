@@ -1,0 +1,111 @@
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { Menu, X } from "lucide-react";
+
+const navItems = [
+  { label: "Why Us", href: "#why" },
+  { label: "What We Teach", href: "#curriculum" },
+  { label: "How It Works", href: "#process" },
+  { label: "Outcomes", href: "#outcomes" },
+  { label: "Projects", href: "#projects" },
+];
+
+const Navbar = () => {
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <motion.nav
+      initial={{ y: -20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-card/95 backdrop-blur-md shadow-sm border-b border-border"
+          : "bg-transparent"
+      }`}
+    >
+      <div className="container mx-auto px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 lg:h-20">
+          {/* Logo */}
+          <a href="#" className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
+              <span className="text-primary-foreground font-bold text-sm">F</span>
+            </div>
+            <span className="font-bold text-lg text-foreground tracking-tight">
+              FuturMinds
+            </span>
+          </a>
+
+          {/* Desktop nav */}
+          <div className="hidden lg:flex items-center gap-8">
+            {navItems.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {item.label}
+              </a>
+            ))}
+          </div>
+
+          {/* CTA */}
+          <div className="hidden lg:flex items-center gap-4">
+            <a
+              href="#contact"
+              className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+            >
+              Get Started
+            </a>
+          </div>
+
+          {/* Mobile toggle */}
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="lg:hidden p-2 text-foreground"
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
+
+        {/* Mobile menu */}
+        {mobileOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="lg:hidden pb-6 border-t border-border mt-2 pt-4"
+          >
+            <div className="flex flex-col gap-4">
+              {navItems.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  {item.label}
+                </a>
+              ))}
+              <a
+                href="#contact"
+                className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors w-fit"
+              >
+                Get Started
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </div>
+    </motion.nav>
+  );
+};
+
+export default Navbar;
