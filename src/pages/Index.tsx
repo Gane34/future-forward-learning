@@ -5,6 +5,7 @@ import WhatWeTeach from "@/components/WhatWeTeach";
 import HowChildrenLearn from "@/components/HowChildrenLearn";
 import LearningOutcomes from "@/components/LearningOutcomes";
 import StudentProjects from "@/components/StudentProjects";
+import StoriesSection from "@/components/StoriesSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 
@@ -19,6 +20,7 @@ const Index = () => {
         <HowChildrenLearn />
         <LearningOutcomes />
         <StudentProjects />
+        <StoriesSection />
         <CTASection />
       </main>
       <Footer />
