@@ -37,7 +37,7 @@ const CTASection = () => {
                 to Shape the Future
               </h2>
               <p className="text-primary-foreground/75 text-lg leading-relaxed mb-8 max-w-lg mx-auto">
-                Join families who trust FuturMinds to prepare their children — 
+                Join families who trust MVR AI Academy to prepare their children —
                 not just for school, but for life in an AI-powered world.
               </p>
 

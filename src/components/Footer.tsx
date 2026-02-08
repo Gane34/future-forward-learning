@@ -1,3 +1,5 @@
+import logo from "@/assets/logo.svg";
+
 const Footer = () => {
   return (
     <footer className="bg-primary py-12 lg:py-16">
@@ -6,11 +8,9 @@ const Footer = () => {
           {/* Brand */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-primary-foreground/15 flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-sm">F</span>
-              </div>
+              <img src={logo} alt="MVR AI Academy" className="w-10 h-10 rounded-full object-cover border border-white/10" />
               <span className="font-bold text-lg text-primary-foreground tracking-tight">
-                FuturMinds
+                MVR AI Academy
               </span>
             </div>
             <p className="text-primary-foreground/60 text-sm leading-relaxed max-w-sm">
@@ -31,7 +31,7 @@ const Footer = () => {
                   <li key={item}>
                     <a
                       href="#"
-                      className="text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors"
+                      className="text-sm text-primary-foreground/70 hover:text-secondary transition-colors"
                     >
                       {item}
                     </a>
@@ -78,7 +78,7 @@ const Footer = () => {
         {/* Bottom */}
         <div className="border-t border-primary-foreground/10 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-xs text-primary-foreground/40">
-            © 2026 FuturMinds. All rights reserved.
+            © 2026 MVR AI Academy. All rights reserved.
           </p>
           <div className="flex gap-6">
             <a

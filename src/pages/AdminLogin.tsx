@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { AlertCircle, Loader2 } from "lucide-react";
+import logo from "@/assets/logo.svg";
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
@@ -39,11 +40,11 @@ const AdminLogin = () => {
     <div className="min-h-screen bg-background flex items-center justify-center px-4">
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
-          <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center mx-auto mb-3">
-            <span className="text-primary-foreground font-bold text-sm">F</span>
+          <div className="mx-auto mb-4 w-16 h-16 rounded-full overflow-hidden border-4 border-primary/10 shadow-lg">
+            <img src={logo} alt="MVR AI Academy" className="w-full h-full object-cover" />
           </div>
           <CardTitle className="text-xl">Admin Access</CardTitle>
-          <CardDescription>Sign in to manage FuturMinds stories</CardDescription>
+          <CardDescription>Sign in to manage MVR AI Academy stories</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">

@@ -1,109 +1,86 @@
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-import { Cpu, Code2, Cog, Rocket } from "lucide-react";
-import childCoding from "@/assets/child-coding.jpg";
+import { motion } from "framer-motion";
+import { Cpu, Code2, Cog, Rocket, Brain, Users } from "lucide-react";
 
 const subjects = [
   {
     icon: Cpu,
     title: "AI Fundamentals",
-    description:
-      "Children explore how artificial intelligence works through visual, age-appropriate experiments — from image recognition to simple decision trees.",
+    description: "Demystifying artificial intelligence through visual experiments. Kids learn how machines 'see' and 'learn'.",
+    color: "bg-blue-500/10 text-blue-600",
   },
   {
     icon: Code2,
     title: "Coding & Logic",
-    description:
-      "We teach computational thinking and coding fundamentals using block-based and text-based programming — building real, working programs.",
+    description: "From block-based basics to Python. We build the logical foundation for computational thinking.",
+    color: "bg-purple-500/10 text-purple-600",
   },
   {
     icon: Cog,
-    title: "Robotics & Engineering",
-    description:
-      "Hands-on robotics projects teach mechanics, sensors, and motor control. Children design, build, and test their own creations.",
+    title: "Robotics",
+    description: "Engineering meets creativity. Hands-on mechanics, sensors, and building robots that interact with the world.",
+    color: "bg-orange-500/10 text-orange-600",
   },
   {
     icon: Rocket,
-    title: "Project-Based Learning",
-    description:
-      "Every module culminates in a real project. Children present their work, reflect on challenges, and celebrate their achievements.",
+    title: "Innovation Lab",
+    description: "Open-ended projects where students solve real-world problems using the tools they've mastered.",
+    color: "bg-green-500/10 text-green-600",
   },
 ];
 
 const WhatWeTeach = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
   return (
-    <section id="curriculum" className="py-20 lg:py-28 bg-warm">
-      <div className="container mx-auto px-6 lg:px-8" ref={ref}>
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left: Image */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7 }}
-            className="relative"
+    <section id="curriculum" className="py-24 bg-background relative">
+      <div className="container mx-auto px-6 lg:px-12">
+        <div className="text-center mb-20">
+          <motion.span
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-secondary font-semibold uppercase tracking-wider text-sm"
           >
-            <div className="rounded-2xl overflow-hidden shadow-xl">
-              <img
-                src={childCoding}
-                alt="Child learning to code on a laptop in a modern classroom"
-                className="w-full h-auto object-cover aspect-square"
-                loading="lazy"
-              />
-            </div>
-            {/* Floating badge */}
-            <div className="absolute -bottom-4 -right-4 lg:-bottom-6 lg:-right-6 bg-card rounded-xl shadow-lg p-4 border border-border">
-              <p className="text-sm font-bold text-foreground">Ages 9–13</p>
-              <p className="text-xs text-muted-foreground">Tailored curriculum</p>
-            </div>
-          </motion.div>
+            Our Curriculum
+          </motion.span>
+          <motion.h2
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-4xl md:text-5xl font-serif font-bold mt-3 mb-6"
+          >
+            Empowering Young Minds
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-muted-foreground max-w-2xl mx-auto text-lg"
+          >
+            A holistic approach combining technical skills with critical thinking and ethical reasoning.
+          </motion.p>
+        </div>
 
-          {/* Right: Content */}
-          <div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {subjects.map((subject, index) => (
             <motion.div
+              key={subject.title}
               initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 + 0.3 }}
+              whileHover={{ y: -5 }}
+              className="group p-8 rounded-2xl bg-card border border-border shadow-sm hover:shadow-xl transition-all duration-300"
             >
-              <span className="inline-block text-secondary font-semibold text-sm tracking-wide uppercase mb-3">
-                Curriculum
-              </span>
-              <h2 className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight mb-4">
-                What We Teach
-              </h2>
-              <p className="text-muted-foreground text-lg leading-relaxed mb-10">
-                A carefully designed curriculum that blends technology with
-                creativity — making complex concepts accessible and exciting for
-                young minds.
+              <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-6 ${subject.color} group-hover:scale-110 transition-transform duration-300`}>
+                <subject.icon size={28} />
+              </div>
+              <h3 className="text-xl font-bold mb-3">{subject.title}</h3>
+              <p className="text-muted-foreground leading-relaxed text-sm">
+                {subject.description}
               </p>
             </motion.div>
-
-            <div className="space-y-6">
-              {subjects.map((subject, index) => (
-                <motion.div
-                  key={subject.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.5, delay: 0.1 * index + 0.3 }}
-                  className="flex gap-4 group"
-                >
-                  <div className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-secondary/15 transition-colors">
-                    <subject.icon size={18} className="text-secondary" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-1">
-                      {subject.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      {subject.description}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

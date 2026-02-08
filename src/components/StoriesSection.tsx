@@ -45,10 +45,10 @@ const StoriesSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center max-w-2xl mx-auto mb-16"
         >
-          <span className="inline-block px-4 py-1.5 text-xs font-semibold tracking-wider uppercase rounded-full bg-accent text-secondary mb-4">
+          <span className="inline-block px-4 py-1.5 text-xs font-semibold tracking-wider uppercase rounded-full bg-secondary/10 text-secondary mb-4 border border-secondary/20">
             Our Journey
           </span>
-          <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
+          <h2 className="text-3xl lg:text-5xl font-serif font-bold text-foreground mb-6">
             Stories of Achievement
           </h2>
           <p className="text-muted-foreground text-lg leading-relaxed">

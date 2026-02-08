@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import logo from "@/assets/logo.svg";
 
 const navItems = [
   { label: "Why Us", href: "#why" },
@@ -25,21 +26,18 @@ const Navbar = () => {
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-card/95 backdrop-blur-md shadow-sm border-b border-border"
-          : "bg-transparent"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
+        ? "bg-card/95 backdrop-blur-md shadow-sm border-b border-border"
+        : "bg-transparent"
+        }`}
     >
       <div className="container mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <a href="#" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-sm">F</span>
-            </div>
+            <img src={logo} alt="MVR AI Academy" className="w-10 h-10 rounded-full object-cover border border-white/10" />
             <span className="font-bold text-lg text-foreground tracking-tight">
-              FuturMinds
+              MVR AI Academy
             </span>
           </a>
 
@@ -60,7 +58,7 @@ const Navbar = () => {
           <div className="hidden lg:flex items-center gap-4">
             <a
               href="#contact"
-              className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+              className="inline-flex items-center justify-center px-6 py-2.5 text-sm font-bold rounded-full bg-secondary text-secondary-foreground hover:bg-secondary/90 transition-all shadow-lg hover:shadow-secondary/25"
             >
               Get Started
             </a>
