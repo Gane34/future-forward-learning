@@ -29,7 +29,7 @@ const WhySection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="why" className="py-20 lg:py-28 bg-background">
+    <section id="why" className="py-20 lg:py-28 bg-background section-scroll">
       <div className="container mx-auto px-6 lg:px-8" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -58,14 +58,15 @@ const WhySection = () => {
               transition={{ duration: 0.6, delay: 0.15 * index }}
               className="group"
             >
-              <div className="p-8 rounded-2xl bg-card border border-border hover:border-secondary/30 transition-all duration-300 hover:shadow-lg h-full">
-                <div className="w-12 h-12 rounded-xl bg-accent flex items-center justify-center mb-5 group-hover:bg-secondary/15 transition-colors">
-                  <reason.icon size={22} className="text-secondary" />
+              <div className="p-8 rounded-2xl glass-card hover:border-secondary/50 transition-all duration-300 hover:shadow-[0_0_20px_rgba(var(--secondary),0.2)] h-full relative overflow-hidden group-hover:-translate-y-2">
+                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="w-14 h-14 rounded-xl bg-secondary/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 border border-secondary/20">
+                  <reason.icon size={26} className="text-secondary" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-3">
+                <h3 className="text-xl font-serif font-bold text-foreground mb-3 tracking-wide">
                   {reason.title}
                 </h3>
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-muted-foreground leading-relaxed font-light">
                   {reason.description}
                 </p>
               </div>

@@ -2,8 +2,11 @@ import logo from "@/assets/logo.svg";
 
 const Footer = () => {
   return (
-    <footer className="bg-primary py-12 lg:py-16">
-      <div className="container mx-auto px-6 lg:px-8">
+    <footer className="bg-background border-t border-white/5 py-12 lg:py-16 relative overflow-hidden">
+      {/* Background Glow */}
+      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
+
+      <div className="container mx-auto px-6 lg:px-8 relative z-10">
         <div className="grid md:grid-cols-4 gap-10 mb-12">
           {/* Brand */}
           <div className="md:col-span-2">
@@ -26,18 +29,21 @@ const Footer = () => {
               Learn More
             </h4>
             <ul className="space-y-2.5">
-              {["Our Approach", "Curriculum", "Student Projects", "FAQs"].map(
-                (item) => (
-                  <li key={item}>
-                    <a
-                      href="#"
-                      className="text-sm text-primary-foreground/70 hover:text-secondary transition-colors"
-                    >
-                      {item}
-                    </a>
-                  </li>
-                )
-              )}
+              {[
+                { name: "Our Approach", href: "/#process" },
+                { name: "Curriculum", href: "/#curriculum" },
+                { name: "Student Projects", href: "/projects" },
+                { name: "FAQs", href: "/#contact" }, // Pointing to contact for now
+              ].map((item) => (
+                <li key={item.name}>
+                  <a
+                    href={item.href}
+                    className="text-sm text-primary-foreground/70 hover:text-secondary transition-colors"
+                  >
+                    {item.name}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -49,7 +55,7 @@ const Footer = () => {
             <ul className="space-y-2.5">
               <li>
                 <a
-                  href="#"
+                  href="/#contact"
                   className="text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors"
                 >
                   Contact Us
@@ -57,7 +63,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/get-started"
                   className="text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors"
                 >
                   Schedule a Tour
@@ -65,7 +71,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/get-started"
                   className="text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors"
                 >
                   Partner With Us

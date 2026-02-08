@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import logo from "@/assets/logo.svg";
 
@@ -8,12 +9,50 @@ const navItems = [
   { label: "What We Teach", href: "#curriculum" },
   { label: "How It Works", href: "#process" },
   { label: "Outcomes", href: "#outcomes" },
-  { label: "Projects", href: "#projects" },
+  { label: "Projects", href: "/projects" },
 ];
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleNavigation = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    setMobileOpen(false);
+    if (href.startsWith("#")) {
+      const targetId = href.substring(1);
+      if (location.pathname !== "/") {
+        navigate("/");
+        setTimeout(() => {
+          const element = document.getElementById(targetId);
+          if (element) {
+            const offset = 80; // height of fixed header
+            const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+            const offsetPosition = elementPosition - offset;
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: "smooth"
+            });
+          }
+        }, 100);
+      } else {
+        const element = document.getElementById(targetId);
+        if (element) {
+          const offset = 80; // height of fixed header
+          const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+          const offsetPosition = elementPosition - offset;
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth"
+          });
+        }
+      }
+    } else {
+      navigate(href);
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -47,7 +86,8 @@ const Navbar = () => {
               <a
                 key={item.href}
                 href={item.href}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                onClick={(e) => handleNavigation(e, item.href)}
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
               >
                 {item.label}
               </a>
@@ -57,7 +97,7 @@ const Navbar = () => {
           {/* CTA */}
           <div className="hidden lg:flex items-center gap-4">
             <a
-              href="#contact"
+              href="/get-started"
               className="inline-flex items-center justify-center px-6 py-2.5 text-sm font-bold rounded-full bg-secondary text-secondary-foreground hover:bg-secondary/90 transition-all shadow-lg hover:shadow-secondary/25"
             >
               Get Started
@@ -86,14 +126,14 @@ const Navbar = () => {
                 <a
                   key={item.href}
                   href={item.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                  onClick={(e) => handleNavigation(e, item.href)}
+                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
                 >
                   {item.label}
                 </a>
               ))}
               <a
-                href="#contact"
+                href="/get-started"
                 className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors w-fit"
               >
                 Get Started

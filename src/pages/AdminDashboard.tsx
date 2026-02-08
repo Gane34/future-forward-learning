@@ -36,6 +36,16 @@ interface Story {
   created_at: string;
 }
 
+interface Inquiry {
+  id: string;
+  name: string;
+  role: string;
+  email: string;
+  mobile: string;
+  date: string;
+  status: string;
+}
+
 const emptyForm = {
   title: "",
   content: "",
@@ -49,6 +59,7 @@ const AdminDashboard = () => {
   const { toast } = useToast();
 
   const [stories, setStories] = useState<Story[]>([]);
+  const [inquiries, setInquiries] = useState<Inquiry[]>([]);
   const [loadingStories, setLoadingStories] = useState(true);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
@@ -61,7 +72,8 @@ const AdminDashboard = () => {
 
   // Auth guard
   useEffect(() => {
-    if (!loading && (!user || !isAdmin)) {
+    const localAuth = localStorage.getItem("admin_auth");
+    if (!loading && (!user || !isAdmin) && !localAuth) {
       navigate("/admin/login");
     }
   }, [user, isAdmin, loading, navigate]);
@@ -77,7 +89,11 @@ const AdminDashboard = () => {
   }, []);
 
   useEffect(() => {
-    if (isAdmin) fetchStories();
+    // Fetch inquiries from local storage
+    const storedInquiries = JSON.parse(localStorage.getItem("inquiries") || "[]");
+    setInquiries(storedInquiries);
+
+    if (isAdmin || localStorage.getItem("admin_auth")) fetchStories();
   }, [isAdmin, fetchStories]);
 
   const openCreateDialog = () => {
@@ -202,7 +218,7 @@ const AdminDashboard = () => {
     );
   }
 
-  if (!isAdmin) return null;
+  if (!isAdmin && !localStorage.getItem("admin_auth")) return null;
 
   return (
     <div className="min-h-screen bg-background">
@@ -222,7 +238,11 @@ const AdminDashboard = () => {
             <Button variant="outline" size="sm" onClick={() => navigate("/")}>
               View Site
             </Button>
-            <Button variant="ghost" size="sm" onClick={signOut}>
+            <Button variant="ghost" size="sm" onClick={() => {
+              signOut();
+              localStorage.removeItem("admin_auth");
+              navigate("/admin/login");
+            }}>
               <LogOut className="w-4 h-4 mr-1" />
               Sign Out
             </Button>
@@ -300,11 +320,10 @@ const AdminDashboard = () => {
                     </TableCell>
                     <TableCell className="hidden sm:table-cell">
                       <span
-                        className={`inline-flex items-center gap-1 text-xs font-medium px-2 py-1 rounded-full ${
-                          story.published
-                            ? "bg-secondary/10 text-secondary"
-                            : "bg-muted text-muted-foreground"
-                        }`}
+                        className={`inline-flex items-center gap-1 text-xs font-medium px-2 py-1 rounded-full ${story.published
+                          ? "bg-secondary/10 text-secondary"
+                          : "bg-muted text-muted-foreground"
+                          }`}
                       >
                         {story.published ? (
                           <>
@@ -344,6 +363,47 @@ const AdminDashboard = () => {
             </Table>
           </Card>
         )}
+
+
+        <div className="mt-12 mb-8">
+          <h2 className="text-2xl font-bold text-foreground">Inquiries</h2>
+          <p className="text-sm text-muted-foreground mt-1">
+            New applications from the "Get Started" page.
+          </p>
+        </div>
+
+        <Card>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Date</TableHead>
+                <TableHead>Name</TableHead>
+                <TableHead>Role</TableHead>
+                <TableHead>Email</TableHead>
+                <TableHead>Mobile</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {inquiries.length === 0 ? (
+                <TableRow>
+                  <TableCell colSpan={5} className="text-center py-8 text-muted-foreground">
+                    No inquiries received yet.
+                  </TableCell>
+                </TableRow>
+              ) : (
+                inquiries.map((inq) => (
+                  <TableRow key={inq.id}>
+                    <TableCell>{new Date(inq.date).toLocaleDateString()}</TableCell>
+                    <TableCell className="font-medium">{inq.name}</TableCell>
+                    <TableCell>{inq.role}</TableCell>
+                    <TableCell>{inq.email}</TableCell>
+                    <TableCell>{inq.mobile}</TableCell>
+                  </TableRow>
+                ))
+              )}
+            </TableBody>
+          </Table>
+        </Card>
       </main>
 
       {/* Create / Edit Dialog */}
@@ -468,7 +528,7 @@ const AdminDashboard = () => {
           </DialogFooter>
         </DialogContent>
       </Dialog>
-    </div>
+    </div >
   );
 };
 

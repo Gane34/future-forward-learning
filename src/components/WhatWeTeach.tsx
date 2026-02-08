@@ -30,7 +30,7 @@ const subjects = [
 
 const WhatWeTeach = () => {
   return (
-    <section id="curriculum" className="py-24 bg-background relative">
+    <section id="curriculum" className="py-24 bg-background relative section-scroll">
       <div className="container mx-auto px-6 lg:px-12">
         <div className="text-center mb-20">
           <motion.span
@@ -70,13 +70,14 @@ const WhatWeTeach = () => {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 + 0.3 }}
               whileHover={{ y: -5 }}
-              className="group p-8 rounded-2xl bg-card border border-border shadow-sm hover:shadow-xl transition-all duration-300"
+              className="group p-8 rounded-2xl glass-card hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_25px_rgba(var(--primary),0.2)] relative overflow-hidden"
             >
-              <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-6 ${subject.color} group-hover:scale-110 transition-transform duration-300`}>
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-6 ${subject.color} bg-opacity-20 backdrop-blur-sm border border-white/10 group-hover:scale-110 transition-transform duration-300 shadow-inner`}>
                 <subject.icon size={28} />
               </div>
-              <h3 className="text-xl font-bold mb-3">{subject.title}</h3>
-              <p className="text-muted-foreground leading-relaxed text-sm">
+              <h3 className="text-xl font-serif font-bold mb-3 tracking-wide text-foreground relative z-10">{subject.title}</h3>
+              <p className="text-muted-foreground leading-relaxed text-sm font-light relative z-10">
                 {subject.description}
               </p>
             </motion.div>

@@ -7,7 +7,7 @@ const CTASection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="contact" className="py-20 lg:py-28 bg-background">
+    <section id="contact" className="py-20 lg:py-28 bg-background section-scroll">
       <div className="container mx-auto px-6 lg:px-8" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -43,7 +43,7 @@ const CTASection = () => {
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
-                  href="#"
+                  href="/get-started"
                   className="inline-flex items-center justify-center gap-2 px-7 py-3.5 text-sm font-semibold rounded-lg bg-card text-foreground hover:bg-card/90 transition-all shadow-lg"
                 >
                   Schedule a Free Consultation

@@ -5,10 +5,11 @@ import heroImage from "@/assets/hero-children-learning.jpg";
 const Hero = () => {
   return (
     <section className="relative min-h-[95vh] flex items-center overflow-hidden bg-background">
-      {/* Abstract Background Shapes */}
+      {/* Animated Deep Space Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-secondary/10 rounded-full blur-3xl opacity-50" />
-        <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute top-[-20%] right-[-10%] w-[800px] h-[800px] bg-primary/20 rounded-full blur-[120px] animate-pulse" />
+        <div className="absolute bottom-[-20%] left-[-10%] w-[700px] h-[700px] bg-secondary/10 rounded-full blur-[100px] animate-pulse delay-1000" />
+        <div className="absolute top-[40%] left-[20%] w-[300px] h-[300px] bg-accent/20 rounded-full blur-[80px]" />
       </div>
 
       <div className="container mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-12 items-center relative z-10">
@@ -34,7 +35,7 @@ const Hero = () => {
           >
             A Father's <span className="text-secondary italic">Dream.</span>
             <br />
-            A Citizen's <span className="text-primary/90">Vision.</span>
+            A Scientist's <span className="text-primary/90">Vision.</span>
           </motion.h1>
 
           <motion.p
@@ -55,10 +56,10 @@ const Hero = () => {
             className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
           >
             <a
-              href="#curriculum"
+              href="/get-started"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all shadow-lg hover:shadow-primary/25"
             >
-              Explore Our Vision
+              Start Learning Now
               <ArrowRight className="w-5 h-5" />
             </a>
             <a

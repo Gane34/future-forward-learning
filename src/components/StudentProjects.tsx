@@ -49,7 +49,7 @@ const StudentProjects = () => {
             </motion.h2>
           </div>
           <motion.a
-            href="#"
+            href="/projects"
             initial={{ opacity: 0, x: 10 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -89,16 +89,16 @@ const StudentProjects = () => {
 
               {/* Content Section */}
               <div className="w-full lg:w-2/5 space-y-6">
-                <h3 className="text-3xl font-bold font-serif">{project.title}</h3>
-                <div className="pl-4 border-l-4 border-secondary">
-                  <p className="text-lg italic text-muted-foreground">"{project.quote}"</p>
+                <h3 className="text-3xl font-bold font-serif text-transparent bg-clip-text bg-gradient-to-r from-foreground to-foreground/70">{project.title}</h3>
+                <div className="pl-4 border-l-4 border-secondary/80">
+                  <p className="text-lg italic text-muted-foreground font-light">"{project.quote}"</p>
                 </div>
-                <p className="text-foreground/80 leading-relaxed">
+                <p className="text-foreground/80 leading-relaxed font-light">
                   {project.desc}
                 </p>
                 <div className="flex gap-2 pt-2">
                   {project.tags.map(tag => (
-                    <span key={tag} className="px-3 py-1 bg-primary/5 text-primary text-xs font-semibold uppercase tracking-wide rounded-md">
+                    <span key={tag} className="px-3 py-1 bg-primary/10 text-primary border border-primary/20 text-xs font-semibold uppercase tracking-wide rounded-md hover:bg-primary/20 transition-colors">
                       {tag}
                     </span>
                   ))}
