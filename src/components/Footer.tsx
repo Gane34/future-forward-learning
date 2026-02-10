@@ -13,7 +13,7 @@ const Footer = () => {
             <div className="flex items-center gap-2 mb-4">
               <img src={logo} alt="MVR AI Academy" className="w-10 h-10 rounded-full object-cover border border-white/10" />
               <span className="font-bold text-lg text-primary-foreground tracking-tight">
-                MVR AI Academy
+                MMK AI Solutions
               </span>
             </div>
             <p className="text-primary-foreground/60 text-sm leading-relaxed max-w-sm">
@@ -33,7 +33,7 @@ const Footer = () => {
                 { name: "Our Approach", href: "/#process" },
                 { name: "Curriculum", href: "/#curriculum" },
                 { name: "Student Projects", href: "/projects" },
-                { name: "FAQs", href: "/#contact" }, // Pointing to contact for now
+                { name: "FAQs", href: "/contact" }, // Pointing to contact for now
               ].map((item) => (
                 <li key={item.name}>
                   <a
@@ -55,7 +55,7 @@ const Footer = () => {
             <ul className="space-y-2.5">
               <li>
                 <a
-                  href="/#contact"
+                  href="/contact"
                   className="text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors"
                 >
                   Contact Us
@@ -84,7 +84,7 @@ const Footer = () => {
         {/* Bottom */}
         <div className="border-t border-primary-foreground/10 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-xs text-primary-foreground/40">
-            © 2026 MVR AI Academy. All rights reserved.
+            © 2026 MMK AI Solutions. All rights reserved.
           </p>
           <div className="flex gap-6">
             <a

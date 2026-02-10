@@ -9,6 +9,7 @@ import AdminDashboard from "./pages/AdminDashboard";
 import NotFound from "./pages/NotFound";
 import AllProjects from "./pages/AllProjects";
 import GetStarted from "./pages/GetStarted";
+import Contact from "./pages/Contact";
 
 import { useState } from "react";
 import Preloader from "./components/Preloader";
@@ -33,6 +34,7 @@ const App = () => {
               <Route path="/admin" element={<AdminDashboard />} />
               <Route path="/projects" element={<AllProjects />} />
               <Route path="/get-started" element={<GetStarted />} />
+              <Route path="/contact" element={<Contact />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
