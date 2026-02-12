@@ -9,17 +9,11 @@ const AllProjects = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const fetchProjects = async () => {
-            const { data } = await supabase
-                .from("projects")
-                .select("*")
-                .order("created_at", { ascending: false });
-
-            if (data) setProjects(data);
+        // Local override for project images
+        import("@/data/projects").then((module) => {
+            setProjects(module.localProjects);
             setLoading(false);
-        };
-
-        fetchProjects();
+        });
     }, []);
 
     return (
