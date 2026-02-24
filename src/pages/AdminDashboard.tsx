@@ -26,6 +26,7 @@ import {
 import { Plus, Pencil, Trash2, LogOut, Loader2, ImageIcon, Eye, EyeOff } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import ProjectManagement from "@/components/admin/ProjectManagement";
+import FounderAchievementsManagement from "@/components/admin/FounderAchievementsManagement";
 
 interface Story {
   id: string;
@@ -408,9 +409,16 @@ const AdminDashboard = () => {
       </main>
 
       {/* Project Management Section */}
-      <section className="container mx-auto px-6 pb-20">
+      <section className="container mx-auto px-6 pb-10">
         <div className="border-t border-border pt-10">
           <ProjectManagement />
+        </div>
+      </section>
+
+      {/* Founder Achievements Section */}
+      <section className="container mx-auto px-6 pb-20">
+        <div className="border-t border-border pt-10">
+          <FounderAchievementsManagement />
         </div>
       </section>
 

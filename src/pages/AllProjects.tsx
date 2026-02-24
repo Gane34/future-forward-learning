@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { ArrowLeft, ArrowUpRight, Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import SEO from "@/components/SEO";
 
 const AllProjects = () => {
     const navigate = useNavigate();
@@ -16,8 +17,23 @@ const AllProjects = () => {
         });
     }, []);
 
+    const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Student Pilot Projects",
+        "description": "Explore the incredible innovations and pilot projects built by our young minds at MVR AI Academy.",
+    };
+
     return (
         <div className="min-h-screen bg-background">
+            <SEO
+                title="Student Projects"
+                description="Explore the incredible innovations and pilot projects built by our young minds at MVR AI Academy. AI, robotics, and coding projects by children aged 9-13."
+                keywords="student projects, AI projects, robotics projects, coding projects, children innovations, STEM projects"
+                ogUrl="https://mvraiacademy.com/projects"
+                canonicalUrl="https://mvraiacademy.com/projects"
+                structuredData={structuredData}
+            />
             <div className="container mx-auto px-6 py-12">
                 <button
                     onClick={() => navigate("/")}

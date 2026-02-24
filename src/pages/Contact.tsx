@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 
 const Contact = () => {
     const { toast } = useToast();
@@ -56,8 +57,23 @@ const Contact = () => {
         },
     ];
 
+    const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "name": "Contact MVR AI Academy",
+        "description": "Get in touch with MVR AI Academy. Contact us for inquiries about our AI, robotics, and coding programs.",
+    };
+
     return (
         <div className="min-h-screen bg-background">
+            <SEO
+                title="Contact Us"
+                description="Get in touch with MVR AI Academy. Have questions about our AI, robotics, and coding programs? Contact us at muggu@mmkaisolutions.com or +91 9603745740."
+                keywords="contact, inquiries, get in touch, MVR AI Academy contact, address, phone, email"
+                ogUrl="https://mvraiacademy.com/contact"
+                canonicalUrl="https://mvraiacademy.com/contact"
+                structuredData={structuredData}
+            />
             <Navbar />
 
             {/* Hero Section */}

@@ -33,6 +33,7 @@ const Footer = () => {
                 { name: "Our Approach", href: "/#process" },
                 { name: "Curriculum", href: "/#curriculum" },
                 { name: "Student Projects", href: "/projects" },
+                { name: "Meet the Founder", href: "/founder" },
                 { name: "FAQs", href: "/contact" }, // Pointing to contact for now
               ].map((item) => (
                 <li key={item.name}>

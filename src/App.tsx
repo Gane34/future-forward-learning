@@ -10,6 +10,7 @@ import NotFound from "./pages/NotFound";
 import AllProjects from "./pages/AllProjects";
 import GetStarted from "./pages/GetStarted";
 import Contact from "./pages/Contact";
+import Founder from "./pages/Founder";
 
 import { useState } from "react";
 import Preloader from "./components/Preloader";
@@ -35,6 +36,7 @@ const App = () => {
               <Route path="/projects" element={<AllProjects />} />
               <Route path="/get-started" element={<GetStarted />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/founder" element={<Founder />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
