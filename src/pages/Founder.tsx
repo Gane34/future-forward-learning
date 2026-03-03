@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
@@ -351,7 +352,7 @@ const Founder = () => {
                         </motion.div>
 
                         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {achievements.map((a, i) => {
+                            {defaultAchievements.map((a, i) => {
                                 const Icon = a.icon;
                                 return (
                                     <motion.div
@@ -385,6 +386,79 @@ const Founder = () => {
                                     </motion.div>
                                 );
                             })}
+                        </div>
+                    </div>
+                </section>
+
+                {/* ── AI BODHAN CONCLAVE 2026 ───────────────────────── */}
+                <section className="py-24 bg-muted/20">
+                    <div className="max-w-6xl mx-auto px-6">
+                        <motion.div
+                            variants={fadeUp}
+                            initial="hidden"
+                            whileInView="show"
+                            viewport={{ once: true }}
+                            className="text-center mb-14"
+                        >
+                            <span className="text-xs font-semibold tracking-widest uppercase text-secondary">
+                                National Event · Bharat Mandapam, New Delhi
+                            </span>
+                            <h2 className="mt-3 text-4xl font-serif font-bold">
+                                AI Bodhan Conclave 2026
+                            </h2>
+                            <p className="mt-6 text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                                Dr. Muggu Murali Krishna represented MMK AI Solutions at the
+                                AI Bodhan Conclave 2026 — a prestigious national conclave held
+                                at Bharat Mandapam, New Delhi, dedicated to shaping the future
+                                of Artificial Intelligence in India. As a founder and startup
+                                representative, he engaged with policymakers, researchers, and
+                                innovators driving India's AI ecosystem forward, reaffirming
+                                our commitment to building responsible, inclusive, and
+                                future-ready AI solutions for every corner of the country.
+                            </p>
+                        </motion.div>
+
+                        <div className="columns-2 sm:columns-3 lg:columns-4 gap-3 space-y-3">
+                            {[
+                                "IMG20260212110949.jpg",
+                                "IMG20260212110950.jpg",
+                                "IMG20260212112649.jpg",
+                                "IMG20260212112709.jpg",
+                                "IMG20260212113553.jpg",
+                                "IMG20260213131420 (1).jpg",
+                                "IMG_20260212_091050.jpg",
+                                "IMG_20260212_104419.jpg",
+                                "IMG_20260212_133248.jpg",
+                                "IMG_20260212_152025.jpg",
+                                "IMG_20260212_170550 (1).jpg",
+                                "IMG_20260212_171557.jpg",
+                                "IMG_20260213_113849 (1).jpg",
+                                "IMG_20260213_115101.jpg",
+                                "IMG_20260213_122508.jpg",
+                                "IMG_20260213_133144.jpg",
+                                "IMG_20260213_134221.jpg",
+                                "IMG_20260213_142217.jpg",
+                                "IMG_20260213_143259.jpg",
+                                "IMG_20260213_143724 (1).jpg",
+                                "IMG_20260213_143726.jpg",
+                            ].map((photo, i) => (
+                                <motion.div
+                                    key={photo}
+                                    variants={fadeUp}
+                                    initial="hidden"
+                                    whileInView="show"
+                                    viewport={{ once: true }}
+                                    custom={i * 0.3}
+                                    className="break-inside-avoid mb-3"
+                                >
+                                    <img
+                                        src={`/delhi/${photo}`}
+                                        alt={`AI Bodhan Conclave 2026 – photo ${i + 1}`}
+                                        className="w-full rounded-xl object-cover shadow-md hover:shadow-xl hover:scale-[1.02] transition-all duration-300 border border-border"
+                                        loading="lazy"
+                                    />
+                                </motion.div>
+                            ))}
                         </div>
                     </div>
                 </section>
