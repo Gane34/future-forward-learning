@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -14,7 +14,6 @@ import {
     BookOpen,
     Award,
     Trophy,
-    Star,
     FileText,
     Cpu,
     Users2,
@@ -63,6 +62,7 @@ const milestones = [
 // ── DEFAULT achievements (used when admin hasn't set any yet) ─────────
 type AchievementItem = {
     id?: string;
+    icon?: React.ElementType;
     category: string;
     title: string;
     desc: string;
@@ -111,8 +111,6 @@ const defaultAchievements: AchievementItem[] = [
         desc: "Recognised by local government bodies and education networks for grassroots science outreach, conducting workshops, science fairs, and AI demonstrations across villages and town schools.",
     },
 ];
-
-const LS_KEY = "founder_achievements";
 
 const values = [
     {
@@ -369,9 +367,11 @@ const Founder = () => {
 
                                         <div className="relative z-10">
                                             <div className="flex items-center gap-3 mb-4">
-                                                <div className="w-10 h-10 rounded-xl bg-secondary/10 group-hover:bg-secondary/20 transition-colors flex items-center justify-center flex-shrink-0">
-                                                    <Icon size={18} className="text-secondary" />
-                                                </div>
+                                                {Icon && (
+                                                    <div className="w-10 h-10 rounded-xl bg-secondary/10 group-hover:bg-secondary/20 transition-colors flex items-center justify-center flex-shrink-0">
+                                                        <Icon size={18} className="text-secondary" />
+                                                    </div>
+                                                )}
                                                 <span className="text-xs font-bold text-secondary uppercase tracking-widest">
                                                     {a.category}
                                                 </span>
