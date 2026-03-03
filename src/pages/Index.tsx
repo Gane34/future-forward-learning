@@ -36,8 +36,11 @@ const Index = () => {
       <Navbar />
       <main>
         <Hero />
+        <WhySection />
         <FounderSection />
         <WhatWeTeach />
+        <HowChildrenLearn />
+        <LearningOutcomes />
         <StudentProjects />
         <StoriesSection />
         <CTASection />
