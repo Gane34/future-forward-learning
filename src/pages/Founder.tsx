@@ -418,6 +418,37 @@ const Founder = () => {
                             </p>
                         </motion.div>
 
+                        {/* ── Featured highlight photo ── */}
+                        <motion.div
+                            variants={fadeUp}
+                            initial="hidden"
+                            whileInView="show"
+                            viewport={{ once: true }}
+                            className="mb-10"
+                        >
+                            <div className="relative rounded-2xl overflow-hidden border-2 border-secondary shadow-2xl shadow-secondary/20">
+                                <img
+                                    src="/delhi/IMG_20260213_143724 (1).jpg"
+                                    alt="Dr. Muggu Murali Krishna with Dr. V. Kamakoti, Director IIT Madras – AI Bodhan Conclave 2026"
+                                    className="w-full max-h-[520px] object-cover object-top"
+                                />
+                                {/* Gradient overlay */}
+                                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent px-6 py-6">
+                                    <div className="flex items-center gap-2 mb-1">
+                                        <span className="bg-secondary text-secondary-foreground text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">
+                                            Distinguished Moment
+                                        </span>
+                                    </div>
+                                    <p className="text-white font-semibold text-lg leading-snug">
+                                        With Dr. V. Kamakoti — Director, IIT Madras
+                                    </p>
+                                    <p className="text-white/70 text-sm mt-1">
+                                        A proud milestone for MMK AI Solutions at the AI Bodhan Conclave 2026, Bharat Mandapam, New Delhi
+                                    </p>
+                                </div>
+                            </div>
+                        </motion.div>
+
                         <div className="columns-2 sm:columns-3 lg:columns-4 gap-3 space-y-3">
                             {[
                                 "IMG20260212110949.jpg",
@@ -438,7 +469,6 @@ const Founder = () => {
                                 "IMG_20260213_134221.jpg",
                                 "IMG_20260213_142217.jpg",
                                 "IMG_20260213_143259.jpg",
-                                "IMG_20260213_143724 (1).jpg",
                                 "IMG_20260213_143726.jpg",
                             ].map((photo, i) => (
                                 <motion.div
