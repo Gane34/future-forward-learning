@@ -31,7 +31,7 @@ const milestones = [
         year: "Research",
         icon: Microscope,
         title: "PhD & Scientific Career",
-        desc: "Pursued a doctoral degree in advanced computing and AI, dedicating years to research that blended cutting-edge technology with real-world societal impact — especially in healthcare and education.",
+        desc: "Pursued a doctoral degree in Health and ALLIDE sciences , dedicating years to research that blended cutting-edge technology with real-world societal impact — especially in healthcare and education.",
     },
     {
         year: "Realisation",
