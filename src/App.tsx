@@ -11,9 +11,11 @@ import AllProjects from "./pages/AllProjects";
 import GetStarted from "./pages/GetStarted";
 import Contact from "./pages/Contact";
 import Founder from "./pages/Founder";
+import AdmissionForm from "./pages/AdmissionForm";
 
 import { useState } from "react";
 import Preloader from "./components/Preloader";
+import ChatBot from "./components/ChatBot";
 
 const queryClient = new QueryClient();
 
@@ -37,9 +39,11 @@ const App = () => {
               <Route path="/get-started" element={<GetStarted />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/founder" element={<Founder />} />
+              <Route path="/admission" element={<AdmissionForm />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
+            <ChatBot />
           </BrowserRouter>
         )}
       </TooltipProvider>

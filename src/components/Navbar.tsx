@@ -97,7 +97,14 @@ const Navbar = () => {
           </div>
 
           {/* CTA */}
-          <div className="hidden lg:flex items-center gap-4">
+          <div className="hidden lg:flex items-center gap-3">
+            <a
+              href="/admission"
+              onClick={(e) => handleNavigation(e, "/admission")}
+              className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-bold rounded-full border border-primary text-primary hover:bg-primary/10 transition-all"
+            >
+              Apply Now
+            </a>
             <a
               href="/get-started"
               className="inline-flex items-center justify-center px-6 py-2.5 text-sm font-bold rounded-full bg-secondary text-secondary-foreground hover:bg-secondary/90 transition-all shadow-lg hover:shadow-secondary/25"
@@ -134,6 +141,13 @@ const Navbar = () => {
                   {item.label}
                 </a>
               ))}
+              <a
+                href="/admission"
+                onClick={(e) => handleNavigation(e, "/admission")}
+                className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold rounded-lg border border-primary text-primary hover:bg-primary/10 transition-colors w-fit"
+              >
+                Apply Now
+              </a>
               <a
                 href="/get-started"
                 className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors w-fit"

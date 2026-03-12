@@ -23,10 +23,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Plus, Pencil, Trash2, LogOut, Loader2, ImageIcon, Eye, EyeOff } from "lucide-react";
+import { Plus, Pencil, Trash2, LogOut, Loader2, ImageIcon, Eye, EyeOff, Download } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import ProjectManagement from "@/components/admin/ProjectManagement";
 import FounderAchievementsManagement from "@/components/admin/FounderAchievementsManagement";
+import * as XLSX from "xlsx";
+import type { Admission } from "./AdmissionForm";
 
 interface Story {
   id: string;
@@ -62,6 +64,7 @@ const AdminDashboard = () => {
 
   const [stories, setStories] = useState<Story[]>([]);
   const [inquiries, setInquiries] = useState<Inquiry[]>([]);
+  const [admissions, setAdmissions] = useState<Admission[]>([]);
   const [loadingStories, setLoadingStories] = useState(true);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
@@ -94,6 +97,10 @@ const AdminDashboard = () => {
     // Fetch inquiries from local storage
     const storedInquiries = JSON.parse(localStorage.getItem("inquiries") || "[]");
     setInquiries(storedInquiries);
+
+    // Fetch admissions from local storage
+    const storedAdmissions: Admission[] = JSON.parse(localStorage.getItem("admissions") || "[]");
+    setAdmissions(storedAdmissions);
 
     if (isAdmin || localStorage.getItem("admin_auth")) fetchStories();
   }, [isAdmin, fetchStories]);
@@ -210,6 +217,41 @@ const AdminDashboard = () => {
     setDeleteDialogOpen(false);
     setDeletingStory(null);
     fetchStories();
+  };
+
+  const exportAdmissionsToExcel = () => {
+    if (admissions.length === 0) {
+      toast({ title: "No admissions", description: "There are no admission records to export." });
+      return;
+    }
+    const rows = admissions.map((a) => ({
+      "Submitted At": new Date(a.submittedAt).toLocaleString(),
+      "Student Name": a.studentName,
+      "Date of Birth": a.dateOfBirth,
+      "Age": a.age,
+      "Gender": a.gender,
+      "Grade": a.grade,
+      "School Name": a.schoolName,
+      "Parent / Guardian Name": a.parentName,
+      "Relationship": a.relationship,
+      "Parent Email": a.parentEmail,
+      "Parent Mobile": a.parentMobile,
+      "Alt Mobile": a.altMobile,
+      "Address": a.address,
+      "City": a.city,
+      "PIN Code": a.pincode,
+      "Program Level": a.programLevel,
+      "Interests": a.interests,
+      "Heard From": a.heardFrom,
+      "Medical Notes": a.medicalNotes,
+    }));
+    const ws = XLSX.utils.json_to_sheet(rows);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Admissions");
+    const colWidths = Object.keys(rows[0]).map((k) => ({ wch: Math.max(k.length, 20) }));
+    ws["!cols"] = colWidths;
+    XLSX.writeFile(wb, `MVR_Academy_Admissions_${new Date().toISOString().slice(0, 10)}.xlsx`);
+    toast({ title: "Exported!", description: `${admissions.length} admission(s) exported to Excel.` });
   };
 
   if (loading) {
@@ -407,6 +449,61 @@ const AdminDashboard = () => {
           </Table>
         </Card>
       </main>
+
+      {/* Admissions Section */}
+      <div className="mt-12 mb-8 flex items-center justify-between">
+        <div>
+          <h2 className="text-2xl font-bold text-foreground">Admissions</h2>
+          <p className="text-sm text-muted-foreground mt-1">
+            Applications submitted via the Admission Form.
+          </p>
+        </div>
+        <Button onClick={exportAdmissionsToExcel} variant="outline" className="gap-2">
+          <Download className="w-4 h-4" />
+          Export to Excel
+        </Button>
+      </div>
+
+      <Card>
+        <div className="overflow-x-auto">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Date</TableHead>
+                <TableHead>Student</TableHead>
+                <TableHead>Age / Grade</TableHead>
+                <TableHead>Parent</TableHead>
+                <TableHead>Mobile</TableHead>
+                <TableHead>Program</TableHead>
+                <TableHead>City</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {admissions.length === 0 ? (
+                <TableRow>
+                  <TableCell colSpan={7} className="text-center py-8 text-muted-foreground">
+                    No admissions yet. Share the <strong>/admission</strong> link with parents.
+                  </TableCell>
+                </TableRow>
+              ) : (
+                admissions.map((adm) => (
+                  <TableRow key={adm.id}>
+                    <TableCell className="text-muted-foreground text-sm whitespace-nowrap">
+                      {new Date(adm.submittedAt).toLocaleDateString()}
+                    </TableCell>
+                    <TableCell className="font-medium">{adm.studentName}</TableCell>
+                    <TableCell className="text-sm">{adm.age}y / {adm.grade}</TableCell>
+                    <TableCell>{adm.parentName}</TableCell>
+                    <TableCell>{adm.parentMobile}</TableCell>
+                    <TableCell className="text-sm max-w-[160px] truncate">{adm.programLevel}</TableCell>
+                    <TableCell>{adm.city}</TableCell>
+                  </TableRow>
+                ))
+              )}
+            </TableBody>
+          </Table>
+        </div>
+      </Card>
 
       {/* Project Management Section */}
       <section className="container mx-auto px-6 pb-10">
