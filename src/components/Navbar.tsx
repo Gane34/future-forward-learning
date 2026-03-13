@@ -10,6 +10,7 @@ const navItems = [
   { label: "How It Works", href: "#process" },
   { label: "Outcomes", href: "#outcomes" },
   { label: "Projects", href: "/projects" },
+  { label: "Internship", href: "/internship" },
   { label: "Founder", href: "/founder" },
   { label: "Contact", href: "/contact" },
 ];
@@ -99,6 +100,13 @@ const Navbar = () => {
           {/* CTA */}
           <div className="hidden lg:flex items-center gap-3">
             <a
+              href="/internship"
+              onClick={(e) => handleNavigation(e, "/internship")}
+              className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-bold rounded-full bg-gradient-to-r from-purple-600 to-cyan-500 text-white hover:opacity-90 transition-all shadow-lg"
+            >
+              🚀 Internship
+            </a>
+            <a
               href="/admission"
               onClick={(e) => handleNavigation(e, "/admission")}
               className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-bold rounded-full border border-primary text-primary hover:bg-primary/10 transition-all"
@@ -141,6 +149,13 @@ const Navbar = () => {
                   {item.label}
                 </a>
               ))}
+              <a
+                href="/internship"
+                onClick={(e) => handleNavigation(e, "/internship")}
+                className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold rounded-lg bg-gradient-to-r from-purple-600 to-cyan-500 text-white hover:opacity-90 transition-all w-fit"
+              >
+                🚀 Internship Registration
+              </a>
               <a
                 href="/admission"
                 onClick={(e) => handleNavigation(e, "/admission")}
