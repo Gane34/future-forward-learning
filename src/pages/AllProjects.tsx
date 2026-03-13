@@ -20,16 +20,24 @@ const AllProjects = () => {
     const structuredData = {
         "@context": "https://schema.org",
         "@type": "CollectionPage",
-        "name": "Student Pilot Projects",
-        "description": "Explore the incredible innovations and pilot projects built by our young minds at MVR AI Academy.",
+        "name": "Student AI & Robotics Projects – MVR AI Robotics Academy",
+        "description": "AI, Robotics, and Coding projects built by school children aged 9–13 at MVR AI Academy, Khammam, Telangana.",
+        "url": "https://mmkaisolutions.com/projects",
+        "breadcrumb": {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mmkaisolutions.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Student Projects", "item": "https://mmkaisolutions.com/projects" }
+          ]
+        }
     };
 
     return (
         <div className="min-h-screen bg-background">
             <SEO
-                title="Student Projects"
-                description="Explore the incredible innovations and pilot projects built by our young minds at MVR AI Academy. AI, robotics, and coding projects by children aged 9-13."
-                keywords="student projects, AI projects, robotics projects, coding projects, children innovations, STEM projects"
+                title="Student AI & Robotics Projects | MVR AI Academy | Khammam"
+                description="See real AI, Robotics, and Coding projects built by school children aged 9–13 at MVR AI Robotics Academy, Khammam, Telangana — inspired by Dr. Murali Krishna (PhD)."
+                keywords="student AI projects Khammam, kids robotics projects Telangana, children coding showcase India, MVR AI Academy student work, line follower robot school, automated rover project, STEM projects children Andhra Pradesh, MMK AI Solutions"
                 ogUrl="https://mmkaisolutions.com/projects"
                 canonicalUrl="https://mmkaisolutions.com/projects"
                 structuredData={structuredData}

@@ -136,11 +136,25 @@ const AdmissionForm = () => {
   return (
     <div className="min-h-screen bg-background py-10 px-4">
       <SEO
-        title="Admission Form – MVR AI Academy"
-        description="Apply for admission to MVR AI Academy. Enroll your child in our AI, Robotics, and Coding programs for ages 9–13."
-        keywords="admission form, enroll, MVR AI Academy, robotics, AI, coding"
+        title="Admission Form – MVR AI Robotics Academy | Khammam, Telangana"
+        description="Apply for admission to MVR AI Robotics Academy. Enroll your child aged 9–13 in AI, Robotics, and Coding programs in Khammam, Telangana. Mentored by Dr. Murali Krishna (PhD)."
+        keywords="admission form MVR AI Academy, AI academy admission Khammam, robotics program enrollment Telangana, coding class application children India, MMK AI Solutions admission, STEM school program Khammam, Dr Murali Krishna academy admission"
         ogUrl="https://mmkaisolutions.com/admission"
         canonicalUrl="https://mmkaisolutions.com/admission"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Admission Form – MVR AI Robotics Academy",
+          "description": "Apply for admission to MVR AI Robotics Academy AI, Robotics and Coding programs for children aged 9–13 in Khammam, Telangana.",
+          "url": "https://mmkaisolutions.com/admission",
+          "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mmkaisolutions.com/" },
+              { "@type": "ListItem", "position": 2, "name": "Admission", "item": "https://mmkaisolutions.com/admission" }
+            ]
+          }
+        }}
       />
 
       <div className="max-w-3xl mx-auto">

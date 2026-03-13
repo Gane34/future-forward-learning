@@ -59,17 +59,54 @@ const Contact = () => {
 
     const structuredData = {
         "@context": "https://schema.org",
-        "@type": "ContactPage",
-        "name": "Contact MVR AI Academy",
-        "description": "Get in touch with MVR AI Academy. Contact us for inquiries about our AI, robotics, and coding programs.",
+        "@graph": [
+          {
+            "@type": "ContactPage",
+            "name": "Contact MVR AI Academy – MMK AI Solutions",
+            "description": "Contact MVR AI Robotics Academy for AI, Robotics, and Coding program inquiries in Khammam, Telangana.",
+            "url": "https://mmkaisolutions.com/contact",
+            "breadcrumb": {
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mmkaisolutions.com/" },
+                { "@type": "ListItem", "position": 2, "name": "Contact", "item": "https://mmkaisolutions.com/contact" }
+              ]
+            }
+          },
+          {
+            "@type": "LocalBusiness",
+            "name": "MVR AI Robotics Academy – MMK AI Solutions",
+            "image": "https://mmkaisolutions.com/og-image.jpg",
+            "url": "https://mmkaisolutions.com",
+            "telephone": "+91-9603745740",
+            "email": "muggu@mmkaisolutions.com",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Wyra",
+              "addressLocality": "Khammam",
+              "addressRegion": "Telangana",
+              "postalCode": "507165",
+              "addressCountry": "IN"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": "17.1767",
+              "longitude": "80.3649"
+            },
+            "openingHours": "Mo-Sa 09:00-18:00",
+            "priceRange": "₹₹",
+            "currenciesAccepted": "INR",
+            "paymentAccepted": "Cash, Bank Transfer, UPI"
+          }
+        ]
     };
 
     return (
         <div className="min-h-screen bg-background">
             <SEO
-                title="Contact Us"
-                description="Get in touch with MVR AI Academy. Have questions about our AI, robotics, and coding programs? Contact us at muggu@mmkaisolutions.com or +91 9603745740."
-                keywords="contact, inquiries, get in touch, MVR AI Academy contact, address, phone, email"
+                title="Contact MVR AI Academy | +91 9603745740 | Khammam, Telangana"
+                description="Contact MVR AI Robotics Academy for AI, Robotics & Coding program inquiries. Call +91 9603745740 or email muggu@mmkaisolutions.com. Located in Wyra, Khammam, Telangana – 507165."
+                keywords="contact MVR AI Academy, MMK AI Solutions contact, AI academy Khammam phone, robotics classes Telangana inquiry, Dr Murali Krishna contact, MVR academy address Wyra, AI education Khammam"
                 ogUrl="https://mmkaisolutions.com/contact"
                 canonicalUrl="https://mmkaisolutions.com/contact"
                 structuredData={structuredData}

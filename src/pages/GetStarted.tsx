@@ -81,11 +81,25 @@ const GetStarted = () => {
     return (
         <div className="min-h-screen bg-background flex flex-col items-center justify-center p-4 py-12">
             <SEO
-                title="Enroll Now"
-                description="Start your child's journey into AI, robotics, and coding education. Enroll in MVR AI Academy's project-based learning program for children aged 9-13."
-                keywords="enroll, enrollment, registration, sign up, AI courses, robotics classes, coding programs"
+                title="Enroll Your Child at MVR AI Academy | Khammam, Telangana"
+                description="Enroll your child in MVR AI Robotics Academy's AI, Robotics, and Coding programs for ages 9–13. Fill this form and our team will contact you within 24 hours. Khammam, Telangana."
+                keywords="enroll AI academy Khammam, robotics class registration Telangana, coding program children India, MVR AI Academy enrollment, MMK AI Solutions register, AI school students Khammam, STEM program Andhra Pradesh"
                 ogUrl="https://mmkaisolutions.com/get-started"
                 canonicalUrl="https://mmkaisolutions.com/get-started"
+                structuredData={{
+                  "@context": "https://schema.org",
+                  "@type": "WebPage",
+                  "name": "Enroll at MVR AI Robotics Academy",
+                  "description": "Start your child's AI and Robotics journey. Enroll at MVR AI Academy in Khammam, Telangana.",
+                  "url": "https://mmkaisolutions.com/get-started",
+                  "breadcrumb": {
+                    "@type": "BreadcrumbList",
+                    "itemListElement": [
+                      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mmkaisolutions.com/" },
+                      { "@type": "ListItem", "position": 2, "name": "Get Started", "item": "https://mmkaisolutions.com/get-started" }
+                    ]
+                  }
+                }}
             />
             <div className="w-full max-w-lg">
                 <button

@@ -271,11 +271,33 @@ const InternshipForm = () => {
   return (
     <div className="min-h-screen bg-background py-10 px-4">
       <SEO
-        title="Junior AI Innovator Internship – MVR AI Academy"
-        description="Apply for the Junior AI Innovator Internship at MVR AI Academy. School students can register for AI, Robotics, and Coding training under Dr. Murali Krishna."
-        keywords="internship, AI internship, school students, MVR AI Academy, robotics, coding, Dr Murali Krishna"
+        title="Junior AI Innovator Internship | MVR AI Academy | School Students"
+        description="Apply for the Junior AI Innovator Internship at MVR AI Robotics Academy, Khammam, Telangana. School students aged 9–13 learn AI, Robotics, and Coding under Dr. Murali Krishna (PhD)."
+        keywords="AI internship school students India, junior AI innovator internship, robotics internship Khammam, coding internship children Telangana, MVR AI Academy internship, MMK AI Solutions internship, Dr Murali Krishna internship program, AI program school Andhra Pradesh"
         ogUrl="https://mmkaisolutions.com/internship"
         canonicalUrl="https://mmkaisolutions.com/internship"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "Course",
+          "name": "Junior AI Innovator Internship",
+          "description": "A hands-on AI, Robotics, and Coding internship for school students aged 9–13, mentored by Dr. Murali Krishna (PhD) at MVR AI Robotics Academy, Khammam, Telangana.",
+          "provider": {
+            "@type": "Organization",
+            "name": "MVR AI Robotics Academy – MMK AI Solutions",
+            "url": "https://mmkaisolutions.com"
+          },
+          "url": "https://mmkaisolutions.com/internship",
+          "educationalLevel": "School Students aged 9–13",
+          "teaches": ["Artificial Intelligence", "Robotics", "Coding", "Innovation Projects"],
+          "availableLanguage": "English",
+          "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mmkaisolutions.com/" },
+              { "@type": "ListItem", "position": 2, "name": "Internship", "item": "https://mmkaisolutions.com/internship" }
+            ]
+          }
+        }}
       />
 
       <div className="max-w-3xl mx-auto">
