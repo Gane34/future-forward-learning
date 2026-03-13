@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { AlertCircle, Loader2 } from "lucide-react";
 import logo from "@/assets/logo.svg";
+import SEO from "@/components/SEO";
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
@@ -51,6 +52,7 @@ const AdminLogin = () => {
 
   return (
     <div className="min-h-screen bg-background flex items-center justify-center px-4">
+      <SEO title="Admin Login" noIndex={true} />
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <div className="mx-auto mb-4 w-16 h-16 rounded-full overflow-hidden border-4 border-primary/10 shadow-lg">

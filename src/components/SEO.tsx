@@ -5,6 +5,7 @@ interface SEOProps {
     description?: string;
     keywords?: string;
     ogImage?: string;
+    ogImageAlt?: string;
     ogUrl?: string;
     ogType?: string;
     twitterCard?: string;
@@ -18,6 +19,7 @@ const SEO = ({
     description = "Future-ready AI, robotics, and coding education for children aged 9–13. Project-based learning that builds confidence, creativity, and logical thinking.",
     keywords = "AI education, robotics for kids, coding for children, STEM education, project-based learning, artificial intelligence courses, robotics classes, programming for kids",
     ogImage = "/og-image.jpg",
+    ogImageAlt = "MVR AI Academy – AI & Robotics Education for Children",
     ogUrl = "https://mvraiacademy.com",
     ogType = "website",
     twitterCard = "summary_large_image",
@@ -26,7 +28,7 @@ const SEO = ({
     noIndex = false,
 }: SEOProps) => {
     const fullTitle = title.includes('MVR AI Academy') ? title : `${title} — MVR AI Academy`;
-    const fullOgImage = ogImage.startsWith('http') ? ogImage : `${ogUrl}${ogImage}`;
+    const fullOgImage = ogImage.startsWith('http') ? ogImage : `https://mvraiacademy.com${ogImage}`;
 
     return (
         <Helmet>
@@ -34,9 +36,11 @@ const SEO = ({
             <title>{fullTitle}</title>
             <meta name="description" content={description} />
             <meta name="keywords" content={keywords} />
+            <meta name="author" content="MVR AI Academy" />
 
             {/* Robots */}
-            {noIndex && <meta name="robots" content="noindex, nofollow" />}
+            <meta name="robots" content={noIndex ? "noindex, nofollow" : "index, follow"} />
+            <meta name="googlebot" content={noIndex ? "noindex, nofollow" : "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"} />
 
             {/* Canonical URL */}
             {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
@@ -49,6 +53,7 @@ const SEO = ({
             <meta property="og:image" content={fullOgImage} />
             <meta property="og:image:width" content="1200" />
             <meta property="og:image:height" content="630" />
+            <meta property="og:image:alt" content={ogImageAlt} />
             <meta property="og:site_name" content="MVR AI Academy" />
             <meta property="og:locale" content="en_US" />
 
@@ -57,6 +62,7 @@ const SEO = ({
             <meta name="twitter:title" content={fullTitle} />
             <meta name="twitter:description" content={description} />
             <meta name="twitter:image" content={fullOgImage} />
+            <meta name="twitter:image:alt" content={ogImageAlt} />
 
             {/* Structured Data */}
             {structuredData && (

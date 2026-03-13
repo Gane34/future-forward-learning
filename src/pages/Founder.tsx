@@ -144,12 +144,32 @@ const fadeUp = {
     }),
 };
 
+const founderStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Muggu Murali Krishna",
+    "alternateName": "Dr. Murali Krishna",
+    "jobTitle": "Founder & Director",
+    "worksFor": {
+        "@type": "Organization",
+        "name": "MMK AI Solutions / MVR AI Robotics Academy",
+        "url": "https://mvraiacademy.com"
+    },
+    "description": "PhD researcher and educator who founded MVR AI Academy to bring AI, Robotics, and Coding education to school children in rural India.",
+    "url": "https://mvraiacademy.com/founder",
+    "knowsAbout": ["Artificial Intelligence", "Robotics", "Healthcare Diagnostics", "STEM Education", "Rural Education"]
+};
+
 const Founder = () => {
     return (
         <>
             <SEO
                 title="Our Founder | Muggu Murali Krishna – MVR AI Academy"
-                description="Meet Muggu Murali Krishna, the visionary scientist and father behind MVR AI Academy & MMK AI Solutions, on a mission to bring future-ready AI education to every child in rural India."
+                description="Meet Dr. Muggu Murali Krishna (MMK), founder of MVR AI Academy & MMK AI Solutions — a PhD researcher bringing AI, Robotics, and Coding education to school children across rural India."
+                keywords="Muggu Murali Krishna, Dr Murali Krishna, MMK, MVR AI Academy founder, AI education India, robotics education founder"
+                ogUrl="https://mvraiacademy.com/founder"
+                canonicalUrl="https://mvraiacademy.com/founder"
+                structuredData={founderStructuredData}
             />
             <Navbar />
 
