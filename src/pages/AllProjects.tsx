@@ -30,8 +30,8 @@ const AllProjects = () => {
                 title="Student Projects"
                 description="Explore the incredible innovations and pilot projects built by our young minds at MVR AI Academy. AI, robotics, and coding projects by children aged 9-13."
                 keywords="student projects, AI projects, robotics projects, coding projects, children innovations, STEM projects"
-                ogUrl="https://mvraiacademy.com/projects"
-                canonicalUrl="https://mvraiacademy.com/projects"
+                ogUrl="https://mmkaisolutions.com/projects"
+                canonicalUrl="https://mmkaisolutions.com/projects"
                 structuredData={structuredData}
             />
             <div className="container mx-auto px-6 py-12">

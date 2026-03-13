@@ -5,7 +5,7 @@ Disallow: /admin/
 Disallow: /admin
 
 # Sitemap
-Sitemap: https://mvraiacademy.com/sitemap.xml
+Sitemap: https://mmkaisolutions.com/sitemap.xml
 
 # Specific crawlers
 User-agent: Googlebot

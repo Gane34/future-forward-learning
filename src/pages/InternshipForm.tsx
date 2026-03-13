@@ -274,8 +274,8 @@ const InternshipForm = () => {
         title="Junior AI Innovator Internship – MVR AI Academy"
         description="Apply for the Junior AI Innovator Internship at MVR AI Academy. School students can register for AI, Robotics, and Coding training under Dr. Murali Krishna."
         keywords="internship, AI internship, school students, MVR AI Academy, robotics, coding, Dr Murali Krishna"
-        ogUrl="https://mvraiacademy.com/internship"
-        canonicalUrl="https://mvraiacademy.com/internship"
+        ogUrl="https://mmkaisolutions.com/internship"
+        canonicalUrl="https://mmkaisolutions.com/internship"
       />
 
       <div className="max-w-3xl mx-auto">

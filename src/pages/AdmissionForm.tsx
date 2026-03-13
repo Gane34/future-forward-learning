@@ -139,8 +139,8 @@ const AdmissionForm = () => {
         title="Admission Form – MVR AI Academy"
         description="Apply for admission to MVR AI Academy. Enroll your child in our AI, Robotics, and Coding programs for ages 9–13."
         keywords="admission form, enroll, MVR AI Academy, robotics, AI, coding"
-        ogUrl="https://mvraiacademy.com/admission"
-        canonicalUrl="https://mvraiacademy.com/admission"
+        ogUrl="https://mmkaisolutions.com/admission"
+        canonicalUrl="https://mmkaisolutions.com/admission"
       />
 
       <div className="max-w-3xl mx-auto">

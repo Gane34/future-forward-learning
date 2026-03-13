@@ -153,10 +153,10 @@ const founderStructuredData = {
     "worksFor": {
         "@type": "Organization",
         "name": "MMK AI Solutions / MVR AI Robotics Academy",
-        "url": "https://mvraiacademy.com"
+        "url": "https://mmkaisolutions.com"
     },
     "description": "PhD researcher and educator who founded MVR AI Academy to bring AI, Robotics, and Coding education to school children in rural India.",
-    "url": "https://mvraiacademy.com/founder",
+    "url": "https://mmkaisolutions.com/founder",
     "knowsAbout": ["Artificial Intelligence", "Robotics", "Healthcare Diagnostics", "STEM Education", "Rural Education"]
 };
 
@@ -167,8 +167,8 @@ const Founder = () => {
                 title="Our Founder | Muggu Murali Krishna – MVR AI Academy"
                 description="Meet Dr. Muggu Murali Krishna (MMK), founder of MVR AI Academy & MMK AI Solutions — a PhD researcher bringing AI, Robotics, and Coding education to school children across rural India."
                 keywords="Muggu Murali Krishna, Dr Murali Krishna, MMK, MVR AI Academy founder, AI education India, robotics education founder"
-                ogUrl="https://mvraiacademy.com/founder"
-                canonicalUrl="https://mvraiacademy.com/founder"
+                ogUrl="https://mmkaisolutions.com/founder"
+                canonicalUrl="https://mmkaisolutions.com/founder"
                 structuredData={founderStructuredData}
             />
             <Navbar />

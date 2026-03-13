@@ -70,8 +70,8 @@ const Contact = () => {
                 title="Contact Us"
                 description="Get in touch with MVR AI Academy. Have questions about our AI, robotics, and coding programs? Contact us at muggu@mmkaisolutions.com or +91 9603745740."
                 keywords="contact, inquiries, get in touch, MVR AI Academy contact, address, phone, email"
-                ogUrl="https://mvraiacademy.com/contact"
-                canonicalUrl="https://mvraiacademy.com/contact"
+                ogUrl="https://mmkaisolutions.com/contact"
+                canonicalUrl="https://mmkaisolutions.com/contact"
                 structuredData={structuredData}
             />
             <Navbar />

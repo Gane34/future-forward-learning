@@ -84,8 +84,8 @@ const GetStarted = () => {
                 title="Enroll Now"
                 description="Start your child's journey into AI, robotics, and coding education. Enroll in MVR AI Academy's project-based learning program for children aged 9-13."
                 keywords="enroll, enrollment, registration, sign up, AI courses, robotics classes, coding programs"
-                ogUrl="https://mvraiacademy.com/get-started"
-                canonicalUrl="https://mvraiacademy.com/get-started"
+                ogUrl="https://mmkaisolutions.com/get-started"
+                canonicalUrl="https://mmkaisolutions.com/get-started"
             />
             <div className="w-full max-w-lg">
                 <button

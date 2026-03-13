@@ -20,7 +20,7 @@ const SEO = ({
     keywords = "AI education, robotics for kids, coding for children, STEM education, project-based learning, artificial intelligence courses, robotics classes, programming for kids",
     ogImage = "/og-image.jpg",
     ogImageAlt = "MVR AI Academy – AI & Robotics Education for Children",
-    ogUrl = "https://mvraiacademy.com",
+    ogUrl = "https://mmkaisolutions.com",
     ogType = "website",
     twitterCard = "summary_large_image",
     canonicalUrl,
@@ -28,7 +28,7 @@ const SEO = ({
     noIndex = false,
 }: SEOProps) => {
     const fullTitle = title.includes('MVR AI Academy') ? title : `${title} — MVR AI Academy`;
-    const fullOgImage = ogImage.startsWith('http') ? ogImage : `https://mvraiacademy.com${ogImage}`;
+    const fullOgImage = ogImage.startsWith('http') ? ogImage : `https://mmkaisolutions.com${ogImage}`;
 
     return (
         <Helmet>
