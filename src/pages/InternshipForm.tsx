@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, CheckCircle2, Loader2, Rocket } from "lucide-react";
+import { ArrowLeft, CheckCircle2, Loader2, Rocket, Brain, Bot, Code2, Lightbulb, Clock, Wifi, MapPin, GraduationCap, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -271,32 +271,81 @@ const InternshipForm = () => {
   return (
     <div className="min-h-screen bg-background py-10 px-4">
       <SEO
-        title="Junior AI Innovator Internship | MVR AI Academy | School Students"
-        description="Apply for the Junior AI Innovator Internship at MVR AI Robotics Academy, Khammam, Telangana. School students aged 9–13 learn AI, Robotics, and Coding under Dr. Murali Krishna (PhD)."
-        keywords="AI internship school students India, junior AI innovator internship, robotics internship Khammam, coding internship children Telangana, MVR AI Academy internship, MMK AI Solutions internship, Dr Murali Krishna internship program, AI program school Andhra Pradesh"
+        title="Junior AI Innovator Internship for School Students | MVR AI Academy Khammam"
+        description="Apply for the Junior AI Innovator Internship at MVR AI Robotics Academy, Khammam, Telangana. School students aged 9–13 get hands-on training in AI, Robotics, and Coding under Dr. Murali Krishna (PhD). Free evaluation form — register now!"
+        keywords="AI internship school students India, junior AI innovator internship Khammam, robotics internship Telangana, coding internship children Andhra Pradesh, MVR AI Academy internship apply, MMK AI Solutions internship program, Dr Murali Krishna AI internship, AI training kids Khammam, school AI program Telangana, free AI internship India"
         ogUrl="https://mmkaisolutions.com/internship"
         canonicalUrl="https://mmkaisolutions.com/internship"
+        ogImageAlt="Junior AI Innovator Internship – MVR AI Robotics Academy, Khammam"
         structuredData={{
           "@context": "https://schema.org",
-          "@type": "Course",
-          "name": "Junior AI Innovator Internship",
-          "description": "A hands-on AI, Robotics, and Coding internship for school students aged 9–13, mentored by Dr. Murali Krishna (PhD) at MVR AI Robotics Academy, Khammam, Telangana.",
-          "provider": {
-            "@type": "Organization",
-            "name": "MVR AI Robotics Academy – MMK AI Solutions",
-            "url": "https://mmkaisolutions.com"
-          },
-          "url": "https://mmkaisolutions.com/internship",
-          "educationalLevel": "School Students aged 9–13",
-          "teaches": ["Artificial Intelligence", "Robotics", "Coding", "Innovation Projects"],
-          "availableLanguage": "English",
-          "breadcrumb": {
-            "@type": "BreadcrumbList",
-            "itemListElement": [
-              { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mmkaisolutions.com/" },
-              { "@type": "ListItem", "position": 2, "name": "Internship", "item": "https://mmkaisolutions.com/internship" }
-            ]
-          }
+          "@graph": [
+            {
+              "@type": "Course",
+              "@id": "https://mmkaisolutions.com/internship#course",
+              "name": "Junior AI Innovator Internship",
+              "description": "A hands-on AI, Robotics, and Coding internship for school students aged 9–13, mentored by Dr. Murali Krishna (PhD) at MVR AI Robotics Academy, Khammam, Telangana.",
+              "url": "https://mmkaisolutions.com/internship",
+              "provider": {
+                "@type": "Organization",
+                "name": "MVR AI Robotics Academy – MMK AI Solutions",
+                "url": "https://mmkaisolutions.com",
+                "telephone": "+91-9603745740",
+                "email": "muggu@mmkaisolutions.com"
+              },
+              "instructor": {
+                "@type": "Person",
+                "name": "Dr. Muggu Murali Krishna",
+                "honorificSuffix": "PhD",
+                "jobTitle": "Founder & Mentor"
+              },
+              "educationalLevel": "School Students aged 9–13",
+              "teaches": ["Artificial Intelligence", "Robotics", "Coding", "Innovation Projects", "AI Tools"],
+              "courseMode": ["offline", "online", "blended"],
+              "availableLanguage": ["English", "Telugu"],
+              "locationCreated": {
+                "@type": "Place",
+                "name": "Wyra, Khammam, Telangana, India"
+              }
+            },
+            {
+              "@type": "FAQPage",
+              "mainEntity": [
+                {
+                  "@type": "Question",
+                  "name": "Who can apply for the Junior AI Innovator Internship?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "School students aged 9 to 13 years can apply. No prior experience in AI or coding is required — the program starts from the basics." }
+                },
+                {
+                  "@type": "Question",
+                  "name": "What will students learn in the AI internship?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "Students will learn AI basics, Robotics, Coding (Scratch to Python), AI tools like ChatGPT and Gemini, and complete innovation projects under the guidance of Dr. Murali Krishna (PhD)." }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Is the internship available online or offline?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "The internship is available in Online, Offline, and Hybrid modes. Students can choose their preferred mode when applying." }
+                },
+                {
+                  "@type": "Question",
+                  "name": "How many hours per week is the internship?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "Students can commit 1–2 hours, 3–4 hours, or 5+ hours per week depending on their availability. The program is flexible to fit school schedules." }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Where is MVR AI Academy located?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "MVR AI Robotics Academy is located in Wyra, Khammam, Telangana – 507165, India. Contact: +91 9603745740 | muggu@mmkaisolutions.com" }
+                }
+              ]
+            },
+            {
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mmkaisolutions.com/" },
+                { "@type": "ListItem", "position": 2, "name": "Internship", "item": "https://mmkaisolutions.com/internship" }
+              ]
+            }
+          ]
         }}
       />
 
@@ -309,9 +358,9 @@ const InternshipForm = () => {
           <ArrowLeft className="w-4 h-4" /> Back to Home
         </button>
 
-        {/* Header */}
+        {/* ── SEO Hero Header ── */}
         <div
-          className="rounded-2xl p-8 mb-8 text-center"
+          className="rounded-2xl p-8 mb-6 text-center"
           style={{
             background: "linear-gradient(135deg, hsl(263,90%,20%), hsl(180,100%,10%))",
             border: "1px solid hsl(263,90%,65%/0.3)",
@@ -323,15 +372,132 @@ const InternshipForm = () => {
           >
             <Rocket className="w-7 h-7 text-white" />
           </div>
-          <h1 className="text-3xl font-bold font-serif text-white mb-1">MVR AI Robotics Academy</h1>
-          <p className="text-lg font-semibold mt-1" style={{ color: "hsl(180,100%,70%)" }}>
-            Student AI Internship Evaluation Form
+          <p className="text-xs font-semibold tracking-widest uppercase mb-2" style={{ color: "hsl(180,100%,60%)" }}>
+            MMK AI Solutions / MVR AI Robotics Academy — Khammam, Telangana
           </p>
-          <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs text-muted-foreground">
-            <span>📋 Program: Junior AI Innovator Internship</span>
-            <span>👨‍🔬 Mentor: Dr. Murali Krishna (PhD)</span>
-            <span>🏢 MMK AI Solutions / MVR AI Robotics Academy</span>
+          <h1 className="text-3xl font-bold font-serif text-white mb-2">
+            Junior AI Innovator Internship
+          </h1>
+          <p className="text-base" style={{ color: "hsl(180,100%,70%)" }}>
+            AI, Robotics &amp; Coding Internship Program for School Students
+          </p>
+          <p className="text-sm text-muted-foreground mt-2">
+            Mentored by <strong className="text-white">Dr. Murali Krishna (PhD)</strong> · Ages 9–13 · Online / Offline / Hybrid
+          </p>
+        </div>
+
+        {/* ── SEO Content Block (crawlable text for Google) ── */}
+        <div
+          className="rounded-2xl p-6 mb-6 space-y-6"
+          style={{ background: "hsl(240,10%,8%)", border: "1px solid hsl(263,90%,65%/0.15)" }}
+        >
+          {/* About */}
+          <div>
+            <h2 className="text-lg font-bold text-foreground mb-2 flex items-center gap-2">
+              <GraduationCap className="w-5 h-5" style={{ color: "hsl(263,90%,65%)" }} />
+              About the Program
+            </h2>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              The <strong className="text-foreground">Junior AI Innovator Internship</strong> is a structured learning program
+              by <strong className="text-foreground">MVR AI Robotics Academy</strong> (MMK AI Solutions), Khammam, Telangana.
+              Designed for school students aged <strong className="text-foreground">9 to 13 years</strong>, this internship
+              gives children a real-world introduction to Artificial Intelligence, Robotics, and Coding — guided by
+              <strong className="text-foreground"> Dr. Muggu Murali Krishna (PhD)</strong>, a researcher and educator on
+              a mission to bring future-ready STEM education to every child in India.
+            </p>
           </div>
+
+          {/* What students learn */}
+          <div>
+            <h2 className="text-lg font-bold text-foreground mb-3 flex items-center gap-2">
+              <Brain className="w-5 h-5" style={{ color: "hsl(263,90%,65%)" }} />
+              What Students Learn
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {[
+                { icon: Brain, label: "AI Basics", desc: "Introduction to Artificial Intelligence concepts and real-world applications" },
+                { icon: Bot, label: "Robotics", desc: "Build and program robots using sensors, motors, and logic" },
+                { icon: Code2, label: "Coding", desc: "From block-based Scratch coding to Python programming" },
+                { icon: Lightbulb, label: "AI Tools", desc: "Hands-on use of ChatGPT, Gemini, and other AI tools" },
+              ].map(({ icon: Icon, label, desc }) => (
+                <div
+                  key={label}
+                  className="flex items-start gap-3 p-3 rounded-xl"
+                  style={{ background: "hsl(263,90%,65%/0.07)", border: "1px solid hsl(263,90%,65%/0.15)" }}
+                >
+                  <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: "hsl(263,90%,65%/0.15)" }}>
+                    <Icon className="w-4 h-4" style={{ color: "hsl(263,90%,75%)" }} />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-foreground">{label}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">{desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Eligibility & mode */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="flex items-start gap-3">
+              <GraduationCap className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: "hsl(180,100%,50%)" }} />
+              <div>
+                <p className="text-sm font-semibold text-foreground">Eligibility</p>
+                <p className="text-xs text-muted-foreground">School students, Class 4–10, ages 9–13. No prior experience needed.</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <Wifi className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: "hsl(180,100%,50%)" }} />
+              <div>
+                <p className="text-sm font-semibold text-foreground">Mode</p>
+                <p className="text-xs text-muted-foreground">Online, Offline (Khammam), or Hybrid — your choice.</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <Clock className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: "hsl(180,100%,50%)" }} />
+              <div>
+                <p className="text-sm font-semibold text-foreground">Time Commitment</p>
+                <p className="text-xs text-muted-foreground">Flexible: 1–2 hrs/week to 5+ hrs/week to fit school schedules.</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Why join */}
+          <div>
+            <h2 className="text-lg font-bold text-foreground mb-3 flex items-center gap-2">
+              <CheckCircle className="w-5 h-5" style={{ color: "hsl(120,100%,50%)" }} />
+              Why Join This Internship?
+            </h2>
+            <ul className="space-y-2">
+              {[
+                "Learn AI and Robotics from a PhD-trained mentor — Dr. Murali Krishna",
+                "Hands-on project-based learning: build real robots and AI demos",
+                "Flexible schedule — online or offline from Khammam, Telangana",
+                "Certificate of completion from MVR AI Robotics Academy",
+                "First step toward a future in AI, technology, and innovation",
+              ].map((point) => (
+                <li key={point} className="flex items-start gap-2 text-sm text-muted-foreground">
+                  <CheckCircle className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: "hsl(120,100%,50%)" }} />
+                  {point}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Location */}
+          <div className="flex items-start gap-3 pt-2 border-t" style={{ borderColor: "hsl(263,90%,65%/0.15)" }}>
+            <MapPin className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: "hsl(263,90%,65%)" }} />
+            <p className="text-xs text-muted-foreground">
+              <strong className="text-foreground">MVR AI Robotics Academy — MMK AI Solutions</strong><br />
+              Wyra, Khammam, Telangana – 507165, India · 📞 +91 9603745740 · ✉️ muggu@mmkaisolutions.com
+            </p>
+          </div>
+        </div>
+
+        {/* ── Form Header ── */}
+        <div className="mb-6 text-center">
+          <h2 className="text-xl font-bold text-foreground">Student AI Internship Evaluation Form</h2>
+          <p className="text-sm text-muted-foreground mt-1">Fill in the details below to register for the Junior AI Innovator Internship</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-8">
