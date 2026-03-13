@@ -1,10 +1,12 @@
 import { useState, useRef, useEffect } from "react";
-import { MessageCircle, X, Send, Bot, User, Sparkles } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { MessageCircle, X, Send, Bot, User, Sparkles, ExternalLink } from "lucide-react";
 
 interface Message {
   id: number;
   role: "bot" | "user";
   text: string;
+  actionLink?: { label: string; href: string };
 }
 
 const ACADEMY_QA: { patterns: string[]; answer: string }[] = [
@@ -42,6 +44,11 @@ const ACADEMY_QA: { patterns: string[]; answer: string }[] = [
     patterns: ["enroll", "admission", "register", "join", "how to start", "get started"],
     answer:
       "Enrolling is easy! 🎉 Here's how:\n\n1. Visit our **Get Started** page on the website\n2. Fill in your name, email, phone, and role\n3. Our team will contact you within 24 hours\n\nOr reach us directly:\n📧 muggu@mmkaisolutions.com\n📞 +91 9603745740\n\nWould you like me to guide you to the enrollment form?",
+  },
+  {
+    patterns: ["internship", "intern", "junior ai", "ai innovator", "school internship", "student internship", "internship form", "internship registration"],
+    answer:
+      "🚀 Exciting! We offer the **Junior AI Innovator Internship** for school students!\n\nMentored by **Dr. Murali Krishna (PhD)** at MVR AI Robotics Academy, this program covers:\n\n🤖 AI Basics\n🔧 Robotics\n💻 Coding\n💡 Innovation Projects\n\nClick the button below to fill out the Internship Registration Form right now!",
   },
   {
     patterns: ["contact", "phone", "email", "reach", "address", "location", "where are you"],
@@ -83,30 +90,37 @@ const ACADEMY_QA: { patterns: string[]; answer: string }[] = [
 const FALLBACK =
   "I'm not sure about that yet, but I'm learning! 😊 For detailed help, please contact us at 📞 +91 9603745740 or 📧 muggu@mmkaisolutions.com. You can also ask me about our **courses**, **enrollment**, **curriculum**, or **contact info**!";
 
-function getBotReply(input: string): string {
+const INTERNSHIP_PATTERNS = ["internship", "intern", "junior ai", "ai innovator", "school internship", "student internship", "internship form", "internship registration"];
+
+function getBotReply(input: string): { text: string; actionLink?: { label: string; href: string } } {
   const lower = input.toLowerCase();
+  if (INTERNSHIP_PATTERNS.some((p) => lower.includes(p))) {
+    const qa = ACADEMY_QA.find((q) => q.patterns.includes("internship"))!;
+    return { text: qa.answer, actionLink: { label: "Open Internship Registration Form", href: "/internship" } };
+  }
   for (const qa of ACADEMY_QA) {
     if (qa.patterns.some((p) => lower.includes(p))) {
-      return qa.answer;
+      return { text: qa.answer };
     }
   }
-  return FALLBACK;
+  return { text: FALLBACK };
 }
 
 const SUGGESTIONS = [
   "What do you teach?",
   "How do I enroll?",
+  "Internship registration",
   "What age can join?",
-  "Tell me about Olympiad tests",
 ];
 
 export default function ChatBot() {
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 0,
       role: "bot",
-      text: "Hi there! 👋 I'm **Sparky**, your MVR AI Academy assistant. Ask me anything about our courses, enrollment, or upcoming Olympiad platform! 🚀",
+      text: "Hi there! 👋 I'm **Sparky**, your MVR AI Academy assistant. Ask me anything about our courses, enrollment, internship, or upcoming Olympiad platform! 🚀",
     },
   ]);
   const [input, setInput] = useState("");
@@ -133,7 +147,10 @@ export default function ChatBot() {
     setTimeout(
       () => {
         const reply = getBotReply(text);
-        setMessages((prev) => [...prev, { id: Date.now() + 1, role: "bot", text: reply }]);
+        setMessages((prev) => [
+          ...prev,
+          { id: Date.now() + 1, role: "bot", text: reply.text, actionLink: reply.actionLink },
+        ]);
         setIsTyping(false);
       },
       700 + Math.random() * 400,
@@ -242,7 +259,7 @@ export default function ChatBot() {
                 </div>
                 {/* Bubble */}
                 <div
-                  className="max-w-[75%] px-3 py-2 rounded-2xl text-sm leading-relaxed whitespace-pre-line"
+                  className="max-w-[75%] rounded-2xl text-sm leading-relaxed whitespace-pre-line overflow-hidden"
                   style={{
                     background:
                       msg.role === "bot"
@@ -254,7 +271,20 @@ export default function ChatBot() {
                     border: msg.role === "bot" ? "1px solid hsl(263,90%,65%/0.15)" : "none",
                   }}
                 >
-                  {renderText(msg.text)}
+                  <div className="px-3 py-2">{renderText(msg.text)}</div>
+                  {msg.actionLink && (
+                    <button
+                      onClick={() => { setOpen(false); navigate(msg.actionLink!.href); }}
+                      className="w-full flex items-center justify-center gap-2 px-3 py-2 text-xs font-semibold transition-all hover:opacity-90"
+                      style={{
+                        background: "linear-gradient(135deg, hsl(263,90%,65%), hsl(180,100%,40%))",
+                        color: "white",
+                      }}
+                    >
+                      <ExternalLink className="w-3.5 h-3.5" />
+                      {msg.actionLink.label}
+                    </button>
+                  )}
                 </div>
               </div>
             ))}
