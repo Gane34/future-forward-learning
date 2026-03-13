@@ -31,7 +31,7 @@ const milestones = [
         year: "Research",
         icon: Microscope,
         title: "PhD & Scientific Career",
-        desc: "Pursued a doctoral degree in Health and ALLIDE sciences , dedicating years to research that blended cutting-edge technology with real-world societal impact — especially in healthcare and education.",
+        desc: "Pursued a doctoral degree in Health and ALLIED sciences , dedicating years to research that blended cutting-edge technology with real-world societal impact — especially in healthcare and education.",
     },
     {
         year: "Realisation",
@@ -72,8 +72,8 @@ const defaultAchievements: AchievementItem[] = [
     {
         icon: GraduationCap,
         category: "Academia",
-        title: "PhD in Advanced Computing & AI",
-        desc: "Completed rigorous doctoral research blending machine learning, computer vision, and data-driven decision systems — producing work recognised at national-level academic conferences.",
+        title: "PhD in Health and ALLIED sciences ",
+        desc: "PhD in Health & Allied Sciences with a Pharmacy background, working at the intersection of Artificial Intelligence, Robotics, and Healthcare Innovation. Passionate about creating technology-driven research solutions and intelligent healthcare systems for the future of medicine."
     },
     {
         icon: FileText,
