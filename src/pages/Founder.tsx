@@ -49,13 +49,13 @@ const milestones = [
         year: "2024",
         icon: Globe,
         title: "Founded MMK AI Solutions",
-        desc: "Launched MVR AI Academy and MMK AI Solutions to transform local tuition centres into Innovation Hubs — equipping children aged 9–13 with AI, robotics, and problem-solving skills.",
+        desc: "Launched MVR AI & Robotics Academy and MMK AI Solutions to transform local tuition centres into Innovation Hubs — equipping children aged 9–13 with AI, robotics, and problem-solving skills.",
     },
     {
         year: "Today",
         icon: Users,
         title: "Scaling the Movement",
-        desc: "MVR AI Academy is now expanding across Andhra Pradesh, training students and educators alike to ensure that geography never decides a child's future.",
+        desc: "MVR AI & Robotics Academy is now expanding across Andhra Pradesh, training students and educators alike to ensure that geography never decides a child's future.",
     },
 ];
 
@@ -90,7 +90,7 @@ const defaultAchievements: AchievementItem[] = [
     {
         icon: Trophy,
         category: "Education",
-        title: "Established MVR AI Academy",
+        title: "Established MVR AI & Robotics Academy",
         desc: "Built one of Andhra Pradesh's first grassroots AI education institutions specifically targeting children aged 9–13, with a curriculum co-designed with researchers and educators.",
     },
     {
@@ -155,7 +155,7 @@ const founderStructuredData = {
         "name": "MMK AI Solutions / MVR AI Robotics Academy",
         "url": "https://mmkaisolutions.com"
     },
-    "description": "PhD researcher and educator who founded MVR AI Academy to bring AI, Robotics, and Coding education to school children in rural India.",
+    "description": "PhD researcher and educator who founded MVR AI & Robotics Academy to bring AI, Robotics, and Coding education to school children in rural India.",
     "url": "https://mmkaisolutions.com/founder",
     "knowsAbout": ["Artificial Intelligence", "Robotics", "Healthcare Diagnostics", "STEM Education", "Rural Education"]
 };
@@ -164,9 +164,9 @@ const Founder = () => {
     return (
         <>
             <SEO
-                title="Our Founder | Muggu Murali Krishna – MVR AI Academy"
-                description="Meet Dr. Muggu Murali Krishna (MMK), founder of MVR AI Academy & MMK AI Solutions — a PhD researcher bringing AI, Robotics, and Coding education to school children across rural India."
-                keywords="Muggu Murali Krishna, Dr Murali Krishna, MMK, MVR AI Academy founder, AI education India, robotics education founder"
+                title="Our Founder | Muggu Murali Krishna – MVR AI & Robotics Academy"
+                description="Meet Dr. Muggu Murali Krishna (MMK), founder of MVR AI & Robotics Academy & MMK AI Solutions — a PhD researcher bringing AI, Robotics, and Coding education to school children across rural India."
+                keywords="Muggu Murali Krishna, Dr Murali Krishna, MMK, MVR AI & Robotics Academy founder, AI education India, robotics education founder"
                 ogUrl="https://mmkaisolutions.com/founder"
                 canonicalUrl="https://mmkaisolutions.com/founder"
                 structuredData={founderStructuredData}
@@ -205,7 +205,7 @@ const Founder = () => {
                             <p className="text-muted-foreground leading-relaxed mb-8">
                                 Dr. Muggu Murali Krishna — affectionately known as{" "}
                                 <strong className="text-foreground">MMK</strong> — is the
-                                founder of MVR AI Academy and MMK AI Solutions. A
+                                founder of MVR AI & Robotics Academy and MMK AI Solutions. A
                                 PhD-trained researcher, he chose to channel the power of
                                 science not into patents or papers alone, but into the
                                 hands of children who had never heard the word "algorithm."
@@ -236,7 +236,7 @@ const Founder = () => {
                                 <div className="absolute inset-0 rounded-3xl bg-secondary/30 blur-2xl scale-105 pointer-events-none" />
                                 <img
                                     src={FounderImage}
-                                    alt="Muggu Murali Krishna – Founder, MVR AI Academy"
+                                    alt="Muggu Murali Krishna – Founder, MVR AI & Robotics Academy"
                                     className="relative w-80 h-80 lg:w-96 lg:h-96 object-cover rounded-3xl shadow-2xl border border-white/10"
                                 />
                                 {/* Badge */}
@@ -580,7 +580,7 @@ const Founder = () => {
                                     as a child in Silicon Valley.</em>
                             </p>
                             <p className="text-muted-foreground leading-relaxed mb-4">
-                                Through MVR AI Academy he is turning local tuition centres into
+                                Through MVR AI & Robotics Academy he is turning local tuition centres into
                                 Innovation Hubs — spaces where students learn to think
                                 critically, code confidently, and solve real-world problems
                                 using AI and robotics.

@@ -30,15 +30,15 @@ const Courses = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEO
-        title="Courses & Levels – MVR AI Academy | Khammam, Telangana"
-        description="Explore Level 0 (AI & Robotics Foundation) and Level 1 (Robotics Builder Program) at MVR AI Academy, Khammam. Pilot batch at ₹999."
-        keywords="AI robotics courses Khammam, Level 0 robotics kids, robotics foundation program, MVR AI Academy levels, kids coding Telangana"
+        title="Courses & Levels – MVR AI & Robotics Academy | Khammam, Telangana"
+        description="Explore Level 0 (AI & Robotics Foundation) and Level 1 (Robotics Builder Program) at MVR AI & Robotics Academy, Khammam. Pilot batch at ₹999."
+        keywords="AI robotics courses Khammam, Level 0 robotics kids, robotics foundation program, MVR AI & Robotics Academy levels, kids coding Telangana"
         ogUrl="https://mmkaisolutions.com/courses"
         canonicalUrl="https://mmkaisolutions.com/courses"
         structuredData={{
           "@context": "https://schema.org",
           "@type": "WebPage",
-          name: "Courses – MVR AI Academy",
+          name: "Courses – MVR AI & Robotics Academy",
           url: "https://mmkaisolutions.com/courses",
         }}
       />

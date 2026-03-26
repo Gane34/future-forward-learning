@@ -69,12 +69,12 @@ const Navbar = () => {
               <div className="absolute inset-0 rounded-full bg-primary/30 blur-md group-hover:blur-lg transition-all duration-300" />
               <img
                 src={logo}
-                alt="MVR AI Academy"
+                alt="MVR AI & Robotics Academy"
                 className="relative w-9 h-9 rounded-full object-cover border border-white/15"
               />
             </div>
             <div className="flex flex-col leading-none">
-              <span className="font-bold text-[15px] text-white tracking-tight">MVR AI Academy</span>
+              <span className="font-bold text-[15px] text-white tracking-tight">MVR AI & Robotics Academy</span>
               <span className="text-[10px] text-white/40 tracking-widest uppercase font-medium">Khammam</span>
             </div>
           </a>

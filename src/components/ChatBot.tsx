@@ -13,12 +13,12 @@ const ACADEMY_QA: { patterns: string[]; answer: string }[] = [
   {
     patterns: ["hello", "hi", "hey", "good morning", "good evening", "namaste"],
     answer:
-      "Hello! 👋 Welcome to MVR AI Academy! I'm your AI tutor assistant. I can help you learn about our programs, enrollment, curriculum, and more. What would you like to know?",
+      "Hello! 👋 Welcome to MVR AI & Robotics Academy! I'm your AI tutor assistant. I can help you learn about our programs, enrollment, curriculum, and more. What would you like to know?",
   },
   {
     patterns: ["what is mvr", "about mvr", "about the academy", "what do you do", "tell me about"],
     answer:
-      "MVR AI Academy is a future-forward learning center based in Wyra, Khammam, Telangana. We empower children aged 9–13 with cutting-edge skills in AI, Coding, Robotics, and Innovation. Our vision: 'A Father's Dream. A Scientist's Vision.' — bringing world-class STEM education to every child. 🚀",
+      "MVR AI & Robotics Academy is a future-forward learning center based in Wyra, Khammam, Telangana. We empower children aged 9–13 with cutting-edge skills in AI, Coding, Robotics, and Innovation. Our vision: 'A Father's Dream. A Scientist's Vision.' — bringing world-class STEM education to every child. 🚀",
   },
   {
     patterns: ["curriculum", "what do you teach", "subjects", "courses", "what we learn"],
@@ -58,7 +58,7 @@ const ACADEMY_QA: { patterns: string[]; answer: string }[] = [
   {
     patterns: ["founder", "who started", "who created", "dr", "teacher"],
     answer:
-      "MVR AI Academy was founded by **Dr. Murali Krishna** — a PhD researcher and passionate educator who dreamed of bringing quality AI and robotics education to children in rural India. His journey from a small village to cutting-edge research inspired him to create this academy. 🌍",
+      "MVR AI & Robotics Academy was founded by **Dr. Murali Krishna** — a PhD researcher and passionate educator who dreamed of bringing quality AI and robotics education to children in rural India. His journey from a small village to cutting-edge research inspired him to create this academy. 🌍",
   },
   {
     patterns: ["olympiad", "exam", "test", "competition", "practice"],
@@ -78,12 +78,12 @@ const ACADEMY_QA: { patterns: string[]; answer: string }[] = [
   {
     patterns: ["thank", "thanks", "thank you", "awesome", "great", "helpful"],
     answer:
-      "You're welcome! 😊 It was my pleasure helping you. If you have more questions about MVR AI Academy, feel free to ask anytime. Happy learning! 🚀✨",
+      "You're welcome! 😊 It was my pleasure helping you. If you have more questions about MVR AI & Robotics Academy, feel free to ask anytime. Happy learning! 🚀✨",
   },
   {
     patterns: ["bye", "goodbye", "see you", "exit", "quit"],
     answer:
-      "Goodbye! 👋 Remember — the future belongs to curious minds. Keep exploring, keep building! See you at MVR AI Academy! 🌟",
+      "Goodbye! 👋 Remember — the future belongs to curious minds. Keep exploring, keep building! See you at MVR AI & Robotics Academy! 🌟",
   },
 ];
 
@@ -120,7 +120,7 @@ export default function ChatBot() {
     {
       id: 0,
       role: "bot",
-      text: "Hi there! 👋 I'm **Sparky**, your MVR AI Academy assistant. Ask me anything about our courses, enrollment, internship, or upcoming Olympiad platform! 🚀",
+      text: "Hi there! 👋 I'm **Sparky**, your MVR AI & Robotics Academy assistant. Ask me anything about our courses, enrollment, internship, or upcoming Olympiad platform! 🚀",
     },
   ]);
   const [input, setInput] = useState("");
@@ -220,7 +220,7 @@ export default function ChatBot() {
             <div>
               <p className="text-white font-semibold text-sm leading-none">Sparky</p>
               <p className="text-xs mt-0.5" style={{ color: "hsl(180,100%,70%)" }}>
-                MVR AI Academy Assistant
+                MVR AI & Robotics Academy Assistant
               </p>
             </div>
             <div className="ml-auto flex items-center gap-1.5">

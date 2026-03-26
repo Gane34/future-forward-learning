@@ -62,7 +62,7 @@ const Contact = () => {
         "@graph": [
           {
             "@type": "ContactPage",
-            "name": "Contact MVR AI Academy – MMK AI Solutions",
+            "name": "Contact MVR AI & Robotics Academy – MMK AI Solutions",
             "description": "Contact MVR AI Robotics Academy for AI, Robotics, and Coding program inquiries in Khammam, Telangana.",
             "url": "https://mmkaisolutions.com/contact",
             "breadcrumb": {
@@ -104,9 +104,9 @@ const Contact = () => {
     return (
         <div className="min-h-screen bg-background">
             <SEO
-                title="Contact MVR AI Academy | +91 9502952770 | Khammam, Telangana"
+                title="Contact MVR AI & Robotics Academy | +91 9502952770 | Khammam, Telangana"
                 description="Contact MVR AI Robotics Academy for AI, Robotics & Coding program inquiries. Call +91 9502952770 or email muggu@mmkaisolutions.com. Located in Wyra, Khammam, Telangana – 507165."
-                keywords="contact MVR AI Academy, MMK AI Solutions contact, AI academy Khammam phone, robotics classes Telangana inquiry, Dr Murali Krishna contact, MVR academy address Wyra, AI education Khammam"
+                keywords="contact MVR AI & Robotics Academy, MMK AI Solutions contact, AI academy Khammam phone, robotics classes Telangana inquiry, Dr Murali Krishna contact, MVR academy address Wyra, AI education Khammam"
                 ogUrl="https://mmkaisolutions.com/contact"
                 canonicalUrl="https://mmkaisolutions.com/contact"
                 structuredData={structuredData}

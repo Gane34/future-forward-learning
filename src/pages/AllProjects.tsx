@@ -21,7 +21,7 @@ const AllProjects = () => {
         "@context": "https://schema.org",
         "@type": "CollectionPage",
         "name": "Student AI & Robotics Projects – MVR AI Robotics Academy",
-        "description": "AI, Robotics, and Coding projects built by school children aged 9–13 at MVR AI Academy, Khammam, Telangana.",
+        "description": "AI, Robotics, and Coding projects built by school children aged 9–13 at MVR AI & Robotics Academy, Khammam, Telangana.",
         "url": "https://mmkaisolutions.com/projects",
         "breadcrumb": {
           "@type": "BreadcrumbList",
@@ -35,9 +35,9 @@ const AllProjects = () => {
     return (
         <div className="min-h-screen bg-background">
             <SEO
-                title="Student AI & Robotics Projects | MVR AI Academy | Khammam"
+                title="Student AI & Robotics Projects | MVR AI & Robotics Academy | Khammam"
                 description="See real AI, Robotics, and Coding projects built by school children aged 9–13 at MVR AI Robotics Academy, Khammam, Telangana — inspired by Dr. Murali Krishna (PhD)."
-                keywords="student AI projects Khammam, kids robotics projects Telangana, children coding showcase India, MVR AI Academy student work, line follower robot school, automated rover project, STEM projects children Andhra Pradesh, MMK AI Solutions"
+                keywords="student AI projects Khammam, kids robotics projects Telangana, children coding showcase India, MVR AI & Robotics Academy student work, line follower robot school, automated rover project, STEM projects children Andhra Pradesh, MMK AI Solutions"
                 ogUrl="https://mmkaisolutions.com/projects"
                 canonicalUrl="https://mmkaisolutions.com/projects"
                 structuredData={structuredData}

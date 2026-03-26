@@ -87,16 +87,16 @@ const GetStarted = () => {
     return (
         <div className="min-h-screen bg-background flex flex-col items-center justify-center p-4 py-12">
             <SEO
-                title="Enroll Your Child at MVR AI Academy | Khammam, Telangana"
+                title="Enroll Your Child at MVR AI & Robotics Academy | Khammam, Telangana"
                 description="Enroll your child in MVR AI Robotics Academy's AI, Robotics, and Coding programs for ages 9–13. Fill this form and our team will contact you within 24 hours. Khammam, Telangana."
-                keywords="enroll AI academy Khammam, robotics class registration Telangana, coding program children India, MVR AI Academy enrollment, MMK AI Solutions register, AI school students Khammam, STEM program Andhra Pradesh"
+                keywords="enroll AI academy Khammam, robotics class registration Telangana, coding program children India, MVR AI & Robotics Academy enrollment, MMK AI Solutions register, AI school students Khammam, STEM program Andhra Pradesh"
                 ogUrl="https://mmkaisolutions.com/get-started"
                 canonicalUrl="https://mmkaisolutions.com/get-started"
                 structuredData={{
                   "@context": "https://schema.org",
                   "@type": "WebPage",
                   "name": "Enroll at MVR AI Robotics Academy",
-                  "description": "Start your child's AI and Robotics journey. Enroll at MVR AI Academy in Khammam, Telangana.",
+                  "description": "Start your child's AI and Robotics journey. Enroll at MVR AI & Robotics Academy in Khammam, Telangana.",
                   "url": "https://mmkaisolutions.com/get-started",
                   "breadcrumb": {
                     "@type": "BreadcrumbList",

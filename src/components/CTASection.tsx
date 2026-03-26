@@ -63,7 +63,7 @@ const CTASection = () => {
               transition={{ delay: 0.3, duration: 0.7 }}
               className="text-lg text-white/50 leading-relaxed mb-10 max-w-xl mx-auto font-light"
             >
-              Join families who trust MVR AI Academy to prepare their children —
+              Join families who trust MVR AI & Robotics Academy to prepare their children —
               not just for school, but for life in an AI-powered world.
             </motion.p>
 

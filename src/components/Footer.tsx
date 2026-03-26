@@ -20,10 +20,10 @@ const Footer = () => {
             <div className="flex items-center gap-3">
               <div className="relative">
                 <div className="absolute inset-0 rounded-full bg-primary/25 blur-md" />
-                <img src={logo} alt="MVR AI Academy" className="relative w-10 h-10 rounded-full object-cover border border-white/10" />
+                <img src={logo} alt="MVR AI & Robotics Academy" className="relative w-10 h-10 rounded-full object-cover border border-white/10" />
               </div>
               <div>
-                <p className="font-bold text-base text-white tracking-tight">MVR AI Academy</p>
+                <p className="font-bold text-base text-white tracking-tight">MVR AI & Robotics Academy</p>
                 <p className="text-[11px] text-white/35 tracking-widest uppercase font-medium">by MMK AI Solutions</p>
               </div>
             </div>

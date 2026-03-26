@@ -15,11 +15,11 @@ interface SEOProps {
 }
 
 const SEO = ({
-    title = "MVR AI Academy — AI & Robotics Education for Children",
+    title = "MVR AI & Robotics Academy — AI & Robotics Education for Children",
     description = "Future-ready AI, robotics, and coding education for children aged 9–13. Project-based learning that builds confidence, creativity, and logical thinking.",
     keywords = "AI education, robotics for kids, coding for children, STEM education, project-based learning, artificial intelligence courses, robotics classes, programming for kids",
     ogImage = "/og-image.jpg",
-    ogImageAlt = "MVR AI Academy – AI & Robotics Education for Children",
+    ogImageAlt = "MVR AI & Robotics Academy – AI & Robotics Education for Children",
     ogUrl = "https://mmkaisolutions.com",
     ogType = "website",
     twitterCard = "summary_large_image",
@@ -27,7 +27,7 @@ const SEO = ({
     structuredData,
     noIndex = false,
 }: SEOProps) => {
-    const fullTitle = title.includes('MVR AI Academy') ? title : `${title} — MVR AI Academy`;
+    const fullTitle = title.includes('MVR AI & Robotics Academy') ? title : `${title} — MVR AI & Robotics Academy`;
     const fullOgImage = ogImage.startsWith('http') ? ogImage : `https://mmkaisolutions.com${ogImage}`;
 
     return (
@@ -36,7 +36,7 @@ const SEO = ({
             <title>{fullTitle}</title>
             <meta name="description" content={description} />
             <meta name="keywords" content={keywords} />
-            <meta name="author" content="MVR AI Academy" />
+            <meta name="author" content="MVR AI & Robotics Academy" />
 
             {/* Robots */}
             <meta name="robots" content={noIndex ? "noindex, nofollow" : "index, follow"} />
@@ -54,7 +54,7 @@ const SEO = ({
             <meta property="og:image:width" content="1200" />
             <meta property="og:image:height" content="630" />
             <meta property="og:image:alt" content={ogImageAlt} />
-            <meta property="og:site_name" content="MVR AI Academy" />
+            <meta property="og:site_name" content="MVR AI & Robotics Academy" />
             <meta property="og:locale" content="en_US" />
 
             {/* Twitter Card Tags */}

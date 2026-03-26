@@ -56,10 +56,10 @@ const AdminLogin = () => {
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <div className="mx-auto mb-4 w-16 h-16 rounded-full overflow-hidden border-4 border-primary/10 shadow-lg">
-            <img src={logo} alt="MVR AI Academy" className="w-full h-full object-cover" />
+            <img src={logo} alt="MVR AI & Robotics Academy" className="w-full h-full object-cover" />
           </div>
           <CardTitle className="text-xl">Admin Access</CardTitle>
-          <CardDescription>Sign in to manage MVR AI Academy stories</CardDescription>
+          <CardDescription>Sign in to manage MVR AI & Robotics Academy stories</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">

@@ -289,9 +289,9 @@ const InternshipForm = () => {
   return (
     <div className="min-h-screen bg-background py-10 px-4">
       <SEO
-        title="Junior AI Innovator Internship for School Students | MVR AI Academy Khammam"
+        title="Junior AI Innovator Internship for School Students | MVR AI & Robotics Academy Khammam"
         description="Apply for the Junior AI Innovator Internship at MVR AI Robotics Academy, Khammam, Telangana. School students aged 9–13 get hands-on training in AI, Robotics, and Coding under Dr. Murali Krishna (PhD). Free evaluation form — register now!"
-        keywords="AI internship school students India, junior AI innovator internship Khammam, robotics internship Telangana, coding internship children Andhra Pradesh, MVR AI Academy internship apply, MMK AI Solutions internship program, Dr Murali Krishna AI internship, AI training kids Khammam, school AI program Telangana, free AI internship India"
+        keywords="AI internship school students India, junior AI innovator internship Khammam, robotics internship Telangana, coding internship children Andhra Pradesh, MVR AI & Robotics Academy internship apply, MMK AI Solutions internship program, Dr Murali Krishna AI internship, AI training kids Khammam, school AI program Telangana, free AI internship India"
         ogUrl="https://mmkaisolutions.com/internship"
         canonicalUrl="https://mmkaisolutions.com/internship"
         ogImageAlt="Junior AI Innovator Internship – MVR AI Robotics Academy, Khammam"
@@ -351,7 +351,7 @@ const InternshipForm = () => {
                 },
                 {
                   "@type": "Question",
-                  "name": "Where is MVR AI Academy located?",
+                  "name": "Where is MVR AI & Robotics Academy located?",
                   "acceptedAnswer": { "@type": "Answer", "text": "MVR AI Robotics Academy is located in Wyra, Khammam, Telangana – 507165, India. Contact: +91 9502952770 | muggu@mmkaisolutions.com" }
                 }
               ]

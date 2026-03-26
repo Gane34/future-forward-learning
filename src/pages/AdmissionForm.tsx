@@ -161,7 +161,7 @@ const AdmissionForm = () => {
       <SEO
         title="Admission Form – MVR AI Robotics Academy | Khammam, Telangana"
         description="Apply for admission to MVR AI Robotics Academy. Enroll your child aged 9–13 in AI, Robotics, and Coding programs in Khammam, Telangana. Mentored by Dr. Murali Krishna (PhD)."
-        keywords="admission form MVR AI Academy, AI academy admission Khammam, robotics program enrollment Telangana, coding class application children India, MMK AI Solutions admission, STEM school program Khammam, Dr Murali Krishna academy admission"
+        keywords="admission form MVR AI & Robotics Academy, AI academy admission Khammam, robotics program enrollment Telangana, coding class application children India, MMK AI Solutions admission, STEM school program Khammam, Dr Murali Krishna academy admission"
         ogUrl="https://mmkaisolutions.com/admission"
         canonicalUrl="https://mmkaisolutions.com/admission"
         structuredData={{
@@ -204,7 +204,7 @@ const AdmissionForm = () => {
             <GraduationCap className="w-7 h-7 text-white" />
           </div>
           <h1 className="text-3xl font-bold font-serif text-white mb-2">
-            MVR AI Academy
+            MVR AI & Robotics Academy
           </h1>
           <p className="text-lg" style={{ color: "hsl(180,100%,70%)" }}>
             Student Admission Form
@@ -357,7 +357,7 @@ const AdmissionForm = () => {
             className="rounded-xl p-4 text-sm text-muted-foreground"
             style={{ background: "hsl(240,10%,8%)", border: "1px solid hsl(263,90%,65%/0.15)" }}
           >
-            By submitting this form, I confirm that the information provided is accurate and I consent to MVR AI Academy contacting me regarding the admission process.
+            By submitting this form, I confirm that the information provided is accurate and I consent to MVR AI & Robotics Academy contacting me regarding the admission process.
           </div>
 
           <Button

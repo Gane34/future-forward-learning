@@ -19,7 +19,7 @@ const Index = () => {
         "@type": "EducationalOrganization",
         "@id": "https://mmkaisolutions.com/#organization",
         "name": "MVR AI Robotics Academy",
-        "alternateName": ["MMK AI Solutions", "MVR AI Academy"],
+        "alternateName": ["MMK AI Solutions", "MVR AI & Robotics Academy"],
         "description": "Future-ready AI, robotics, and coding education for school children aged 9–13 in Khammam, Telangana, India.",
         "url": "https://mmkaisolutions.com",
         "logo": "https://mmkaisolutions.com/favicon.png",
@@ -82,27 +82,27 @@ const Index = () => {
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "What age group does MVR AI Academy teach?",
-            "acceptedAnswer": { "@type": "Answer", "text": "MVR AI Academy teaches children aged 9 to 13 years. Programs range from Level 0 Foundation to advanced Robotics and AI Innovation." }
+            "name": "What age group does MVR AI & Robotics Academy teach?",
+            "acceptedAnswer": { "@type": "Answer", "text": "MVR AI & Robotics Academy teaches children aged 9 to 13 years. Programs range from Level 0 Foundation to advanced Robotics and AI Innovation." }
           },
           {
             "@type": "Question",
-            "name": "Where is MVR AI Academy located?",
-            "acceptedAnswer": { "@type": "Answer", "text": "MVR AI Academy is located in Wyra, Khammam, Telangana – 507165, India. Contact: +91 9502952770." }
+            "name": "Where is MVR AI & Robotics Academy located?",
+            "acceptedAnswer": { "@type": "Answer", "text": "MVR AI & Robotics Academy is located in Wyra, Khammam, Telangana – 507165, India. Contact: +91 9502952770." }
           },
           {
             "@type": "Question",
-            "name": "What courses does MVR AI Academy offer?",
+            "name": "What courses does MVR AI & Robotics Academy offer?",
             "acceptedAnswer": { "@type": "Answer", "text": "We offer AI Fundamentals, Coding & Logic (Scratch to Python), Robotics engineering, Innovation Lab projects, and a Junior AI Innovator Internship for school students." }
           },
           {
             "@type": "Question",
-            "name": "Who founded MVR AI Academy?",
-            "acceptedAnswer": { "@type": "Answer", "text": "MVR AI Academy was founded by Dr. Muggu Murali Krishna (PhD), a researcher and educator dedicated to bringing AI and robotics education to children in rural India." }
+            "name": "Who founded MVR AI & Robotics Academy?",
+            "acceptedAnswer": { "@type": "Answer", "text": "MVR AI & Robotics Academy was founded by Dr. Muggu Murali Krishna (PhD), a researcher and educator dedicated to bringing AI and robotics education to children in rural India." }
           },
           {
             "@type": "Question",
-            "name": "How can I enroll my child at MVR AI Academy?",
+            "name": "How can I enroll my child at MVR AI & Robotics Academy?",
             "acceptedAnswer": { "@type": "Answer", "text": "Visit mmkaisolutions.com/get-started to fill the enrollment form, or call us at +91 9502952770 or email muggu@mmkaisolutions.com." }
           }
         ]
@@ -121,9 +121,9 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground font-sans selection:bg-secondary/30">
       <SEO
-        title="MVR AI Academy — AI, Robotics & Coding for Children | Khammam, Telangana"
+        title="MVR AI & Robotics Academy — AI, Robotics & Coding for Children | Khammam, Telangana"
         description="MVR AI Robotics Academy offers AI, Robotics, and Coding programs for school children aged 9–13 in Khammam, Telangana. Project-based learning led by Dr. Murali Krishna (PhD). Enroll today!"
-        keywords="AI academy Khammam, robotics for kids Telangana, coding classes children India, STEM education Khammam, AI education school students, MVR AI Academy, MMK AI Solutions, Dr Murali Krishna, junior AI internship, artificial intelligence robotics Telangana"
+        keywords="AI academy Khammam, robotics for kids Telangana, coding classes children India, STEM education Khammam, AI education school students, MVR AI & Robotics Academy, MMK AI Solutions, Dr Murali Krishna, junior AI internship, artificial intelligence robotics Telangana"
         ogUrl="https://mmkaisolutions.com/"
         canonicalUrl="https://mmkaisolutions.com/"
         structuredData={structuredData}
