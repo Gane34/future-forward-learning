@@ -24,7 +24,7 @@ const Index = () => {
         "url": "https://mmkaisolutions.com",
         "logo": "https://mmkaisolutions.com/favicon.png",
         "image": "https://mmkaisolutions.com/og-image.jpg",
-        "telephone": "+91-9603745740",
+        "telephone": "+91-9502952770",
         "email": "muggu@mmkaisolutions.com",
         "founder": {
           "@type": "Person",
@@ -88,7 +88,7 @@ const Index = () => {
           {
             "@type": "Question",
             "name": "Where is MVR AI Academy located?",
-            "acceptedAnswer": { "@type": "Answer", "text": "MVR AI Academy is located in Wyra, Khammam, Telangana – 507165, India. Contact: +91 9603745740." }
+            "acceptedAnswer": { "@type": "Answer", "text": "MVR AI Academy is located in Wyra, Khammam, Telangana – 507165, India. Contact: +91 9502952770." }
           },
           {
             "@type": "Question",
@@ -103,7 +103,7 @@ const Index = () => {
           {
             "@type": "Question",
             "name": "How can I enroll my child at MVR AI Academy?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Visit mmkaisolutions.com/get-started to fill the enrollment form, or call us at +91 9603745740 or email muggu@mmkaisolutions.com." }
+            "acceptedAnswer": { "@type": "Answer", "text": "Visit mmkaisolutions.com/get-started to fill the enrollment form, or call us at +91 9502952770 or email muggu@mmkaisolutions.com." }
           }
         ]
       },

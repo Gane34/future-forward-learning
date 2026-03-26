@@ -46,8 +46,8 @@ const Contact = () => {
         {
             icon: <Phone className="w-6 h-6" />,
             title: "Call Us",
-            details: "+91 9603745740",
-            link: "tel:+919876543210",
+            details: "+91 9502952770",
+            link: "tel:+919502952770",
         },
         {
             icon: <MapPin className="w-6 h-6" />,
@@ -78,7 +78,7 @@ const Contact = () => {
             "name": "MVR AI Robotics Academy – MMK AI Solutions",
             "image": "https://mmkaisolutions.com/og-image.jpg",
             "url": "https://mmkaisolutions.com",
-            "telephone": "+91-9603745740",
+            "telephone": "+91-9502952770",
             "email": "muggu@mmkaisolutions.com",
             "address": {
               "@type": "PostalAddress",
@@ -104,8 +104,8 @@ const Contact = () => {
     return (
         <div className="min-h-screen bg-background">
             <SEO
-                title="Contact MVR AI Academy | +91 9603745740 | Khammam, Telangana"
-                description="Contact MVR AI Robotics Academy for AI, Robotics & Coding program inquiries. Call +91 9603745740 or email muggu@mmkaisolutions.com. Located in Wyra, Khammam, Telangana – 507165."
+                title="Contact MVR AI Academy | +91 9502952770 | Khammam, Telangana"
+                description="Contact MVR AI Robotics Academy for AI, Robotics & Coding program inquiries. Call +91 9502952770 or email muggu@mmkaisolutions.com. Located in Wyra, Khammam, Telangana – 507165."
                 keywords="contact MVR AI Academy, MMK AI Solutions contact, AI academy Khammam phone, robotics classes Telangana inquiry, Dr Murali Krishna contact, MVR academy address Wyra, AI education Khammam"
                 ogUrl="https://mmkaisolutions.com/contact"
                 canonicalUrl="https://mmkaisolutions.com/contact"

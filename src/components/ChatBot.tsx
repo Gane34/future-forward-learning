@@ -43,7 +43,7 @@ const ACADEMY_QA: { patterns: string[]; answer: string }[] = [
   {
     patterns: ["enroll", "admission", "register", "join", "how to start", "get started"],
     answer:
-      "Enrolling is easy! 🎉 Here's how:\n\n1. Visit our **Get Started** page on the website\n2. Fill in your name, email, phone, and role\n3. Our team will contact you within 24 hours\n\nOr reach us directly:\n📧 muggu@mmkaisolutions.com\n📞 +91 9603745740\n\nWould you like me to guide you to the enrollment form?",
+      "Enrolling is easy! 🎉 Here's how:\n\n1. Visit our **Get Started** page on the website\n2. Fill in your name, email, phone, and role\n3. Our team will contact you within 24 hours\n\nOr reach us directly:\n📧 muggu@mmkaisolutions.com\n📞 +91 9502952770\n\nWould you like me to guide you to the enrollment form?",
   },
   {
     patterns: ["internship", "intern", "junior ai", "ai innovator", "school internship", "student internship", "internship form", "internship registration"],
@@ -53,7 +53,7 @@ const ACADEMY_QA: { patterns: string[]; answer: string }[] = [
   {
     patterns: ["contact", "phone", "email", "reach", "address", "location", "where are you"],
     answer:
-      "You can reach us at:\n\n📧 **Email:** muggu@mmkaisolutions.com\n📞 **Phone:** +91 9603745740\n📍 **Location:** Wyra, Khammam, Telangana – 507165, India\n\nWe're happy to answer any questions!",
+      "You can reach us at:\n\n📧 **Email:** muggu@mmkaisolutions.com\n📞 **Phone:** +91 9502952770\n📍 **Location:** Wyra, Khammam, Telangana – 507165, India\n\nWe're happy to answer any questions!",
   },
   {
     patterns: ["founder", "who started", "who created", "dr", "teacher"],
@@ -68,7 +68,7 @@ const ACADEMY_QA: { patterns: string[]; answer: string }[] = [
   {
     patterns: ["fee", "cost", "price", "charges", "how much", "payment"],
     answer:
-      "For detailed fee information and available batches, please contact us directly:\n\n📞 +91 9603745740\n📧 muggu@mmkaisolutions.com\n\nWe believe in making quality education accessible, and we have flexible options available!",
+      "For detailed fee information and available batches, please contact us directly:\n\n📞 +91 9502952770\n📧 muggu@mmkaisolutions.com\n\nWe believe in making quality education accessible, and we have flexible options available!",
   },
   {
     patterns: ["project", "student project", "showcase", "demo"],
@@ -88,7 +88,7 @@ const ACADEMY_QA: { patterns: string[]; answer: string }[] = [
 ];
 
 const FALLBACK =
-  "I'm not sure about that yet, but I'm learning! 😊 For detailed help, please contact us at 📞 +91 9603745740 or 📧 muggu@mmkaisolutions.com. You can also ask me about our **courses**, **enrollment**, **curriculum**, or **contact info**!";
+  "I'm not sure about that yet, but I'm learning! 😊 For detailed help, please contact us at 📞 +91 9502952770 or 📧 muggu@mmkaisolutions.com. You can also ask me about our **courses**, **enrollment**, **curriculum**, or **contact info**!";
 
 const INTERNSHIP_PATTERNS = ["internship", "intern", "junior ai", "ai innovator", "school internship", "student internship", "internship form", "internship registration"];
 

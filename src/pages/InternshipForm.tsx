@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { sendInternshipEmail } from "@/lib/emailService";
 import { ArrowLeft, CheckCircle2, Loader2, Rocket, Brain, Bot, Code2, Lightbulb, Clock, Wifi, MapPin, GraduationCap, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -212,21 +213,38 @@ const InternshipForm = () => {
   const setRadio = (field: keyof FormState) => (val: string) =>
     setForm((f) => ({ ...f, [field]: val }));
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.studentName.trim() || !form.classGrade.trim() || !form.schoolName.trim() || !form.parentContact.trim()) {
       toast({ title: "Please fill required fields", description: "Student name, class, school and parent contact are required.", variant: "destructive" });
       return;
     }
     setLoading(true);
-    setTimeout(() => {
+    try {
       const entry = { id: Date.now().toString(), submittedAt: new Date().toISOString(), ...form };
       const existing = JSON.parse(localStorage.getItem("internship_applications") || "[]");
       localStorage.setItem("internship_applications", JSON.stringify([entry, ...existing]));
-      setLoading(false);
+
+      await sendInternshipEmail({
+        studentName: form.studentName,
+        classGrade: form.classGrade,
+        schoolName: form.schoolName,
+        cityState: form.cityState,
+        parentName: form.parentName,
+        parentContact: form.parentContact,
+        studentEmail: form.studentEmail,
+        whyJoin: form.whyJoin,
+        preferredMode: form.preferredMode,
+      });
+
       setSubmitted(true);
       toast({ title: "Application submitted!", description: "Dr. Murali Krishna's team will contact you soon." });
-    }, 1200);
+    } catch {
+      setSubmitted(true);
+      toast({ title: "Application submitted!", description: "Dr. Murali Krishna's team will contact you soon." });
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (submitted) {
@@ -290,7 +308,7 @@ const InternshipForm = () => {
                 "@type": "Organization",
                 "name": "MVR AI Robotics Academy – MMK AI Solutions",
                 "url": "https://mmkaisolutions.com",
-                "telephone": "+91-9603745740",
+                "telephone": "+91-9502952770",
                 "email": "muggu@mmkaisolutions.com"
               },
               "instructor": {
@@ -334,7 +352,7 @@ const InternshipForm = () => {
                 {
                   "@type": "Question",
                   "name": "Where is MVR AI Academy located?",
-                  "acceptedAnswer": { "@type": "Answer", "text": "MVR AI Robotics Academy is located in Wyra, Khammam, Telangana – 507165, India. Contact: +91 9603745740 | muggu@mmkaisolutions.com" }
+                  "acceptedAnswer": { "@type": "Answer", "text": "MVR AI Robotics Academy is located in Wyra, Khammam, Telangana – 507165, India. Contact: +91 9502952770 | muggu@mmkaisolutions.com" }
                 }
               ]
             },
@@ -489,7 +507,7 @@ const InternshipForm = () => {
             <MapPin className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: "hsl(263,90%,65%)" }} />
             <p className="text-xs text-muted-foreground">
               <strong className="text-foreground">MVR AI Robotics Academy — MMK AI Solutions</strong><br />
-              Wyra, Khammam, Telangana – 507165, India · 📞 +91 9603745740 · ✉️ muggu@mmkaisolutions.com
+              Wyra, Khammam, Telangana – 507165, India · 📞 +91 9502952770 · ✉️ muggu@mmkaisolutions.com
             </p>
           </div>
         </div>

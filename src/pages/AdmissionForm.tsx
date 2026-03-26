@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, CheckCircle2, Loader2, GraduationCap } from "lucide-react";
+import { sendAdmissionEmail } from "@/lib/emailService";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -78,10 +79,11 @@ const AdmissionForm = () => {
   const setSelect = (field: keyof typeof empty) => (value: string) =>
     setForm((f) => ({ ...f, [field]: value }));
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
+    try {
+      // Save to localStorage
       const admission: Admission = {
         id: Date.now().toString(),
         submittedAt: new Date().toISOString(),
@@ -89,10 +91,31 @@ const AdmissionForm = () => {
       };
       const existing: Admission[] = JSON.parse(localStorage.getItem("admissions") || "[]");
       localStorage.setItem("admissions", JSON.stringify([admission, ...existing]));
-      setLoading(false);
+
+      // Send email notification
+      await sendAdmissionEmail({
+        studentName: form.studentName,
+        age: form.age,
+        grade: form.grade,
+        schoolName: form.schoolName,
+        parentName: form.parentName,
+        parentEmail: form.parentEmail,
+        parentMobile: form.parentMobile,
+        city: form.city,
+        programLevel: form.programLevel,
+        interests: form.interests,
+        heardFrom: form.heardFrom,
+      });
+
       setSubmitted(true);
       toast({ title: "Admission submitted!", description: "We'll contact you within 24 hours." });
-    }, 1200);
+    } catch {
+      // Email failed but form data is saved — still succeed for user
+      setSubmitted(true);
+      toast({ title: "Admission submitted!", description: "We'll contact you within 24 hours." });
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (submitted) {
@@ -187,8 +210,11 @@ const AdmissionForm = () => {
             Student Admission Form
           </p>
           <p className="text-sm text-muted-foreground mt-2">
-            Admissions open for 2025–26 • Ages 9–13 • Wyra, Khammam, Telangana
+            Admissions open for 2025–26 • Ages 6–14 • Khammam, Telangana
           </p>
+          <div className="mt-3 inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold" style={{ background: "rgba(245,158,11,0.15)", border: "1px solid rgba(245,158,11,0.3)", color: "#fbbf24" }}>
+            🎉 Level 0 Pilot Batch — ₹999 (was ₹2,499)
+          </div>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-8">
@@ -284,10 +310,9 @@ const AdmissionForm = () => {
                 <Select onValueChange={setSelect("programLevel")} required>
                   <SelectTrigger><SelectValue placeholder="Select program" /></SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="Level 0 – Foundation (AI & Coding Basics)">Level 0 – Foundation (AI & Coding Basics)</SelectItem>
-                    <SelectItem value="Level 1 – Robotics (Sensors & Automation)">Level 1 – Robotics (Sensors & Automation)</SelectItem>
-                    <SelectItem value="Level 2 – Advanced AI & Innovation Lab">Level 2 – Advanced AI & Innovation Lab</SelectItem>
-                    <SelectItem value="Not Sure – Needs Assessment">Not Sure – Needs Assessment</SelectItem>
+                    <SelectItem value="Level 0 – AI & Robotics Foundation (₹999 Pilot Batch, Ages 6–10)">Level 0 – AI & Robotics Foundation (₹999 Pilot · Ages 6–10)</SelectItem>
+                    <SelectItem value="Level 1 – Robotics Builder Program (Upcoming, Ages 9–14)" disabled>Level 1 – Robotics Builder Program (Coming Soon · Ages 9–14)</SelectItem>
+                    <SelectItem value="Not Sure – Request Free Assessment">Not Sure – Request Free Assessment</SelectItem>
                   </SelectContent>
                 </Select>
               </Field>

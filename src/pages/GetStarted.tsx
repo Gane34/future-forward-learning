@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, CheckCircle2, Loader2 } from "lucide-react";
+import { sendContactEmail } from "@/lib/emailService";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -34,29 +35,34 @@ const GetStarted = () => {
         setFormData({ ...formData, role: value });
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
-
-        // Simulate API call
-        setTimeout(() => {
+        try {
             const newInquiry = {
                 id: Date.now().toString(),
                 ...formData,
                 date: new Date().toISOString(),
                 status: "new",
             };
-
             const existingInquiries = JSON.parse(localStorage.getItem("inquiries") || "[]");
             localStorage.setItem("inquiries", JSON.stringify([newInquiry, ...existingInquiries]));
 
-            setLoading(false);
-            setSubmitted(true);
-            toast({
-                title: "Application Received!",
-                description: "We'll be in touch shortly.",
+            await sendContactEmail({
+                name: formData.name,
+                email: formData.email,
+                mobile: formData.mobile,
+                role: formData.role,
             });
-        }, 1500);
+
+            setSubmitted(true);
+            toast({ title: "Application Received!", description: "We'll be in touch shortly." });
+        } catch {
+            setSubmitted(true);
+            toast({ title: "Application Received!", description: "We'll be in touch shortly." });
+        } finally {
+            setLoading(false);
+        }
     };
 
     if (submitted) {

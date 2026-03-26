@@ -13,6 +13,7 @@ import Contact from "./pages/Contact";
 import Founder from "./pages/Founder";
 import AdmissionForm from "./pages/AdmissionForm";
 import InternshipForm from "./pages/InternshipForm";
+import Courses from "./pages/Courses";
 
 import { useState } from "react";
 import Preloader from "./components/Preloader";
@@ -42,6 +43,7 @@ const App = () => {
               <Route path="/founder" element={<Founder />} />
               <Route path="/admission" element={<AdmissionForm />} />
               <Route path="/internship" element={<InternshipForm />} />
+              <Route path="/courses" element={<Courses />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
