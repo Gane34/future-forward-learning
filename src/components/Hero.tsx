@@ -77,7 +77,7 @@ const Hero = () => {
               transition={{ duration: 0.8, delay: 0.45 }}
               className="flex flex-col sm:flex-row gap-4"
             >
-              <a href="/get-started" className="btn-premium text-base px-8 py-4 rounded-xl">
+              <a href="/courses" className="btn-premium text-base px-8 py-4 rounded-xl">
                 Start Learning Now
                 <ArrowRight className="w-4.5 h-4.5" />
               </a>
