@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { ArrowUpRight, Tag } from "lucide-react";
 
 const StudentProjects = () => {
@@ -39,17 +40,21 @@ const StudentProjects = () => {
             </h2>
           </motion.div>
 
-          <motion.a
-            href="/projects"
+          <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="hidden md:flex items-center gap-2 text-sm font-semibold text-white/50 hover:text-white border border-white/[0.08] hover:border-white/20 px-5 py-2.5 rounded-xl transition-all duration-300 group"
+            className="hidden md:flex"
           >
-            View all projects
-            <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-          </motion.a>
+            <Link
+              to="/projects"
+              className="flex items-center gap-2 text-sm font-semibold text-white/50 hover:text-white border border-white/[0.08] hover:border-white/20 px-5 py-2.5 rounded-xl transition-all duration-300 group"
+            >
+              View all projects
+              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </Link>
+          </motion.div>
         </div>
 
         {/* Projects */}
@@ -143,12 +148,12 @@ const StudentProjects = () => {
           viewport={{ once: true }}
           className="mt-12 text-center md:hidden"
         >
-          <a
-            href="/projects"
+          <Link
+            to="/projects"
             className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-white transition-colors"
           >
             View all projects <ArrowUpRight className="w-4 h-4" />
-          </a>
+          </Link>
         </motion.div>
       </div>
     </section>

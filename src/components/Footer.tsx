@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import logo from "@/assets/logo.svg";
 import { MapPin, Mail, Phone, ArrowUpRight } from "lucide-react";
 
@@ -61,8 +62,6 @@ const Footer = () => {
                 { name: "Our Approach", href: "/#process" },
                 { name: "Curriculum", href: "/#curriculum" },
                 { name: "Why MVR", href: "/#why" },
-                { name: "Student Projects", href: "/projects" },
-                { name: "Meet the Founder", href: "/founder" },
               ].map((item) => (
                 <li key={item.name}>
                   <a
@@ -72,6 +71,20 @@ const Footer = () => {
                     {item.name}
                     <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200" />
                   </a>
+                </li>
+              ))}
+              {[
+                { name: "Student Projects", to: "/projects" },
+                { name: "Meet the Founder", to: "/founder" },
+              ].map((item) => (
+                <li key={item.name}>
+                  <Link
+                    to={item.to}
+                    className="text-sm text-white/40 hover:text-white transition-colors duration-200 font-light flex items-center gap-1 group"
+                  >
+                    {item.name}
+                    <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200" />
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -88,7 +101,6 @@ const Footer = () => {
                 { name: "Robotics Lab", href: "/#curriculum" },
                 { name: "Coding Bootcamp", href: "/#curriculum" },
                 { name: "Innovation Lab", href: "/#curriculum" },
-                { name: "Internship", href: "/internship" },
               ].map((item) => (
                 <li key={item.name}>
                   <a
@@ -100,6 +112,15 @@ const Footer = () => {
                   </a>
                 </li>
               ))}
+              <li>
+                <Link
+                  to="/internship"
+                  className="text-sm text-white/40 hover:text-white transition-colors duration-200 font-light flex items-center gap-1 group"
+                >
+                  Internship
+                  <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200" />
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -110,27 +131,27 @@ const Footer = () => {
             </h4>
             <ul className="space-y-3">
               {[
-                { name: "Contact Us", href: "/contact" },
-                { name: "Schedule a Tour", href: "/get-started" },
-                { name: "Apply Now", href: "/admission" },
-                { name: "Partner With Us", href: "/get-started" },
+                { name: "Contact Us", to: "/contact" },
+                { name: "Schedule a Tour", to: "/get-started" },
+                { name: "Apply Now", to: "/admission" },
+                { name: "Partner With Us", to: "/get-started" },
               ].map((item) => (
                 <li key={item.name}>
-                  <a
-                    href={item.href}
+                  <Link
+                    to={item.to}
                     className="text-sm text-white/40 hover:text-white transition-colors duration-200 font-light flex items-center gap-1 group"
                   >
                     {item.name}
                     <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200" />
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
 
             {/* CTA */}
             <div className="mt-8">
-              <a
-                href="/admission"
+              <Link
+                to="/admission"
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white transition-all duration-300"
                 style={{
                   background: "linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%)",
@@ -139,7 +160,7 @@ const Footer = () => {
               >
                 Apply Now
                 <ArrowUpRight className="w-3.5 h-3.5" />
-              </a>
+              </Link>
             </div>
           </div>
         </div>

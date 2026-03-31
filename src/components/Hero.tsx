@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { ArrowRight, Sparkles, Users, FolderOpen, GraduationCap, MapPin } from "lucide-react";
 import heroImage from "@/assets/hero-children-learning.jpg";
 
@@ -77,13 +78,13 @@ const Hero = () => {
               transition={{ duration: 0.8, delay: 0.45 }}
               className="flex flex-col sm:flex-row gap-4"
             >
-              <a href="/courses" className="btn-premium text-base px-8 py-4 rounded-xl">
+              <Link to="/courses" className="btn-premium text-base px-8 py-4 rounded-xl">
                 Start Learning Now
                 <ArrowRight className="w-4.5 h-4.5" />
-              </a>
-              <a href="/founder" className="btn-ghost text-base px-8 py-4">
+              </Link>
+              <Link to="/founder" className="btn-ghost text-base px-8 py-4">
                 Our Story
-              </a>
+              </Link>
             </motion.div>
 
             {/* Stats row */}

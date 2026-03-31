@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { ArrowRight, Sparkles, Users, Calendar } from "lucide-react";
 
 const CTASection = () => {
@@ -75,19 +76,19 @@ const CTASection = () => {
               transition={{ delay: 0.4, duration: 0.7 }}
               className="flex flex-col sm:flex-row gap-4 justify-center mb-14"
             >
-              <a
-                href="/get-started"
+              <Link
+                to="/get-started"
                 className="btn-premium text-base px-8 py-4 rounded-xl"
               >
                 Schedule a Free Consultation
                 <ArrowRight className="w-4.5 h-4.5" />
-              </a>
-              <a
-                href="/admission"
+              </Link>
+              <Link
+                to="/admission"
                 className="btn-ghost text-base px-8 py-4 border-white/20 text-white hover:bg-white/10"
               >
                 Apply for Admission
-              </a>
+              </Link>
             </motion.div>
 
             {/* Trust indicators */}

@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { Cpu, Code2, Cog, Rocket } from "lucide-react";
 
 const subjects = [
@@ -130,13 +131,13 @@ const WhatWeTeach = () => {
               <p className="text-xs text-white/40 font-light">Explorer → Builder → Innovator</p>
             </div>
           </div>
-          <a
-            href="/get-started"
+          <Link
+            to="/courses"
             className="text-sm font-semibold text-primary hover:text-white flex items-center gap-1.5 transition-colors group/link"
           >
             View full curriculum
             <span className="group-hover/link:translate-x-1 transition-transform">→</span>
-          </a>
+          </Link>
         </motion.div>
       </div>
     </section>
