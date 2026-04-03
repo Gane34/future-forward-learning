@@ -8,6 +8,7 @@ import LearningOutcomes from "@/components/LearningOutcomes";
 import StudentProjects from "@/components/StudentProjects";
 import StoriesSection from "@/components/StoriesSection";
 import CTASection from "@/components/CTASection";
+import AchievementsBanner from "@/components/AchievementsBanner";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 
@@ -138,6 +139,7 @@ const Index = () => {
         <LearningOutcomes />
         <StudentProjects />
         <StoriesSection />
+        <AchievementsBanner />
         <CTASection />
       </main>
       <Footer />

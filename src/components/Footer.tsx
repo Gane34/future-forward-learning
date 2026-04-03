@@ -27,9 +27,11 @@ const Footer = () => {
               <div>
                 <p className="font-bold text-base text-white tracking-tight">MVR AI & Robotics Academy</p>
                 <p className="text-[11px] text-white/35 tracking-widest uppercase font-medium">by MMK AI Solutions</p>
-                <div className="flex items-center gap-1.5 mt-1">
+                <div className="flex items-center gap-1.5 mt-1.5">
                   <img src={msmeLogo} alt="MSME Registered" className="h-4 w-auto object-contain" />
-                  <p className="text-[10px] text-white/25 font-light">UDYAM-TS-04-0062944</p>
+                  <span className="text-[10px] font-bold tracking-wide px-2 py-0.5 rounded-md bg-amber-500/20 border border-amber-500/40 text-amber-400">
+                    UDYAM-TS-04-0062944
+                  </span>
                 </div>
               </div>
             </div>
