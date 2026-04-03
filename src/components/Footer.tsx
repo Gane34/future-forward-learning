@@ -173,7 +173,7 @@ const Footer = () => {
               <img
                 src={msmeLogo}
                 alt="MSME Registered – Government of India"
-                className="h-6 w-auto object-contain"
+                className="h-12 w-auto object-contain"
               />
             </div>
             <div>

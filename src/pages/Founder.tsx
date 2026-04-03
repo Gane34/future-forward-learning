@@ -537,7 +537,7 @@ const Founder = () => {
                                     <img
                                         src={msmeLogo}
                                         alt="MSME – Ministry of Micro, Small and Medium Enterprises, Government of India"
-                                        className="h-12 w-auto object-contain"
+                                        className="h-20 w-auto object-contain"
                                     />
                                 </div>
                             </div>
