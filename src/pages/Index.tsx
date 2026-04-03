@@ -9,6 +9,7 @@ import StudentProjects from "@/components/StudentProjects";
 import StoriesSection from "@/components/StoriesSection";
 import CTASection from "@/components/CTASection";
 import AchievementsBanner from "@/components/AchievementsBanner";
+import ScrollingTicker from "@/components/ScrollingTicker";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 
@@ -129,6 +130,7 @@ const Index = () => {
         canonicalUrl="https://mmkaisolutions.com/"
         structuredData={structuredData}
       />
+      <ScrollingTicker />
       <Navbar />
       <main>
         <Hero />
