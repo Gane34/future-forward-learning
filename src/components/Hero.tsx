@@ -4,7 +4,7 @@ import { ArrowRight, Sparkles, Users, FolderOpen, GraduationCap, MapPin } from "
 import heroImage from "@/assets/hero-children-learning.jpg";
 
 const stats = [
-  { icon: Users, value: "200+", label: "Young Innovators" },
+  { icon: Users, value: "50+", label: "Students Enrolled" },
   { icon: FolderOpen, value: "50+", label: "Projects Built" },
   { icon: GraduationCap, value: "3", label: "Learning Levels" },
   { icon: MapPin, value: "Khammam", label: "Telangana" },

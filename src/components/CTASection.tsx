@@ -100,7 +100,7 @@ const CTASection = () => {
               className="flex flex-col sm:flex-row items-center justify-center gap-8 pt-8 border-t border-white/[0.08]"
             >
               {[
-                { icon: Users, text: "200+ students enrolled" },
+                { icon: Users, text: "50+ students enrolled" },
                 { icon: Calendar, text: "Batches starting every month" },
                 { icon: Sparkles, text: "Free first class trial" },
               ].map((item) => (

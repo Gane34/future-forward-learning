@@ -6,7 +6,7 @@ const items = [
   { icon: Star, text: "Pilot Batch Open · Level 0 — Only ₹999", highlight: false },
   { icon: Award, text: "UDYAM-TS-04-0062944 · MSME Registered", highlight: true },
   { icon: Zap, text: "AI · Robotics · Coding · For Ages 6–16", highlight: false },
-  { icon: Users, text: "200+ Young Innovators Enrolled", highlight: false },
+  { icon: Users, text: "50+ Students Enrolled", highlight: false },
   { icon: Train, text: "AI-Driven Railway Inspection System — Govt of India Recognition", highlight: true },
   { icon: Star, text: "Solo Taught by Dr. Murali Krishna · PhD", highlight: false },
   { icon: Trophy, text: "Admissions Open 2025–26 · Limited Seats", highlight: false },
