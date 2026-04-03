@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import logo from "@/assets/logo.svg";
+import msmeLogo from "@/assets/msme logo.jpg";
 import { MapPin, Mail, Phone, ArrowUpRight } from "lucide-react";
 
 const Footer = () => {
@@ -170,12 +171,9 @@ const Footer = () => {
           <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-xl bg-white/[0.04] border border-white/[0.08]">
             <div className="bg-white rounded-lg px-2 py-1 flex items-center">
               <img
-                src="/msme-logo.png"
+                src={msmeLogo}
                 alt="MSME Registered – Government of India"
                 className="h-6 w-auto object-contain"
-                onError={(e) => {
-                  (e.currentTarget as HTMLImageElement).style.display = "none";
-                }}
               />
             </div>
             <div>

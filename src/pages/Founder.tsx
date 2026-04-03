@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import FounderImage from "@/assets/founder-image.jpeg";
+import msmeLogo from "@/assets/msme logo.jpg";
 import {
     GraduationCap,
     Microscope,
@@ -534,12 +535,9 @@ const Founder = () => {
                             <div className="flex justify-center mb-5">
                                 <div className="bg-white rounded-2xl px-6 py-3 inline-flex items-center shadow-lg border border-border">
                                     <img
-                                        src="/msme-logo.png"
+                                        src={msmeLogo}
                                         alt="MSME – Ministry of Micro, Small and Medium Enterprises, Government of India"
                                         className="h-12 w-auto object-contain"
-                                        onError={(e) => {
-                                            (e.currentTarget as HTMLImageElement).style.display = "none";
-                                        }}
                                     />
                                 </div>
                             </div>
