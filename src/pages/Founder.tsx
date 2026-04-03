@@ -18,6 +18,8 @@ import {
     Cpu,
     Users2,
     Zap,
+    Train,
+    FlaskConical,
 } from "lucide-react";
 
 const milestones = [
@@ -109,6 +111,12 @@ const defaultAchievements: AchievementItem[] = [
         category: "Recognition",
         title: "Community Science Evangelist",
         desc: "Recognised by local government bodies and education networks for grassroots science outreach, conducting workshops, science fairs, and AI demonstrations across villages and town schools.",
+    },
+    {
+        icon: Train,
+        category: "Innovation · MSME Hackathon 5.0",
+        title: "AI-Driven Railway Track Inspection System",
+        desc: "Associated with an innovation project selected under MSME Hackathon 5.0, aligned with the theme 'Innovation in Adoption of Industry 4.0 & 5.0 in MSME Ecosystem.' The concept integrated computer vision, robotics, and predictive diagnostics for real-world railway infrastructure safety.",
     },
 ];
 
@@ -509,6 +517,124 @@ const Founder = () => {
                                 </motion.div>
                             ))}
                         </div>
+                    </div>
+                </section>
+
+                {/* ── MSME HACKATHON 5.0 ───────────────────────────── */}
+                <section className="py-24">
+                    <div className="max-w-6xl mx-auto px-6">
+                        <motion.div
+                            variants={fadeUp}
+                            initial="hidden"
+                            whileInView="show"
+                            viewport={{ once: true }}
+                            className="text-center mb-12"
+                        >
+                            <span className="text-xs font-semibold tracking-widest uppercase text-secondary">
+                                Innovation Milestone · Government of India
+                            </span>
+                            <h2 className="mt-3 text-4xl font-serif font-bold">
+                                MSME Hackathon 5.0
+                            </h2>
+                            <p className="mt-4 text-muted-foreground max-w-xl mx-auto">
+                                Selected under the national MSME Hackathon for applied AI and robotics innovation in the industrial ecosystem.
+                            </p>
+                        </motion.div>
+
+                        <motion.div
+                            variants={fadeUp}
+                            initial="hidden"
+                            whileInView="show"
+                            viewport={{ once: true }}
+                            className="rounded-3xl border border-secondary/30 overflow-hidden"
+                            style={{ background: "linear-gradient(135deg, hsl(var(--secondary)/0.08) 0%, transparent 60%)" }}
+                        >
+                            <div className="p-8 lg:p-12 grid lg:grid-cols-2 gap-10 items-center">
+                                {/* Left: Details */}
+                                <div>
+                                    <div className="flex items-center gap-3 mb-6">
+                                        <div className="w-14 h-14 rounded-2xl bg-secondary/15 border border-secondary/25 flex items-center justify-center">
+                                            <Train className="w-7 h-7 text-secondary" />
+                                        </div>
+                                        <div>
+                                            <p className="text-xs font-bold tracking-widest uppercase text-secondary/70 mb-0.5">Selected Innovation Project</p>
+                                            <h3 className="text-xl font-bold text-foreground leading-tight">
+                                                AI-Driven Autonomous Railway Track Inspection System
+                                            </h3>
+                                        </div>
+                                    </div>
+
+                                    <p className="text-muted-foreground leading-relaxed mb-6">
+                                        Dr. Muggu Murali Krishna was associated with an innovation project selected under{" "}
+                                        <strong className="text-foreground">MSME Hackathon 5.0</strong>, aligned with the theme{" "}
+                                        <em>"Innovation in Adoption of Industry 4.0 &amp; 5.0 in MSME Ecosystem."</em>
+                                    </p>
+                                    <p className="text-muted-foreground leading-relaxed mb-6">
+                                        The selected concept focused on an AI-powered autonomous system integrating{" "}
+                                        <strong className="text-foreground">computer vision, robotics, and predictive diagnostics</strong>{" "}
+                                        to address real-world railway infrastructure safety challenges — a solution with direct
+                                        societal and industrial relevance.
+                                    </p>
+
+                                    <div className="flex flex-wrap gap-2">
+                                        {["Computer Vision", "Robotics", "Predictive Diagnostics", "Industry 4.0", "Industry 5.0", "Infrastructure Safety"].map((tag) => (
+                                            <span key={tag} className="text-xs px-3 py-1.5 rounded-full bg-secondary/10 border border-secondary/20 text-secondary font-medium">
+                                                {tag}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* Right: Impact cards */}
+                                <div className="space-y-4">
+                                    {[
+                                        {
+                                            icon: FlaskConical,
+                                            title: "Applied AI Research",
+                                            desc: "Reflects MMK AI Solutions' emerging direction in industrial AI — moving from education into real-world applied technology.",
+                                        },
+                                        {
+                                            icon: Train,
+                                            title: "Infrastructure Safety",
+                                            desc: "Autonomous inspection systems reduce manual risk and enable faster, more accurate detection of track defects at scale.",
+                                        },
+                                        {
+                                            icon: Globe,
+                                            title: "National Recognition",
+                                            desc: "Selection under a Government of India hackathon validates the technical depth and innovation-first approach of MMK AI Solutions.",
+                                        },
+                                    ].map((item, i) => {
+                                        const Icon = item.icon;
+                                        return (
+                                            <motion.div
+                                                key={item.title}
+                                                variants={fadeUp}
+                                                initial="hidden"
+                                                whileInView="show"
+                                                viewport={{ once: true }}
+                                                custom={i}
+                                                className="flex items-start gap-4 bg-card border border-border rounded-2xl p-5"
+                                            >
+                                                <div className="w-9 h-9 rounded-xl bg-secondary/10 flex items-center justify-center shrink-0">
+                                                    <Icon size={16} className="text-secondary" />
+                                                </div>
+                                                <div>
+                                                    <p className="font-semibold text-foreground text-sm mb-1">{item.title}</p>
+                                                    <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
+                                                </div>
+                                            </motion.div>
+                                        );
+                                    })}
+
+                                    <div className="flex items-center gap-3 px-5 py-4 rounded-2xl bg-secondary/8 border border-secondary/20">
+                                        <Award className="w-5 h-5 text-secondary shrink-0" />
+                                        <p className="text-xs text-muted-foreground font-light leading-relaxed">
+                                            This milestone strengthens MMK AI Solutions' long-term vision of building practical technology solutions with real social and industrial relevance.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </motion.div>
                     </div>
                 </section>
 
