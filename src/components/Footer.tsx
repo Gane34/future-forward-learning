@@ -165,6 +165,26 @@ const Footer = () => {
           </div>
         </div>
 
+        {/* MSME Registered badge */}
+        <div className="py-4 border-t border-white/[0.05] flex justify-center">
+          <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-xl bg-white/[0.04] border border-white/[0.08]">
+            <div className="bg-white rounded-lg px-2 py-1 flex items-center">
+              <img
+                src="/msme-logo.png"
+                alt="MSME Registered – Government of India"
+                className="h-6 w-auto object-contain"
+                onError={(e) => {
+                  (e.currentTarget as HTMLImageElement).style.display = "none";
+                }}
+              />
+            </div>
+            <div>
+              <p className="text-[10px] font-bold text-white/60 uppercase tracking-widest leading-none">MSME Registered</p>
+              <p className="text-[10px] text-white/30 font-light mt-0.5">Ministry of MSME · Government of India</p>
+            </div>
+          </div>
+        </div>
+
         {/* Bottom bar */}
         <div className="py-6 border-t border-white/[0.05] flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-white/25 font-light">

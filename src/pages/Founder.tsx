@@ -530,6 +530,19 @@ const Founder = () => {
                             viewport={{ once: true }}
                             className="text-center mb-12"
                         >
+                            {/* MSME Logo */}
+                            <div className="flex justify-center mb-5">
+                                <div className="bg-white rounded-2xl px-6 py-3 inline-flex items-center shadow-lg border border-border">
+                                    <img
+                                        src="/msme-logo.png"
+                                        alt="MSME – Ministry of Micro, Small and Medium Enterprises, Government of India"
+                                        className="h-12 w-auto object-contain"
+                                        onError={(e) => {
+                                            (e.currentTarget as HTMLImageElement).style.display = "none";
+                                        }}
+                                    />
+                                </div>
+                            </div>
                             <span className="text-xs font-semibold tracking-widest uppercase text-secondary">
                                 Innovation Milestone · Government of India
                             </span>
