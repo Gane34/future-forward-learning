@@ -1,10 +1,12 @@
 import { motion } from "framer-motion";
-import { Star, Trophy, Zap, Users, Award, Train } from "lucide-react";
+import { Star, Trophy, Zap, Users, Award, Train, GraduationCap, Lightbulb } from "lucide-react";
 
 const items = [
   { icon: Trophy, text: "MSME Hackathon 5.0 — Selected Innovation Project", highlight: true },
+  { icon: GraduationCap, text: "FREE Graduate Internship — Entrepreneurship & Innovation · Apply Now", highlight: true },
   { icon: Star, text: "Pilot Batch Open · Level 0 — Only ₹999", highlight: false },
   { icon: Award, text: "UDYAM-TS-04-0062944 · MSME Registered", highlight: true },
+  { icon: Lightbulb, text: "Graduate Internship — Innovation · AI in Business · Digital Ventures", highlight: false },
   { icon: Zap, text: "AI · Robotics · Coding · For Ages 6–16", highlight: false },
   { icon: Users, text: "50+ Students Enrolled", highlight: false },
   { icon: Train, text: "AI-Driven Railway Inspection System — Govt of India Recognition", highlight: true },

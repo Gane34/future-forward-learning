@@ -104,6 +104,14 @@ const Navbar = () => {
               Internship
             </a>
             <a
+              href="/graduate-internship"
+              onClick={(e) => handleNavigation(e, "/graduate-internship")}
+              className="px-4 py-2 text-sm font-semibold text-amber-400 hover:text-white border border-amber-500/30 hover:border-amber-400 rounded-xl hover:bg-amber-500/10 transition-all duration-200 flex items-center gap-1.5"
+            >
+              <span className="text-[9px] font-black bg-green-500/20 border border-green-500/40 text-green-400 px-1.5 py-0.5 rounded-full uppercase tracking-widest">FREE</span>
+              Grad Internship
+            </a>
+            <a
               href="/admission"
               onClick={(e) => handleNavigation(e, "/admission")}
               className="group relative px-5 py-2.5 text-sm font-semibold text-white rounded-xl overflow-hidden transition-all duration-300"
@@ -161,7 +169,15 @@ const Navbar = () => {
                   onClick={(e) => handleNavigation(e, "/internship")}
                   className="px-5 py-3 text-sm font-semibold text-center text-primary border border-primary/30 rounded-xl hover:bg-primary/10 transition-all"
                 >
-                  Internship Registration
+                  School Internship
+                </a>
+                <a
+                  href="/graduate-internship"
+                  onClick={(e) => handleNavigation(e, "/graduate-internship")}
+                  className="px-5 py-3 text-sm font-semibold text-center text-amber-400 border border-amber-500/30 rounded-xl hover:bg-amber-500/10 transition-all flex items-center justify-center gap-2"
+                >
+                  <span className="text-[9px] font-black bg-green-500/20 border border-green-500/40 text-green-400 px-1.5 py-0.5 rounded-full uppercase">FREE</span>
+                  Graduate Internship
                 </a>
                 <a
                   href="/admission"
