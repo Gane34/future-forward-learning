@@ -1,14 +1,15 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import FounderSection from "@/components/FounderSection";
-import WhySection from "@/components/WhySection";
-import WhatWeTeach from "@/components/WhatWeTeach";
-import HowChildrenLearn from "@/components/HowChildrenLearn";
-import LearningOutcomes from "@/components/LearningOutcomes";
-import StudentProjects from "@/components/StudentProjects";
-import StoriesSection from "@/components/StoriesSection";
-import CTASection from "@/components/CTASection";
+import FounderBatchBanner from "@/components/FounderBatchBanner";
+import ProgramsSection from "@/components/ProgramsSection";
+import WhyChooseUs from "@/components/WhyChooseUs";
+import HowWeTeach from "@/components/HowWeTeach";
+import ClassroomGallery from "@/components/ClassroomGallery";
+import StudentsGain from "@/components/StudentsGain";
+import ParentTestimonials from "@/components/ParentTestimonials";
 import AchievementsBanner from "@/components/AchievementsBanner";
+import AdmissionsSection from "@/components/AdmissionsSection";
+import ContactSection from "@/components/ContactSection";
 import ScrollingTicker from "@/components/ScrollingTicker";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
@@ -134,15 +135,16 @@ const Index = () => {
       <Navbar />
       <main>
         <Hero />
-        <WhySection />
-        <FounderSection />
-        <WhatWeTeach />
-        <HowChildrenLearn />
-        <LearningOutcomes />
-        <StudentProjects />
-        <StoriesSection />
+        <FounderBatchBanner />
+        <ProgramsSection />
+        <WhyChooseUs />
+        <HowWeTeach />
+        <ClassroomGallery />
+        <StudentsGain />
+        <ParentTestimonials />
         <AchievementsBanner />
-        <CTASection />
+        <AdmissionsSection />
+        <ContactSection />
       </main>
       <Footer />
     </div>
