@@ -285,6 +285,83 @@ const Founder = () => {
                     </div>
                 </section>
 
+                {/* ── VISION STATEMENT ──────────────────────────────── */}
+                <section className="py-24 bg-muted/20">
+                    <div className="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+                        <motion.div
+                            variants={fadeUp}
+                            initial="hidden"
+                            whileInView="show"
+                            viewport={{ once: true }}
+                        >
+                            <span className="text-xs font-semibold tracking-widest uppercase text-secondary">
+                                Vision &amp; Mission
+                            </span>
+                            <h2 className="mt-3 text-4xl font-serif font-bold mb-6">
+                                A Future Where Geography Is No Barrier
+                            </h2>
+                            <p className="text-muted-foreground leading-relaxed mb-4">
+                                Dr. Murali Krishna's vision is audacious yet simple:{" "}
+                                <em>a child in Narasaraopet should have the same opportunities
+                                    as a child in Silicon Valley.</em>
+                            </p>
+                            <p className="text-muted-foreground leading-relaxed mb-4">
+                                Through MVR AI & Robotics Academy he is turning local tuition centres into
+                                Innovation Hubs — spaces where students learn to think
+                                critically, code confidently, and solve real-world problems
+                                using AI and robotics.
+                            </p>
+                            <p className="text-muted-foreground leading-relaxed">
+                                Through <strong className="text-foreground">MVR Medico</strong>,
+                                his parallel initiative, AI-powered diagnostics are reaching
+                                rural healthcare centres, echoing the same belief:{" "}
+                                <em>science must serve society.</em>
+                            </p>
+                        </motion.div>
+
+                        <motion.div
+                            variants={fadeUp}
+                            initial="hidden"
+                            whileInView="show"
+                            viewport={{ once: true }}
+                            custom={1}
+                            className="space-y-6"
+                        >
+                            {[
+                                {
+                                    stat: "9–13",
+                                    label: "Target age group for AI literacy",
+                                },
+                                {
+                                    stat: "15 yrs",
+                                    label: "Syllabus gap we're closing in rural India",
+                                },
+                                {
+                                    stat: "1 Mission",
+                                    label: "Geography should never decide a child's future",
+                                },
+                            ].map((s, i) => (
+                                <motion.div
+                                    key={s.stat}
+                                    variants={fadeUp}
+                                    initial="hidden"
+                                    whileInView="show"
+                                    viewport={{ once: true }}
+                                    custom={i}
+                                    className="flex items-start gap-5 bg-card border border-border rounded-2xl p-6"
+                                >
+                                    <span className="text-3xl font-serif font-bold text-secondary whitespace-nowrap">
+                                        {s.stat}
+                                    </span>
+                                    <p className="text-sm text-muted-foreground leading-relaxed self-center">
+                                        {s.label}
+                                    </p>
+                                </motion.div>
+                            ))}
+                        </motion.div>
+                    </div>
+                </section>
+
                 {/* ── JOURNEY TIMELINE ──────────────────────────────── */}
                 <section className="py-20 bg-muted/20">
                     <div className="max-w-5xl mx-auto px-6">
@@ -693,83 +770,6 @@ const Founder = () => {
                                 );
                             })}
                         </div>
-                    </div>
-                </section>
-
-                {/* ── VISION STATEMENT ──────────────────────────────── */}
-                <section className="py-24 bg-muted/20">
-                    <div className="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
-                        <motion.div
-                            variants={fadeUp}
-                            initial="hidden"
-                            whileInView="show"
-                            viewport={{ once: true }}
-                        >
-                            <span className="text-xs font-semibold tracking-widest uppercase text-secondary">
-                                Vision &amp; Mission
-                            </span>
-                            <h2 className="mt-3 text-4xl font-serif font-bold mb-6">
-                                A Future Where Geography Is No Barrier
-                            </h2>
-                            <p className="text-muted-foreground leading-relaxed mb-4">
-                                Dr. Murali Krishna's vision is audacious yet simple:{" "}
-                                <em>a child in Narasaraopet should have the same opportunities
-                                    as a child in Silicon Valley.</em>
-                            </p>
-                            <p className="text-muted-foreground leading-relaxed mb-4">
-                                Through MVR AI & Robotics Academy he is turning local tuition centres into
-                                Innovation Hubs — spaces where students learn to think
-                                critically, code confidently, and solve real-world problems
-                                using AI and robotics.
-                            </p>
-                            <p className="text-muted-foreground leading-relaxed">
-                                Through <strong className="text-foreground">MVR Medico</strong>,
-                                his parallel initiative, AI-powered diagnostics are reaching
-                                rural healthcare centres, echoing the same belief:{" "}
-                                <em>science must serve society.</em>
-                            </p>
-                        </motion.div>
-
-                        <motion.div
-                            variants={fadeUp}
-                            initial="hidden"
-                            whileInView="show"
-                            viewport={{ once: true }}
-                            custom={1}
-                            className="space-y-6"
-                        >
-                            {[
-                                {
-                                    stat: "9–13",
-                                    label: "Target age group for AI literacy",
-                                },
-                                {
-                                    stat: "15 yrs",
-                                    label: "Syllabus gap we're closing in rural India",
-                                },
-                                {
-                                    stat: "1 Mission",
-                                    label: "Geography should never decide a child's future",
-                                },
-                            ].map((s, i) => (
-                                <motion.div
-                                    key={s.stat}
-                                    variants={fadeUp}
-                                    initial="hidden"
-                                    whileInView="show"
-                                    viewport={{ once: true }}
-                                    custom={i}
-                                    className="flex items-start gap-5 bg-card border border-border rounded-2xl p-6"
-                                >
-                                    <span className="text-3xl font-serif font-bold text-secondary whitespace-nowrap">
-                                        {s.stat}
-                                    </span>
-                                    <p className="text-sm text-muted-foreground leading-relaxed self-center">
-                                        {s.label}
-                                    </p>
-                                </motion.div>
-                            ))}
-                        </motion.div>
                     </div>
                 </section>
 
