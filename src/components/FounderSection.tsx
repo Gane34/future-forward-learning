@@ -100,43 +100,94 @@ const FoundersNotePage = () => {
                         </p>
                     </motion.section>
 
-                    {/* Vision */}
-                    <motion.section
+                </div>
+            </section>
+
+            {/* VISION & MISSION BLOCK */}
+            <section className="py-24 bg-gradient-to-br from-primary/5 via-primary/10 to-primary/5 relative overflow-hidden">
+                <div className="absolute inset-0 bg-grid opacity-10 pointer-events-none" />
+                <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
+                <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
+
+                <div className="max-w-6xl mx-auto px-6 relative z-10">
+                    <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
+                        className="text-center mb-16"
                     >
-                        <h2 className="text-3xl font-semibold mb-4">The Vision</h2>
-                        <p className="text-muted-foreground leading-relaxed">
-                            This work is my tribute to my father’s legacy and my gift
-                            to the next generation.
-                            We are building a future where a child in Narasaraopet
-                            has access to the same tools, thinking frameworks, and
-                            learning opportunities as a child in Silicon Valley.
-                        </p>                        <p className="text-muted-foreground leading-relaxed mt-4">
-                            <em>A child in Narasaraopet should have the same opportunities
-                            as a child in Silicon Valley.</em>
-                        </p>
-                    </motion.section>
+                        <span className="text-xs font-semibold tracking-widest uppercase text-primary">
+                            Our Foundation
+                        </span>
+                        <h2 className="mt-3 text-4xl lg:text-5xl font-serif font-bold">
+                            Vision & Mission
+                        </h2>
+                    </motion.div>
 
-                    {/* Mission */}
-                    <motion.section
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                    >
-                        <h2 className="text-3xl font-semibold mb-4">The Mission</h2>
-                        <p className="text-muted-foreground leading-relaxed">
-                            To transform local tuition centres into Innovation Hubs — spaces 
-                            where students learn to think critically, code confidently, and 
-                            solve real-world problems using AI and robotics.
-                        </p>
-                        <p className="text-muted-foreground leading-relaxed mt-4">
-                            Every child deserves access to world-class STEM education, regardless 
-                            of their zip code or income. Through MVR AI & Robotics Academy, we're 
-                            making this mission a reality — one child, one classroom, one village at a time.
-                        </p>                    </motion.section>
+                    <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
 
+                        {/* Vision */}
+                        <motion.div
+                            initial={{ opacity: 0, x: -30 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.2 }}
+                            className="group"
+                        >
+                            <div className="bg-background/80 backdrop-blur-sm border border-primary/20 rounded-3xl p-8 h-full hover:border-primary/40 transition-colors duration-300">
+                                <div className="flex items-center gap-4 mb-6">
+                                    <div className="w-12 h-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                                        <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                        </svg>
+                                    </div>
+                                    <h3 className="text-2xl font-bold text-foreground">The Vision</h3>
+                                </div>
+                                <p className="text-muted-foreground leading-relaxed mb-4">
+                                    This work is my tribute to my father's legacy and my gift
+                                    to the next generation. We are building a future where a child in Narasaraopet
+                                    has access to the same tools, thinking frameworks, and
+                                    learning opportunities as a child in Silicon Valley.
+                                </p>
+                                <blockquote className="text-primary font-medium italic border-l-4 border-primary/30 pl-4">
+                                    "A child in Narasaraopet should have the same opportunities
+                                    as a child in Silicon Valley."
+                                </blockquote>
+                            </div>
+                        </motion.div>
+
+                        {/* Mission */}
+                        <motion.div
+                            initial={{ opacity: 0, x: 30 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.4 }}
+                            className="group"
+                        >
+                            <div className="bg-background/80 backdrop-blur-sm border border-primary/20 rounded-3xl p-8 h-full hover:border-primary/40 transition-colors duration-300">
+                                <div className="flex items-center gap-4 mb-6">
+                                    <div className="w-12 h-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                                        <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                        </svg>
+                                    </div>
+                                    <h3 className="text-2xl font-bold text-foreground">The Mission</h3>
+                                </div>
+                                <p className="text-muted-foreground leading-relaxed mb-4">
+                                    To transform local tuition centres into Innovation Hubs — spaces
+                                    where students learn to think critically, code confidently, and
+                                    solve real-world problems using AI and robotics.
+                                </p>
+                                <p className="text-muted-foreground leading-relaxed">
+                                    Every child deserves access to world-class STEM education, regardless
+                                    of their zip code or income. Through MVR AI & Robotics Academy, we're
+                                    making this mission a reality — one child, one classroom, one village at a time.
+                                </p>
+                            </div>
+                        </motion.div>
+
+                    </div>
                 </div>
             </section>
 
