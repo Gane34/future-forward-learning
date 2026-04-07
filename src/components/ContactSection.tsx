@@ -108,30 +108,56 @@ const ContactSection = () => {
               </div>
             </div>
 
-            {/* Location */}
-            <div className="flex items-start gap-4 p-5 rounded-2xl border border-white/[0.08] bg-white/[0.02]">
-              <div className="w-11 h-11 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0 mt-0.5">
-                <MapPin className="w-5 h-5 text-primary/60" />
+            {/* Branch: Narsaraopet */}
+            <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] overflow-hidden">
+              <div className="flex items-center gap-3 px-5 py-3 border-b border-white/[0.06]">
+                <div className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
+                  <MapPin className="w-4 h-4 text-primary/60" />
+                </div>
+                <div>
+                  <p className="text-xs font-bold text-white">Narsaraopet Branch</p>
+                  <p className="text-[11px] text-white/35 font-light">Narsaraopet, Andhra Pradesh</p>
+                </div>
+                <span className="ml-auto text-[10px] font-semibold px-2 py-0.5 rounded-full bg-primary/10 text-primary/70 border border-primary/20">Branch 1</span>
               </div>
-              <div>
-                <p className="text-xs text-white/40 font-light mb-0.5">Location</p>
-                <p className="text-sm font-semibold text-white">Santhosh Nagar, Hyderabad</p>
-                <p className="text-xs text-white/40 font-light mt-0.5">Telangana, India</p>
+              <div className="h-44">
+                <iframe
+                  title="Narsaraopet Branch"
+                  src="https://maps.google.com/maps?q=Narsaraopet+Andhra+Pradesh+India&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0, filter: "invert(90%) hue-rotate(180deg)" }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
               </div>
             </div>
 
-            {/* Google Map */}
-            <div className="rounded-2xl overflow-hidden border border-white/[0.08] h-52 bg-white/[0.02] relative">
-              <iframe
-                title="MVR AI Robotics Academy Location"
-                src="https://maps.google.com/maps?q=Santhosh+Nagar+Hyderabad+Telangana&t=&z=14&ie=UTF8&iwloc=&output=embed"
-                width="100%"
-                height="100%"
-                style={{ border: 0, filter: "invert(90%) hue-rotate(180deg)" }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
+            {/* Branch: Wyra */}
+            <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] overflow-hidden">
+              <div className="flex items-center gap-3 px-5 py-3 border-b border-white/[0.06]">
+                <div className="w-8 h-8 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center shrink-0">
+                  <MapPin className="w-4 h-4 text-amber-400/60" />
+                </div>
+                <div>
+                  <p className="text-xs font-bold text-white">Wyra Branch</p>
+                  <p className="text-[11px] text-white/35 font-light">Wyra, Khammam, Telangana</p>
+                </div>
+                <span className="ml-auto text-[10px] font-semibold px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-400/70 border border-amber-500/20">Branch 2</span>
+              </div>
+              <div className="h-44">
+                <iframe
+                  title="Wyra Branch"
+                  src="https://maps.google.com/maps?q=Wyra+Khammam+Telangana+India&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0, filter: "invert(90%) hue-rotate(180deg)" }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
             </div>
           </motion.div>
 
