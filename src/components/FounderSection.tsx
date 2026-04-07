@@ -134,23 +134,24 @@ const FoundersNotePage = () => {
                             transition={{ delay: 0.2 }}
                             className="group"
                         >
-                            <div className="bg-background/80 backdrop-blur-sm border border-primary/20 rounded-3xl p-8 h-full hover:border-primary/40 transition-colors duration-300">
-                                <div className="flex items-center gap-4 mb-6">
-                                    <div className="w-12 h-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                                        <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div className="bg-background/90 backdrop-blur-sm border-2 border-primary/30 rounded-3xl p-10 h-full hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 relative overflow-hidden">
+                                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary/50 to-primary/80"></div>
+                                <div className="flex items-center gap-4 mb-8">
+                                    <div className="w-14 h-14 rounded-2xl bg-primary/15 border-2 border-primary/30 flex items-center justify-center group-hover:bg-primary/25 group-hover:scale-110 transition-all duration-300">
+                                        <svg className="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                                         </svg>
                                     </div>
-                                    <h3 className="text-2xl font-bold text-foreground">The Vision</h3>
+                                    <h3 className="text-3xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">The Vision</h3>
                                 </div>
-                                <p className="text-muted-foreground leading-relaxed mb-4">
+                                <p className="text-foreground/90 leading-relaxed mb-6 text-lg font-medium">
                                     This work is my tribute to my father's legacy and my gift
                                     to the next generation. We are building a future where a child in Narasaraopet
                                     has access to the same tools, thinking frameworks, and
                                     learning opportunities as a child in Silicon Valley.
                                 </p>
-                                <blockquote className="text-primary font-medium italic border-l-4 border-primary/30 pl-4">
+                                <blockquote className="text-primary font-bold italic border-l-4 border-primary pl-6 text-xl leading-relaxed bg-primary/5 py-4 px-4 rounded-r-lg">
                                     "A child in Narasaraopet should have the same opportunities
                                     as a child in Silicon Valley."
                                 </blockquote>
@@ -165,21 +166,22 @@ const FoundersNotePage = () => {
                             transition={{ delay: 0.4 }}
                             className="group"
                         >
-                            <div className="bg-background/80 backdrop-blur-sm border border-primary/20 rounded-3xl p-8 h-full hover:border-primary/40 transition-colors duration-300">
-                                <div className="flex items-center gap-4 mb-6">
-                                    <div className="w-12 h-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                                        <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div className="bg-background/90 backdrop-blur-sm border-2 border-primary/30 rounded-3xl p-10 h-full hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 relative overflow-hidden">
+                                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary/50 to-primary/80"></div>
+                                <div className="flex items-center gap-4 mb-8">
+                                    <div className="w-14 h-14 rounded-2xl bg-primary/15 border-2 border-primary/30 flex items-center justify-center group-hover:bg-primary/25 group-hover:scale-110 transition-all duration-300">
+                                        <svg className="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                                         </svg>
                                     </div>
-                                    <h3 className="text-2xl font-bold text-foreground">The Mission</h3>
+                                    <h3 className="text-3xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">The Mission</h3>
                                 </div>
-                                <p className="text-muted-foreground leading-relaxed mb-4">
+                                <p className="text-foreground/90 leading-relaxed mb-6 text-lg font-medium">
                                     To transform local tuition centres into Innovation Hubs — spaces
                                     where students learn to think critically, code confidently, and
                                     solve real-world problems using AI and robotics.
                                 </p>
-                                <p className="text-muted-foreground leading-relaxed">
+                                <p className="text-foreground/90 leading-relaxed text-lg font-medium">
                                     Every child deserves access to world-class STEM education, regardless
                                     of their zip code or income. Through MVR AI & Robotics Academy, we're
                                     making this mission a reality — one child, one classroom, one village at a time.
