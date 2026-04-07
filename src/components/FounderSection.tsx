@@ -46,63 +46,6 @@ const FoundersNotePage = () => {
                 </div>
             </section>
 
-            {/* CONTENT */}
-            <section className="py-24">
-                <div className="max-w-4xl mx-auto px-6 space-y-20">
-
-                    {/* Roots */}
-                    <motion.section
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                    >
-                        <h2 className="text-3xl font-semibold mb-4">The Roots</h2>
-                        <p className="text-muted-foreground leading-relaxed">
-                            My journey with MMK AI Solutions did not begin in a boardroom
-                            or a startup accelerator. It began with a simple but deeply
-                            responsible belief: education should serve generations,
-                            not just careers.
-                        </p>
-                    </motion.section>
-
-                    {/* Gap */}
-                    <motion.section
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                    >
-                        <h2 className="text-3xl font-semibold mb-4">The 15-Year Gap</h2>
-                        <p className="text-muted-foreground leading-relaxed">
-                            During my PhD, I encountered an uncomfortable truth.
-                            Rural India is living with a 15-year syllabus gap.
-                            While the world moves toward Generative AI and advanced
-                            computing, many rural children remain disconnected from
-                            modern tools — not due to lack of talent, but lack of access.
-                        </p>
-                    </motion.section>
-
-                    {/* Science for Society */}
-                    <motion.section
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                    >
-                        <h2 className="text-3xl font-semibold mb-4">
-                            Science for Society
-                        </h2>
-                        <p className="text-muted-foreground leading-relaxed">
-                            MMK AI Solutions is a research-driven movement.
-                            Through MVR Medico, we bring AI-powered healthcare
-                            diagnostics closer to rural communities.
-                            Through education, we transform tuition centers into
-                            Innovation Hubs — where children learn how to think,
-                            question, and solve problems.
-                        </p>
-                    </motion.section>
-
-                </div>
-            </section>
-
             {/* VISION & MISSION BLOCK */}
             <section className="py-24 bg-gradient-to-br from-primary/5 via-primary/10 to-primary/5 relative overflow-hidden">
                 <div className="absolute inset-0 bg-grid opacity-10 pointer-events-none" />
@@ -119,7 +62,7 @@ const FoundersNotePage = () => {
                         <span className="text-xs font-semibold tracking-widest uppercase text-primary">
                             Our Foundation
                         </span>
-                        <h2 className="mt-3 text-4xl lg:text-5xl font-serif font-bold">
+                        <h2 className="mt-3 text-5xl lg:text-6xl font-serif font-bold">
                             Vision & Mission
                         </h2>
                     </motion.div>
@@ -190,6 +133,63 @@ const FoundersNotePage = () => {
                         </motion.div>
 
                     </div>
+                </div>
+            </section>
+
+            {/* CONTENT */}
+            <section className="py-24">
+                <div className="max-w-4xl mx-auto px-6 space-y-20">
+
+                    {/* Roots */}
+                    <motion.section
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                    >
+                        <h2 className="text-3xl font-semibold mb-4">The Roots</h2>
+                        <p className="text-muted-foreground leading-relaxed">
+                            My journey with MMK AI Solutions did not begin in a boardroom
+                            or a startup accelerator. It began with a simple but deeply
+                            responsible belief: education should serve generations,
+                            not just careers.
+                        </p>
+                    </motion.section>
+
+                    {/* Gap */}
+                    <motion.section
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                    >
+                        <h2 className="text-3xl font-semibold mb-4">The 15-Year Gap</h2>
+                        <p className="text-muted-foreground leading-relaxed">
+                            During my PhD, I encountered an uncomfortable truth.
+                            Rural India is living with a 15-year syllabus gap.
+                            While the world moves toward Generative AI and advanced
+                            computing, many rural children remain disconnected from
+                            modern tools — not due to lack of talent, but lack of access.
+                        </p>
+                    </motion.section>
+
+                    {/* Science for Society */}
+                    <motion.section
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                    >
+                        <h2 className="text-3xl font-semibold mb-4">
+                            Science for Society
+                        </h2>
+                        <p className="text-muted-foreground leading-relaxed">
+                            MMK AI Solutions is a research-driven movement.
+                            Through MVR Medico, we bring AI-powered healthcare
+                            diagnostics closer to rural communities.
+                            Through education, we transform tuition centers into
+                            Innovation Hubs — where children learn how to think,
+                            question, and solve problems.
+                        </p>
+                    </motion.section>
+
                 </div>
             </section>
 
