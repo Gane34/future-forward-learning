@@ -113,8 +113,29 @@ const FoundersNotePage = () => {
                             We are building a future where a child in Narasaraopet
                             has access to the same tools, thinking frameworks, and
                             learning opportunities as a child in Silicon Valley.
+                        </p>                        <p className="text-muted-foreground leading-relaxed mt-4">
+                            <em>A child in Narasaraopet should have the same opportunities
+                            as a child in Silicon Valley.</em>
                         </p>
                     </motion.section>
+
+                    {/* Mission */}
+                    <motion.section
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                    >
+                        <h2 className="text-3xl font-semibold mb-4">The Mission</h2>
+                        <p className="text-muted-foreground leading-relaxed">
+                            To transform local tuition centres into Innovation Hubs — spaces 
+                            where students learn to think critically, code confidently, and 
+                            solve real-world problems using AI and robotics.
+                        </p>
+                        <p className="text-muted-foreground leading-relaxed mt-4">
+                            Every child deserves access to world-class STEM education, regardless 
+                            of their zip code or income. Through MVR AI & Robotics Academy, we're 
+                            making this mission a reality — one child, one classroom, one village at a time.
+                        </p>                    </motion.section>
 
                 </div>
             </section>
