@@ -294,7 +294,7 @@ const Founder = () => {
                             whileInView="show"
                             viewport={{ once: true }}
                         >
-                            <span className="text-xs font-semibold tracking-widest uppercase text-secondary">
+                            <span className="inline-block text-2xl font-extrabold tracking-wide uppercase px-5 py-2 rounded-xl bg-secondary/20 border border-secondary/40 text-secondary shadow-lg shadow-secondary/20">
                                 Vision &amp; Mission
                             </span>
                             <h2 className="mt-3 text-4xl font-serif font-bold mb-6">
