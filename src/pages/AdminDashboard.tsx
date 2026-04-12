@@ -51,6 +51,37 @@ interface Inquiry {
   status: string;
 }
 
+interface InternshipApplication {
+  id: string;
+  submittedAt: string;
+  studentName: string;
+  classGrade: string;
+  schoolName: string;
+  cityState: string;
+  parentName: string;
+  parentContact: string;
+  studentEmail: string;
+  [key: string]: string;
+}
+
+interface GraduateInternshipApplication {
+  id: string;
+  submittedAt: string;
+  name: string;
+  email: string;
+  phone: string;
+  qualification: string;
+  college: string;
+  city: string;
+  track: string;
+  experience: string;
+  idea: string;
+  motivation: string;
+  hoursPerWeek: string;
+  mode: string;
+  [key: string]: string;
+}
+
 const emptyForm = {
   title: "",
   content: "",
@@ -66,6 +97,8 @@ const AdminDashboard = () => {
   const [stories, setStories] = useState<Story[]>([]);
   const [inquiries, setInquiries] = useState<Inquiry[]>([]);
   const [admissions, setAdmissions] = useState<Admission[]>([]);
+  const [internshipApps, setInternshipApps] = useState<InternshipApplication[]>([]);
+  const [graduateInternshipApps, setGraduateInternshipApps] = useState<GraduateInternshipApplication[]>([]);
   const [loadingStories, setLoadingStories] = useState(true);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
@@ -76,7 +109,20 @@ const AdminDashboard = () => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
-  // Auth guard
+  // Immediate auth check - redirect if not authenticated
+  const localAuth = localStorage.getItem("admin_auth");
+  if (!localAuth && (!user || !isAdmin)) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center">
+          <Loader2 className="w-8 h-8 animate-spin text-primary mx-auto mb-4" />
+          <p className="text-muted-foreground">Redirecting to login...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Auth guard - useEffect for additional validation
   useEffect(() => {
     const localAuth = localStorage.getItem("admin_auth");
     if (!loading && (!user || !isAdmin) && !localAuth) {
@@ -102,6 +148,14 @@ const AdminDashboard = () => {
     // Fetch admissions from local storage
     const storedAdmissions: Admission[] = JSON.parse(localStorage.getItem("admissions") || "[]");
     setAdmissions(storedAdmissions);
+
+    // Fetch internship applications from local storage
+    const storedInternships: InternshipApplication[] = JSON.parse(localStorage.getItem("internship_applications") || "[]");
+    setInternshipApps(storedInternships);
+
+    // Fetch graduate internship applications from local storage
+    const storedGraduateInternships: GraduateInternshipApplication[] = JSON.parse(localStorage.getItem("graduate_internship_applications") || "[]");
+    setGraduateInternshipApps(storedGraduateInternships);
 
     if (isAdmin || localStorage.getItem("admin_auth")) fetchStories();
   }, [isAdmin, fetchStories]);
@@ -255,6 +309,63 @@ const AdminDashboard = () => {
     toast({ title: "Exported!", description: `${admissions.length} admission(s) exported to Excel.` });
   };
 
+  const exportInternshipsToExcel = () => {
+    if (internshipApps.length === 0) {
+      toast({ title: "No applications", description: "There are no internship applications to export." });
+      return;
+    }
+    const rows = internshipApps.map((a) => ({
+      "Submitted At": new Date(a.submittedAt).toLocaleString(),
+      "Student Name": a.studentName,
+      "Class/Grade": a.classGrade,
+      "School": a.schoolName,
+      "City/State": a.cityState,
+      "Parent Name": a.parentName,
+      "Parent Contact": a.parentContact,
+      "Student Email": a.studentEmail,
+      "Heard About AI": a.heardAboutAI,
+      "Why Join": a.whyJoin,
+      "Preferred Mode": a.preferredMode,
+      "Hours Per Week": a.hoursPerWeek,
+    }));
+    const ws = XLSX.utils.json_to_sheet(rows);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Internships");
+    const colWidths = Object.keys(rows[0]).map((k) => ({ wch: Math.max(k.length, 20) }));
+    ws["!cols"] = colWidths;
+    XLSX.writeFile(wb, `MVR_Academy_Internship_${new Date().toISOString().slice(0, 10)}.xlsx`);
+    toast({ title: "Exported!", description: `${internshipApps.length} internship application(s) exported to Excel.` });
+  };
+
+  const exportGraduateInternshipsToExcel = () => {
+    if (graduateInternshipApps.length === 0) {
+      toast({ title: "No applications", description: "There are no graduate internship applications to export." });
+      return;
+    }
+    const rows = graduateInternshipApps.map((a) => ({
+      "Submitted At": new Date(a.submittedAt).toLocaleString(),
+      "Name": a.name,
+      "Email": a.email,
+      "Phone": a.phone,
+      "Qualification": a.qualification,
+      "College": a.college,
+      "City": a.city,
+      "Track": a.track,
+      "Experience": a.experience,
+      "Idea": a.idea,
+      "Motivation": a.motivation,
+      "Hours Per Week": a.hoursPerWeek,
+      "Mode": a.mode,
+    }));
+    const ws = XLSX.utils.json_to_sheet(rows);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Graduate Internships");
+    const colWidths = Object.keys(rows[0]).map((k) => ({ wch: Math.max(k.length, 20) }));
+    ws["!cols"] = colWidths;
+    XLSX.writeFile(wb, `MVR_Academy_Graduate_Internship_${new Date().toISOString().slice(0, 10)}.xlsx`);
+    toast({ title: "Exported!", description: `${graduateInternshipApps.length} graduate internship application(s) exported to Excel.` });
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
@@ -262,8 +373,6 @@ const AdminDashboard = () => {
       </div>
     );
   }
-
-  if (!isAdmin && !localStorage.getItem("admin_auth")) return null;
 
   return (
     <div className="min-h-screen bg-background">
@@ -506,6 +615,127 @@ const AdminDashboard = () => {
           </Table>
         </div>
       </Card>
+
+      {/* Project Management Section */}
+      <section className="container mx-auto px-6 pb-10">
+        <div className="border-t border-border pt-10">
+          <ProjectManagement />
+        </div>
+      </section>
+
+      {/* Internship Applications Section */}
+      <div className="mt-12 mb-8 flex items-center justify-between">
+        <div>
+          <h2 className="text-2xl font-bold text-foreground">Junior Internship Applications</h2>
+          <p className="text-sm text-muted-foreground mt-1">
+            Applications submitted via the Junior Internship Form.
+          </p>
+        </div>
+        <Button onClick={exportInternshipsToExcel} variant="outline" className="gap-2">
+          <Download className="w-4 h-4" />
+          Export to Excel
+        </Button>
+      </div>
+
+      <Card>
+        <div className="overflow-x-auto">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Date</TableHead>
+                <TableHead>Student</TableHead>
+                <TableHead>Class/Grade</TableHead>
+                <TableHead>School</TableHead>
+                <TableHead>Parent Contact</TableHead>
+                <TableHead>Mode</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {internshipApps.length === 0 ? (
+                <TableRow>
+                  <TableCell colSpan={6} className="text-center py-8 text-muted-foreground">
+                    No internship applications yet.
+                  </TableCell>
+                </TableRow>
+              ) : (
+                internshipApps.map((app) => (
+                  <TableRow key={app.id}>
+                    <TableCell className="text-muted-foreground text-sm whitespace-nowrap">
+                      {new Date(app.submittedAt).toLocaleDateString()}
+                    </TableCell>
+                    <TableCell className="font-medium">{app.studentName}</TableCell>
+                    <TableCell className="text-sm">{app.classGrade}</TableCell>
+                    <TableCell className="text-sm max-w-[160px] truncate">{app.schoolName}</TableCell>
+                    <TableCell>{app.parentContact}</TableCell>
+                    <TableCell className="text-sm">{app.preferredMode}</TableCell>
+                  </TableRow>
+                ))
+              )}
+            </TableBody>
+          </Table>
+        </div>
+      </Card>
+
+      {/* Graduate Internship Applications Section */}
+      <div className="mt-12 mb-8 flex items-center justify-between">
+        <div>
+          <h2 className="text-2xl font-bold text-foreground">Graduate Internship Applications</h2>
+          <p className="text-sm text-muted-foreground mt-1">
+            Applications submitted via the Graduate Internship Form.
+          </p>
+        </div>
+        <Button onClick={exportGraduateInternshipsToExcel} variant="outline" className="gap-2">
+          <Download className="w-4 h-4" />
+          Export to Excel
+        </Button>
+      </div>
+
+      <Card>
+        <div className="overflow-x-auto">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Date</TableHead>
+                <TableHead>Name</TableHead>
+                <TableHead>Email</TableHead>
+                <TableHead>Phone</TableHead>
+                <TableHead>Qualification</TableHead>
+                <TableHead>Track</TableHead>
+                <TableHead>City</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {graduateInternshipApps.length === 0 ? (
+                <TableRow>
+                  <TableCell colSpan={7} className="text-center py-8 text-muted-foreground">
+                    No graduate internship applications yet.
+                  </TableCell>
+                </TableRow>
+              ) : (
+                graduateInternshipApps.map((app) => (
+                  <TableRow key={app.id}>
+                    <TableCell className="text-muted-foreground text-sm whitespace-nowrap">
+                      {new Date(app.submittedAt).toLocaleDateString()}
+                    </TableCell>
+                    <TableCell className="font-medium">{app.name}</TableCell>
+                    <TableCell className="text-sm">{app.email}</TableCell>
+                    <TableCell>{app.phone}</TableCell>
+                    <TableCell className="text-sm">{app.qualification}</TableCell>
+                    <TableCell className="text-sm max-w-[160px] truncate">{app.track}</TableCell>
+                    <TableCell>{app.city}</TableCell>
+                  </TableRow>
+                ))
+              )}
+            </TableBody>
+          </Table>
+        </div>
+      </Card>
+
+      <section className="container mx-auto px-6 pb-10">
+        <div className="border-t border-border pt-10">
+          {/* placeholder for any other sections */}
+        </div>
+      </section>
 
       {/* Project Management Section */}
       <section className="container mx-auto px-6 pb-10">

@@ -32,18 +32,7 @@ const AdminLogin = () => {
     // Set local storage auth
     localStorage.setItem("admin_auth", "true");
 
-    // Attempt Supabase sign in just in case, but rely on local auth for this specific request flow if needed
-    // For now, we prioritize the requested password flow.
-    // If we want to keep existing auth we can try it, but user specifically asked for this password.
-    // We will bypass supabase auth for this specific prototype phase or use it if credentials match.
-    // simpler:
-
-    setTimeout(() => {
-      navigate("/admin");
-      setSubmitting(false);
-    }, 1000);
-
-    // Short delay to let auth state propagate
+    // Navigate to admin dashboard after short delay
     setTimeout(() => {
       navigate("/admin");
       setSubmitting(false);
