@@ -5,7 +5,7 @@ import { Menu, X, ChevronRight } from "lucide-react";
 import logo from "@/assets/logo.svg";
 
 const navItems = [
-  { label: "Why Us", href: "#why" },
+  { label: "అవలోకనాలు", href: "/insights.html" },
   { label: "Courses", href: "/courses" },
   { label: "How It Works", href: "#process" },
   { label: "Projects", href: "/projects" },
@@ -20,6 +20,8 @@ const Navbar = () => {
   const location = useLocation();
 
   const handleNavigation = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    // Allow direct navigation for static HTML pages served from public/
+    if (href.endsWith('.html')) return;
     e.preventDefault();
     setMobileOpen(false);
     if (href.startsWith("#")) {

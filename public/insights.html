@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="te">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>భారత అభివృద్ధి విశ్లేషణ కేంద్రం — అవలోకనాలు</title>
+  <link rel="icon" href="/favicon.png" />
+
+  <!-- Tailwind CDN for single-file page (follows project theme) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#7c3aed',
+            background: '#060611'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    /* Glass card style matching dashboard */
+    .glass {
+      background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .fade-up{opacity:0;transform:translateY(8px);transition:all .5s ease}
+    .fade-up.visible{opacity:1;transform:none}
+    .arrow{position:relative;padding-left:1rem}
+    .arrow:after{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:12px;height:2px;background:rgba(255,255,255,0.08)}
+    .arrow:before{content:'';position:absolute;left:12px;top:50%;transform:translateY(-50%) rotate(45deg);width:8px;height:8px;border-top:2px solid rgba(255,255,255,0.06);border-right:2px solid rgba(255,255,255,0.06);transform-origin:center}
+    .severity-high{background:rgba(220,38,38,0.12);color:#dc2626}
+    .severity-medium{background:rgba(234,179,8,0.08);color:#eab308}
+    .severity-low{background:rgba(34,197,94,0.08);color:#22c55e}
+    .pulse{animation:pulse 2s infinite}
+    @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(124,58,237,0.25)}70%{box-shadow:0 0 0 12px rgba(124,58,237,0)}100%{box-shadow:0 0 0 0 rgba(124,58,237,0)}}
+  </style>
+</head>
+<body class="bg-[#05060a] text-white antialiased">
+  <!-- Header -->
+  <header class="sticky top-0 z-40 glass py-4">
+    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+      <div>
+        <h1 class="text-lg font-bold">భారత అభివృద్ధి విశ్లేషణ కేంద్రం</h1>
+        <p class="text-sm text-white/60">భారతదేశ ప్రధాన రంగాలపై సమగ్ర విశ్లేషణ</p>
+      </div>
+      <div class="text-right text-sm">
+        <div>నివేదిక రూపొందించిన తేదీ</div>
+        <div class="font-mono text-xs text-white/60">13 జూలై 2026</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-6 py-8 space-y-10">
+    <!-- Executive Summary -->
+    <section id="executive" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4">
+      <div class="glass p-5 rounded-xl shadow-lg transform hover:-translate-y-1 transition">
+        <div class="text-sm text-white/60">మొత్తం జాతీయ వ్యవస్థ స్కోర్</div>
+        <div class="text-3xl font-bold flex items-baseline gap-3"><span id="national-score-counter" class="text-4xl">39</span><span class="text-white/60 text-sm">/ 100</span></div>
+        <div class="text-xs mt-2 text-white/60">ఒక్క చూపులో దేశ స్థితి</div>
+      </div>
+
+      <div class="glass p-5 rounded-xl shadow-lg transform hover:-translate-y-1 transition">
+        <div class="text-sm text-white/60">అత్యంత ప్రమాదంలో ఉన్న రంగాలు</div>
+        <div class="text-3xl font-bold">5</div>
+        <div class="text-xs mt-2 text-white/60">పూర్తిచదివి ఉన్న రంగాలు</div>
+      </div>
+
+      <div class="glass p-5 rounded-xl shadow-lg transform hover:-translate-y-1 transition">
+        <div class="text-sm text-white/60">అత్యవసర సమస్యలు</div>
+        <div class="text-3xl font-bold">12</div>
+        <div class="text-xs mt-2 text-white/60">తక్షణ చర్య అవసరమైన అంశాలు</div>
+      </div>
+
+      <div class="glass p-5 rounded-xl shadow-lg transform hover:-translate-y-1 transition">
+        <div class="text-sm text-white/60">డేటా మూలాలు</div>
+        <div class="text-lg font-medium">ప్రభుత్వ నివేదికలు</div>
+        <div class="text-xs mt-2 text-white/60">సెన్సస్, ప్రధాన పబ్లిక్ డేటా</div>
+      </div>
+
+      <div class="glass p-5 rounded-xl shadow-lg transform hover:-translate-y-1 transition">
+        <div class="text-sm text-white/60">మొత్తం ధోరణి</div>
+        <div class="text-lg font-semibold text-amber-400">క్షీణిస్తోంది</div>
+        <div class="text-xs mt-2 text-white/60">లక్ష్య సూచికలు తగ్గుతూ ఉన్నాయి</div>
+      </div>
+
+      <div class="glass p-5 rounded-xl shadow-lg transform hover:-translate-y-1 transition">
+        <div class="text-sm text-white/60">విశ్లేషణ విశ్వసనీయత</div>
+        <div class="text-lg font-semibold">92%</div>
+        <div class="text-xs mt-2 text-white/60">మోడల్ మరియు మూలాల స్థిరత్వం</div>
+      </div>
+    </section>
+
+    <!-- National Health Radar -->
+    <section id="national-health" class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+      <div class="glass rounded-xl p-6">
+        <h2 class="text-xl font-bold mb-2">జాతీయ వ్యవస్థ ఆరోగ్య విశ్లేషణ</h2>
+        <p class="text-sm text-white/60 mb-4">విభాగాల పరిపాలనా మరియు సంకేతాల సమగ్ర రాడార్</p>
+        <canvas id="radarChart" width="400" height="400"></canvas>
+      </div>
+      <div class="glass rounded-xl p-6 lg:col-span-2">
+        <h3 class="font-semibold">సంపూర్ణ స్కోర్లు</h3>
+        <ul class="mt-3 grid grid-cols-2 gap-3 text-sm text-white/70">
+          <li>శాస్త్ర సాంకేతికం: <strong>32</strong></li>
+          <li>విద్య: <strong>41</strong></li>
+          <li>వైద్యం: <strong>38</strong></li>
+          <li>ఆహార భద్రత: <strong>45</strong></li>
+          <li>పరిపాలన: <strong>40</strong></li>
+          <li>ఆవిష్కరణ: <strong>35</strong></li>
+        </ul>
+        <p class="mt-4 text-sm text-white/60">ఈ రాడార్ నిర్వహణలో బలాలు మరియు కేంద్ర బలహీనతలను కలుపుతుంది. దిగువలో వివరణలతో పాటు విధాన సూచనలు ఉన్నాయి.</p>
+      </div>
+    </section>
+
+    <!-- Root Cause Flow -->
+    <section id="root-cause" class="space-y-4">
+      <div class="glass rounded-xl p-6">
+        <h2 class="text-xl font-bold">మూల కారణాల విశ్లేషణ</h2>
+        <div class="mt-6 grid grid-cols-1 md:grid-cols-6 gap-4 items-center text-center">
+          <div class="col-span-1 glass p-4 rounded-lg">ప్రభుత్వ ఆలస్యం</div>
+          <div class="col-span-1 flex items-center justify-center">→</div>
+          <div class="col-span-1 glass p-4 rounded-lg">పరిశోధన నిధుల కొరత</div>
+          <div class="col-span-1 flex items-center justify-center">→</div>
+          <div class="col-span-1 glass p-4 rounded-lg">ప్రతిభ విదేశాలకు వలస</div>
+          <div class="col-span-1 flex items-center justify-center">→</div>
+        </div>
+        <div class="mt-4 grid grid-cols-1 md:grid-cols-6 gap-4 text-center">
+          <div class="col-span-2 glass p-4 rounded-lg">ఆవిష్కరణల తగ్గుదల</div>
+          <div class="col-span-2 glass p-4 rounded-lg">ఉత్పాదకత తగ్గడం</div>
+          <div class="col-span-2 glass p-4 rounded-lg">ఆర్థిక నష్టం</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sector Relationships -->
+    <section id="relations" class="glass rounded-xl p-6">
+      <h2 class="text-xl font-bold">రంగాల పరస్పర సంబంధం</h2>
+      <div class="mt-4 grid grid-cols-2 md:grid-cols-5 gap-4">
+        <div class="p-4 rounded-lg glass hover:scale-105 transition" data-rel="education">విద్య</div>
+        <div class="p-4 rounded-lg glass hover:scale-105 transition" data-rel="research">శాస్త్ర పరిశోధన</div>
+        <div class="p-4 rounded-lg glass hover:scale-105 transition" data-rel="health">వైద్య రంగం</div>
+        <div class="p-4 rounded-lg glass hover:scale-105 transition" data-rel="economy">ఆర్థిక వ్యవస్థ</div>
+        <div class="p-4 rounded-lg glass hover:scale-105 transition" data-rel="employment">ఉపాధి</div>
+      </div>
+    </section>
+
+    <!-- Main Insights (6 cards) -->
+    <section id="insights" class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <!-- Card 1 -->
+      <article class="glass rounded-xl p-6">
+        <div class="flex items-center justify-between">
+          <h3 class="font-bold">డిగ్రీలు పెరుగుతున్నాయి కానీ ఉద్యోగాలు పెరగడం లేదు</h3>
+          <span class="px-2 py-1 rounded-md severity-high text-sm">ప్రమాద స్థాయి: ఉన్నతి</span>
+        </div>
+        <p class="mt-3 text-sm text-white/70">సమస్య: కోర్సుల సంఖ్య పెరిగినప్పటికీ, మార్కెట్ డిమాండ్ అనుకూలంగా లేదు. కారణం: విద్య మరియు పరిశ్రమ మధ్య సమన్వయం లేదు.</p>
+        <ul class="mt-3 text-sm text-white/60">
+          <li><strong>ఎఫెక్ట్:</strong> యువవర్గంలో నిరుద్యోగత పెరుగుతోంది.</li>
+          <li><strong>భవిష్యత్:</strong> పునరావలోకన లేకపోతే సామాజిక ఒత్తిడి తేలికపడదు.</li>
+          <li><strong>సూట్:</strong> కొత్త కూరికులములు, ఇండస్ట్రీ భాగస్వామ్యం, ఇంటర్న్షిప్స్.</li>
+        </ul>
+        <div class="mt-3 text-xs text-white/60">ఆధారాలు: 44% Graduate Unemployment | 28% Faculty Vacancies</div>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="glass rounded-xl p-6">
+        <div class="flex items-center justify-between">
+          <h3 class="font-bold">శాస్త్ర పరిశోధనలో నిధుల కొరత</h3>
+          <span class="px-2 py-1 rounded-md severity-medium text-sm">ప్రమాద స్థాయి: మధ్యమ</span>
+        </div>
+        <p class="mt-3 text-sm text-white/70">సమస్య: జిఇఆర్డి (GERD) తక్కువ స్థాయిలో ఉంది. ప్రభావం: కొత్త ఆవిష్కరణలు తక్కువ.</p>
+        <ul class="mt-3 text-sm text-white/60">
+          <li><strong>భవిష్యత్:</strong> 2030 వరకూ GERD 0.80% లక్ష్య సాధ్యం కాకపోతే వేయి అంతతు పెట్టుబడులు తగ్గుతాయి.</li>
+          <li><strong>సూట్:</strong> నిధుల పెంపు, ప్రభుత్వ-వ్యాపార భాగస్వామ్యం.</li>
+        </ul>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="glass rounded-xl p-6">
+        <div class="flex items-center justify-between">
+          <h3 class="font-bold">వైద్య వ్యయం మరియు జీవితం</h3>
+          <span class="px-2 py-1 rounded-md severity-medium text-sm">ప్రమాద స్థాయి: మధ్యమ</span>
+        </div>
+        <p class="mt-3 text-sm text-white/70">సమస్య: ఆరోగ్య ఖర్చుల్లో తక్కువ పెట్టుబడులు జీవనకాలాన్ని ప్రభావితం చేస్తున్నాయి.</p>
+        <div class="mt-3 text-sm text-white/60"><strong>సూచనలు:</strong> రీసోర్స్ రీయాల్సొకేషన్, ప్రాథమిక ఆరోగ్య సంరక్షణను బలోపేతం.</div>
+      </article>
+
+      <!-- Card 4 -->
+      <article class="glass rounded-xl p-6">
+        <div class="flex items-center justify-between">
+          <h3 class="font-bold">ఆహార భద్రతలో బలహీనత</h3>
+          <span class="px-2 py-1 rounded-md severity-high text-sm">ప్రమాద స్థాయి: ఉన్నతి</span>
+        </div>
+        <p class="mt-3 text-sm text-white/70">సమస్య: క్లైమేట్ షాక్స్ మరియు సరఫరా గొలుసు లోపాలు కారణంగా ఆహార వైఫల్యం పెరుగుతోంది.</p>
+        <div class="mt-3 text-sm text-white/60">సూచనలు: రిజిలియెంట్ పాథ్వేలు, స్టోరేజ్ ఇన్వెస్ట్మెంట్లు.</div>
+      </article>
+
+      <!-- Card 5 -->
+      <article class="glass rounded-xl p-6">
+        <div class="flex items-center justify-between">
+          <h3 class="font-bold">అవినీతి మరియు ఆర్థిక వృద్ధి</h3>
+          <span class="px-2 py-1 rounded-md severity-high text-sm">ప్రమాద స్థాయి: ఉన్నతి</span>
+        </div>
+        <p class="mt-3 text-sm text-white/70">సమస్య: అవినీతి సూచకాలు పెట్టుబడులను, సేవల నాణ్యతను హరించాయి.</p>
+        <div class="mt-3 text-sm text-white/60">సూచనలు: పారదర్శక విధానాలు, డిజిటల్ ట్రాకింగ్.</div>
+      </article>
+
+      <!-- Card 6 -->
+      <article class="glass rounded-xl p-6">
+        <div class="flex items-center justify-between">
+          <h3 class="font-bold">ఆవిష్కరణలో ముడపు (Patent/Pub)</h3>
+          <span class="px-2 py-1 rounded-md severity-medium text-sm">ప్రమాద స్థాయి: మధ్యమ</span>
+        </div>
+        <p class="mt-3 text-sm text-white/70">సమస్య: తక్కువ స్థాయి పండిత పరిశోధన ఫలితాలు వాణిజ్యీకరించబడుట లేదండి.</p>
+        <div class="mt-3 text-sm text-white/60">సూచనలు: టెక్-ట్రాన్స్ఫర్ ఆఫీసులు, స్టార్టప్ ఇన్సెంటివ్స్.</div>
+      </article>
+    </section>
+
+    <!-- Four Charts -->
+    <section id="charts" class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div class="glass rounded-xl p-6">
+        <h3 class="font-semibold">పరిశోధన ఖర్చు vs Innovation</h3>
+        <canvas id="chart1" height="180"></canvas>
+        <div class="mt-2 text-sm text-white/60"><strong>Trend:</strong> అనుకూల వినియోగం లేదు | <strong>Interpretation:</strong> పెట్టుబడులు అనుకూలంగా మారితే ఇన్నోవేషన్ ఆవకాసం పెరుగుతుంది.</div>
+      </div>
+
+      <div class="glass rounded-xl p-6">
+        <h3 class="font-semibold">విద్య vs ఉద్యోగాలు</h3>
+        <canvas id="chart2" height="180"></canvas>
+        <div class="mt-2 text-sm text-white/60"><strong>Policy Meaning:</strong> కోర్సు కూరిక్యులం జాబ్ మార్కెట్ అవసరాల‌కు అనుగుణం కావాలి.</div>
+      </div>
+
+      <div class="glass rounded-xl p-6">
+        <h3 class="font-semibold">వైద్య ఖర్చు vs జీవితకాలం</h3>
+        <canvas id="chart3" height="180"></canvas>
+      </div>
+
+      <div class="glass rounded-xl p-6">
+        <h3 class="font-semibold">అవినీతి vs ఆర్థిక వృద్ధి</h3>
+        <canvas id="chart4" height="180"></canvas>
+      </div>
+    </section>
+
+    <!-- Risk Levels (animated progress bars) -->
+    <section id="risks" class="glass rounded-xl p-6">
+      <h3 class="font-semibold">ప్రమాద స్థాయి</h3>
+      <div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div>
+          <div class="text-sm text-white/60">శాస్త్రం <span class="float-right">32%</span></div>
+          <div class="w-full bg-white/5 rounded-full h-3 mt-2 overflow-hidden"><div class="h-3 bg-primary rounded-full" style="width:0%" data-target="32"></div></div>
+        </div>
+        <div>
+          <div class="text-sm text-white/60">విద్య <span class="float-right">41%</span></div>
+          <div class="w-full bg-white/5 rounded-full h-3 mt-2 overflow-hidden"><div class="h-3 bg-amber-400 rounded-full" style="width:0%" data-target="41"></div></div>
+        </div>
+        <div>
+          <div class="text-sm text-white/60">వైద్యం <span class="float-right">38%</span></div>
+          <div class="w-full bg-white/5 rounded-full h-3 mt-2 overflow-hidden"><div class="h-3 bg-emerald-500 rounded-full" style="width:0%" data-target="38"></div></div>
+        </div>
+      </div>
+      <div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div>
+          <div class="text-sm text-white/60">ఆహార భద్రత <span class="float-right">72%</span></div>
+          <div class="w-full bg-white/5 rounded-full h-3 mt-2 overflow-hidden"><div class="h-3 bg-red-500 rounded-full" style="width:0%" data-target="72"></div></div>
+        </div>
+        <div>
+          <div class="text-sm text-white/60">పరిపాలన <span class="float-right">46%</span></div>
+          <div class="w-full bg-white/5 rounded-full h-3 mt-2 overflow-hidden"><div class="h-3 bg-indigo-500 rounded-full" style="width:0%" data-target="46"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Impact Analysis Table -->
+    <section id="impact" class="glass rounded-xl p-6 overflow-x-auto">
+      <h3 class="font-semibold">ప్రభావ విశ్లేషణ</h3>
+      <table class="w-full mt-4 text-sm table-auto">
+        <thead class="text-left text-white/60">
+          <tr>
+            <th class="p-2">సమస్య</th>
+            <th class="p-2">ప్రత్యక్ష ప్రభావం</th>
+            <th class="p-2">పరోక్ష ప్రభావం</th>
+            <th class="p-2">ఆర్థిక ప్రభావం</th>
+            <th class="p-2">సామాజిక ప్రభావం</th>
+            <th class="p-2">తీవ్రత</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-t border-white/6">
+            <td class="p-2">పరిశోధన నిధులు</td>
+            <td class="p-2">ఆవిష్కరణలో తగ్గుదల</td>
+            <td class="p-2">సోషల్ ఆధారాలు తగ్గటం</td>
+            <td class="p-2">నష్టమైన పెట్టుబడులు</td>
+            <td class="p-2">ఉద్యోగం లోపం</td>
+            <td class="p-2"><span class="px-2 py-1 rounded-full severity-high text-xs">ఎన్నిక</span></td>
+          </tr>
+          <tr class="border-t border-white/6">
+            <td class="p-2">ఫ్యాకల్టీ కొరత</td>
+            <td class="p-2">పాఠ్య ప్రమాణాలు తగ్గడం</td>
+            <td class="p-2">శిక్షణ లోతు కుదరవడం</td>
+            <td class="p-2">ప్రభావిత పరిశ్రమలు</td>
+            <td class="p-2">సమాజంలో నష్టమవుతాయి</td>
+            <td class="p-2"><span class="px-2 py-1 rounded-full severity-medium text-xs">మధ్యమ</span></td>
+          </tr>
+          <tr class="border-t border-white/6">
+            <td class="p-2">అవినీతి</td>
+            <td class="p-2">సేవ నాణ్యత తగ్గడం</td>
+            <td class="p-2">నమ్మకపు కోత</td>
+            <td class="p-2">వృద్ధి నిలకడ లేదు</td>
+            <td class="p-2">సామాజిక అసమానత</td>
+            <td class="p-2"><span class="px-2 py-1 rounded-full severity-high text-xs">ఎన్నిక</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Priority Matrix -->
+    <section id="matrix" class="glass rounded-xl p-6">
+      <h3 class="font-semibold">ప్రాధాన్యత మ్యాట్రిక్స్</h3>
+      <div class="mt-4 grid grid-cols-2 gap-4">
+        <div class="p-4 rounded-lg glass">High Impact / Low Effort: విద్య</div>
+        <div class="p-4 rounded-lg glass">High Impact / High Effort: వైద్యం</div>
+        <div class="p-4 rounded-lg glass">Low Impact / Low Effort: అవినీతి నిరోధక చర్యలు</div>
+        <div class="p-4 rounded-lg glass">Low Impact / High Effort: కొన్ని పరిశోధనా పరిశోధనలు</div>
+      </div>
+    </section>
+
+    <!-- Future Projections -->
+    <section id="projections" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="glass p-6 rounded-xl">
+        <h4 class="font-semibold">GERD</h4>
+        <div class="text-2xl font-bold">0.64% → 0.80%</div>
+        <div class="text-sm text-white/60 mt-2">సూచన: ప్రభుత్వ నిధుల పెంపు అవసరం</div>
+      </div>
+      <div class="glass p-6 rounded-xl">
+        <h4 class="font-semibold">Graduate Employability</h4>
+        <div class="text-2xl font-bold">56% → 60%</div>
+        <div class="text-sm text-white/60 mt-2">సూచన: శిక్షణ మరియు భాగస్వామ్యాలు</div>
+      </div>
+      <div class="glass p-6 rounded-xl">
+        <h4 class="font-semibold">Cancer</h4>
+        <div class="text-2xl font-bold">15.7 లక్షలు → 19 లక్షలు</div>
+        <div class="text-sm text-white/60 mt-2">సూచన: ఆరోగ్య రంగంలో పెట్టుబడి పెంపు</div>
+      </div>
+    </section>
+
+    <!-- Recommended Actions (Accordion) -->
+    <section id="actions" class="glass rounded-xl p-6">
+      <h3 class="font-semibold">సూచించిన చర్యలు</h3>
+      <div class="mt-4 space-y-2">
+        <details class="glass p-4 rounded-md">
+          <summary class="font-medium">శాస్త్రం</summary>
+          <div class="mt-2 text-sm text-white/60">
+            తక్షణ: నిధుల ప్రత్యక్ష కేటాయింపు<br>
+            మధ్యకాల: పరిశోధన అనుసంధానం, పబ్లిక్-ప్రైవేట్ భాగస్వామ్యం<br>
+            దీర్ఘకాల: అవినీతి నిరోధక నియమాలు, ఇన్నోవేషన్ ఎకోసిస్టం
+          </div>
+        </details>
+        <details class="glass p-4 rounded-md">
+          <summary class="font-medium">విద్య</summary>
+          <div class="mt-2 text-sm text-white/60">తక్షణ: ఇన్టర్న్షిప్ ప్రోగ్రామ్స్ ప్రారంభం<br>మధ్యకాల: కారిక్యులమ్ రీడిజైన్<br>దీర్ఘకాల: పరిశ్రమ-అకాడెమిక్ భాగస్వామ్యం</div>
+        </details>
+        <details class="glass p-4 rounded-md">
+          <summary class="font-medium">వైద్యం</summary>
+          <div class="mt-2 text-sm text-white/60">తక్షణ: బేసిక్ హెల్త్ ఇన్వెస్ట్మెంట్లు<br>మధ్యకాల: టెలిమెడిసిన్ విస్తృతి<br>దీర్ఘకాల: రీసోర్సు ప్లానింగ్</div>
+        </details>
+      </div>
+    </section>
+
+    <!-- Final Score Card -->
+    <section id="final" class="flex justify-center">
+      <div class="glass rounded-2xl p-8 text-center w-full md:w-2/3">
+        <h2 class="text-2xl font-bold">తుది జాతీయ స్కోర్</h2>
+        <div class="mt-4 text-6xl font-extrabold">39 / 100</div>
+        <div class="mt-2 text-sm text-amber-400">స్థితి: అత్యంత ప్రమాదకరం</div>
+        <div class="mt-2 text-sm text-white/60">ధోరణి: క్షీణిస్తోంది</div>
+        <div class="mt-4"><button class="px-4 py-2 rounded-xl bg-primary text-white">తక్షణ చర్య సూచనలు</button></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="py-8 text-center text-sm text-white/60">© భారత అభివృద్ధి విశ్లేషణ కేంద్రం — 2026</footer>
+
+  <script>
+    // Utilities
+    function animateCounter(el, start, end, duration) {
+      const range = end - start;
+      const stepTime = Math.max(Math.floor(duration / range), 20);
+      let current = start;
+      const timer = setInterval(() => {
+        current += 1;
+        el.textContent = current;
+        if (current >= end) clearInterval(timer);
+      }, stepTime);
+    }
+
+    // On load animations
+    document.addEventListener('DOMContentLoaded', () => {
+      // counters
+      const scoreEl = document.getElementById('national-score-counter');
+      if(scoreEl) animateCounter(scoreEl, 0, 39, 900);
+
+      // fade-up elements
+      document.querySelectorAll('.fade-up').forEach((el, i) => setTimeout(()=>el.classList.add('visible'), 120*i));
+
+      // progress bars animate when in view
+      const bars = document.querySelectorAll('[data-target]');
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            const target = e.target.getAttribute('data-target');
+            e.target.style.width = target + '%';
+          }
+        })
+      }, {threshold:0.3});
+      bars.forEach(b=>obs.observe(b));
+
+      // Sector relations hover highlight
+      document.querySelectorAll('[data-rel]').forEach(el=>{
+        el.addEventListener('mouseenter', ()=>{
+          document.querySelectorAll('[data-rel]').forEach(s=>s.classList.add('opacity-30'));
+          el.classList.remove('opacity-30');
+          el.classList.add('scale-105');
+        })
+        el.addEventListener('mouseleave', ()=>{
+          document.querySelectorAll('[data-rel]').forEach(s=>s.classList.remove('opacity-30','scale-105'));
+        })
+      });
+
+      // Lazy create charts when visible
+      const chartObserver = new IntersectionObserver(entries=>{
+        entries.forEach(entry=>{
+          if(entry.isIntersecting){
+            if(entry.target.id === 'radarChart' && !entry.target.dataset.rendered) renderRadar();
+            if(entry.target.id === 'chart1' && !entry.target.dataset.rendered) renderChart1();
+            if(entry.target.id === 'chart2' && !entry.target.dataset.rendered) renderChart2();
+            if(entry.target.id === 'chart3' && !entry.target.dataset.rendered) renderChart3();
+            if(entry.target.id === 'chart4' && !entry.target.dataset.rendered) renderChart4();
+            entry.target.dataset.rendered = '1';
+          }
+        })
+      }, {threshold:0.2});
+
+      ['radarChart','chart1','chart2','chart3','chart4'].forEach(id=>{
+        const el = document.getElementById(id);
+        if(el) chartObserver.observe(el);
+      })
+    });
+
+    // Chart renderers
+    function renderRadar(){
+      const ctx = document.getElementById('radarChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'radar',
+        data: {
+          labels: ['శాస్త్ర సాంకేతికం','విద్య','వైద్యం','ఆహార భద్రత','పరిపాలన','ఆవిష్కరణ'],
+          datasets: [{
+            label: 'స్కోర్',
+            data: [32,41,38,45,40,35],
+            backgroundColor: 'rgba(124,58,237,0.12)',
+            borderColor: '#7c3aed',
+            pointBackgroundColor: '#7c3aed'
+          }]
+        },
+        options: {responsive:true, scales:{r:{grid:{color:'rgba(255,255,255,0.04)'}, angleLines:{color:'rgba(255,255,255,0.04)'}, ticks:{color:'#9CA3AF'}}}, plugins:{legend:{display:false}}}
+      });
+    }
+
+    function renderChart1(){
+      const ctx = document.getElementById('chart1').getContext('2d');
+      new Chart(ctx,{type:'line',data:{labels:['2016','2018','2020','2022','2024'],datasets:[{label:'పరిశోధన ఖర్చు (USD bn)',data:[40,42,45,48,50],borderColor:'#7c3aed',backgroundColor:'rgba(124,58,237,0.06)'} , {label:'Innovation Index', data:[60,58,55,53,50], borderColor:'#f59e0b', backgroundColor:'rgba(245,158,11,0.06)'}]}, options:{responsive:true}})
+    }
+    function renderChart2(){
+      const ctx = document.getElementById('chart2').getContext('2d');
+      new Chart(ctx,{type:'bar',data:{labels:['2016','2018','2020','2022','2024'],datasets:[{label:'GER (Graduates %)',data:[48,50,52,54,56], backgroundColor:'#06b6d4'},{label:'ఉద్యోగాలు (%)',data:[62,61,59,58,56], backgroundColor:'#7c3aed'}]}, options:{responsive:true}}
+      )
+    }
+    function renderChart3(){
+      const ctx = document.getElementById('chart3').getContext('2d');
+      new Chart(ctx,{type:'line',data:{labels:['2010','2015','2020','2025'],datasets:[{label:'Health Expenditure per capita (USD)',data:[120,130,145,160],borderColor:'#10b981',backgroundColor:'rgba(16,185,129,0.06)'}]}, options:{responsive:true}})
+    }
+    function renderChart4(){
+      const ctx = document.getElementById('chart4').getContext('2d');
+      new Chart(ctx,{type:'scatter',data:{datasets:[{label:'Corruption vs Growth',data:[{x:30,y:6},{x:40,y:4},{x:50,y:2},{x:60,y:1}],backgroundColor:'#ef4444'}]}, options:{responsive:true,scales:{x:{title:{display:true,text:'Corruption Score'}},y:{title:{display:true,text:'GDP Growth %'}}}})
+    }
+
+  </script>
+</body>
+</html>
