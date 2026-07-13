@@ -11,7 +11,7 @@ const items = [
   { icon: Users, text: "50+ Students Enrolled", highlight: false },
   { icon: Train, text: "AI-Driven Railway Inspection System — Govt of India Recognition", highlight: true },
   { icon: Star, text: "Solo Taught by Dr. Murali Krishna · PhD", highlight: false },
-  {icon: lightbulb, text: ""}
+  { icon: Lightbulb, text: "" },
   { icon: Trophy, text: "Admissions Open 2025–26 · Limited Seats", highlight: false },
 ];
 
