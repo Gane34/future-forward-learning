@@ -134,7 +134,7 @@ const GraduateInternship = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEO
-        title="Free Graduate Internship – Entrepreneurship & Innovation | MMK AI Solutions Khammam"
+        title="Prototype Internship program – Entrepreneurship & Innovation | MMK AI Solutions Khammam"
         description="Apply for the free Graduate Internship in Entrepreneurship and Innovation at MMK AI Solutions, Khammam. Mentored by Dr. Murali Krishna (PhD). Build your startup idea, learn AI in business, and earn a certificate."
         keywords="free graduate internship Khammam, entrepreneurship internship Telangana, innovation internship India, MMK AI Solutions internship, Dr Murali Krishna, startup internship Khammam"
         ogUrl="https://mmkaisolutions.com/graduate-internship"
