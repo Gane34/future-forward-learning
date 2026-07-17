@@ -5,7 +5,7 @@ import { Menu, X, ChevronRight } from "lucide-react";
 import logo from "@/assets/logo.svg";
 
 const navItems = [
-        { label: "Insights", href: "/insights.html" },
+        { label: " Dr.Murali Insights", href: "/insights.html" },
   { label: "Courses", href: "/courses" },
   { label: "How It Works", href: "#process" },
   { label: "Projects", href: "/projects" },

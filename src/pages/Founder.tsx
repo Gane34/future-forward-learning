@@ -156,7 +156,7 @@ const fadeUp = {
 const founderStructuredData = {
     "@context": "https://schema.org",
     "@type": "Person",
-    "name": "Muggu Murali Krishna",
+    "name": " Dr. Muggu Murali Krishna",
     "alternateName": "Dr. Murali Krishna",
     "jobTitle": "Founder & Director",
     "worksFor": {
