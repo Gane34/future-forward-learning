@@ -203,7 +203,7 @@ const Founder = () => {
                             </span>
 
                             <h1 className="text-5xl lg:text-6xl font-serif font-bold leading-tight mb-6">
-                                Muggu{" "}
+                                Dr. Muggu{" "}
                                 <span className="text-secondary">Murali Krishna</span>
                             </h1>
 
