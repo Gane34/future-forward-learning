@@ -173,7 +173,7 @@ const Founder = () => {
     return (
         <>
             <SEO
-                title="Our Founder | Muggu Murali Krishna – MVR AI & Robotics Academy"
+                title="Our Founder |  Dr. Muggu Murali Krishna – MVR AI & Robotics Academy"
                 description="Meet Dr. Muggu Murali Krishna (MMK), founder of MVR AI & Robotics Academy & MMK AI Solutions — a PhD researcher bringing AI, Robotics, and Coding education to school children across rural India."
                 keywords="Muggu Murali Krishna, Dr Murali Krishna, MMK, MVR AI & Robotics Academy founder, AI education India, robotics education founder"
                 ogUrl="https://mmkaisolutions.com/founder"
