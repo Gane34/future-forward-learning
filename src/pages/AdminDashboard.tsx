@@ -89,6 +89,8 @@ const emptyForm = {
   published: true,
 };
 
+const BLOG_POSTS_STORAGE_KEY = "dr_muggu_insights_posts";
+
 const AdminDashboard = () => {
   const { user, isAdmin, loading, signOut } = useAuth();
   const navigate = useNavigate();
@@ -130,15 +132,35 @@ const AdminDashboard = () => {
     }
   }, [user, isAdmin, loading, navigate]);
 
+  const syncStoriesToLocalStorage = useCallback((storiesData: Story[]) => {
+    const normalizedPosts = storiesData
+      .filter((story) => story.published)
+      .map((story) => ({
+        id: story.id,
+        title: story.title,
+        content: story.content,
+        image_url: story.image_url,
+        story_date: story.story_date,
+        published: story.published,
+        excerpt: story.content.replace(/<[^>]+>/g, "").trim().slice(0, 140),
+      }));
+
+    localStorage.setItem(BLOG_POSTS_STORAGE_KEY, JSON.stringify(normalizedPosts));
+  }, []);
+
   const fetchStories = useCallback(async () => {
     const { data } = await supabase
       .from("stories")
       .select("*")
       .order("story_date", { ascending: false });
 
-    if (data) setStories(data as Story[]);
+    if (data) {
+      const storiesData = data as Story[];
+      setStories(storiesData);
+      syncStoriesToLocalStorage(storiesData);
+    }
     setLoadingStories(false);
-  }, []);
+  }, [syncStoriesToLocalStorage]);
 
   useEffect(() => {
     // Fetch inquiries from local storage
@@ -409,9 +431,9 @@ const AdminDashboard = () => {
       <main className="container mx-auto px-6 py-8">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h2 className="text-2xl font-bold text-foreground">Stories</h2>
+            <h2 className="text-2xl font-bold text-foreground">Insights Blog Posts</h2>
             <p className="text-sm text-muted-foreground mt-1">
-              Manage achievement stories displayed on the homepage.
+              Create and manage blog posts for the Dr. Muggu insights page.
             </p>
           </div>
           <Button onClick={openCreateDialog}>
@@ -428,9 +450,9 @@ const AdminDashboard = () => {
           <Card>
             <CardContent className="flex flex-col items-center justify-center py-16 text-center">
               <ImageIcon className="w-12 h-12 text-muted-foreground/40 mb-4" />
-              <h3 className="font-semibold text-foreground mb-1">No stories yet</h3>
+              <h3 className="font-semibold text-foreground mb-1">No blog posts yet</h3>
               <p className="text-sm text-muted-foreground mb-4">
-                Share your first achievement story with parents.
+                Add your first insights article to publish it on the blog section.
               </p>
               <Button onClick={openCreateDialog} size="sm">
                 <Plus className="w-4 h-4 mr-1" />

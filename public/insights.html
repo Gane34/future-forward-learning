@@ -415,6 +415,17 @@
       .related-card p { margin: 0; color: var(--muted); font-size: 0.95rem; }
       .related-card a { color: #d8b4fe; font-weight: 600; }
 
+      .blog-section { margin: 1rem 0 2.2rem; }
+      .blog-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: 1rem; }
+      .blog-card { padding: 1rem; display: flex; flex-direction: column; gap: 0.8rem; transition: transform 0.3s ease, border-color 0.3s ease; }
+      .blog-card:hover { transform: translateY(-4px); border-color: rgba(6,182,212,0.4); }
+      .blog-card .blog-thumb { border-radius: 1rem; overflow: hidden; min-height: 150px; background: rgba(255,255,255,0.03); }
+      .blog-card .blog-thumb img { width: 100%; height: 100%; object-fit: cover; }
+      .blog-card .post-meta { color: var(--accent-2); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; }
+      .blog-card h4 { margin: 0; font-size: 1.07rem; }
+      .blog-card p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+      .blog-card a { color: #d8b4fe; font-weight: 600; margin-top: auto; }
+
       .newsletter-card {
         padding: clamp(1.25rem, 3vw, 2rem);
         margin: 2rem 0 2.4rem;
@@ -530,7 +541,7 @@
               <div class="avatar" aria-hidden="true">DM</div>
               <div class="author-meta">
                 <strong>Dr. Muggu</strong>
-                <span>Chief Medical Innovation Officer · Department of Clinical Intelligence</span>
+                <span>Phd in Health and ALLIED sciences</span>
               </div>
             </div>
             <div class="share-group" aria-label="Share article">
@@ -694,6 +705,41 @@
             </div>
           </section>
 
+          <section class="blog-section" aria-label="More blog posts">
+            <div class="section-title">
+              <h3>More Blog Posts</h3>
+            </div>
+            <div class="blog-grid" id="blogGrid">
+              <article class="blog-card">
+                <div class="blog-thumb">
+                  <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='440' viewBox='0 0 640 440'%3E%3Crect width='640' height='440' rx='28' fill='%230f172a'/%3E%3Crect x='120' y='112' width='400' height='216' rx='24' fill='%231e293b'/%3E%3Cpath d='M200 308c40-78 100-122 170-122 54 0 92 38 132 90' stroke='%2306b6d4' stroke-width='9' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='200' cy='308' r='14' fill='%23f8fafc'/%3E%3Ccircle cx='370' cy='186' r='14' fill='%23f8fafc'/%3E%3Ccircle cx='502' cy='398' r='14' fill='%23f8fafc'/%3E%3C/svg%3E" alt="Digital health illustration" />
+                </div>
+                <div class="post-meta">Clinical Strategy</div>
+                <h4>Designing humane digital health journeys for modern care teams</h4>
+                <p>How thoughtful interfaces and workflow design can make evidence-based care feel more practical and less disruptive.</p>
+                <a href="#">Read Story</a>
+              </article>
+              <article class="blog-card">
+                <div class="blog-thumb">
+                  <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='440' viewBox='0 0 640 440'%3E%3Crect width='640' height='440' rx='28' fill='%230f172a'/%3E%3Ccircle cx='320' cy='220' r='132' fill='rgba(124,58,237,0.16)'/%3E%3Ccircle cx='320' cy='220' r='82' fill='rgba(6,182,212,0.14)'/%3E%3Cpath d='M240 220h160' stroke='%23f8fafc' stroke-width='10' stroke-linecap='round'/%3E%3Cpath d='M320 140v160' stroke='%23f8fafc' stroke-width='10' stroke-linecap='round'/%3E%3C/svg%3E" alt="Precision medicine illustration" />
+                </div>
+                <div class="post-meta">Precision Medicine</div>
+                <h4>Precision medicine is shifting from promise to daily practice</h4>
+                <p>New research shows how better matching of therapies and patient biology is improving treatment planning.</p>
+                <a href="#">Read Story</a>
+              </article>
+              <article class="blog-card">
+                <div class="blog-thumb">
+                  <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='440' viewBox='0 0 640 440'%3E%3Crect width='640' height='440' rx='28' fill='%230f172a'/%3E%3Cpath d='M170 286c50-84 100-128 180-128 68 0 118 34 154 102' stroke='%237c3aed' stroke-width='10' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='170' cy='286' r='16' fill='%23f8fafc'/%3E%3Ccircle cx='350' cy='158' r='16' fill='%23f8fafc'/%3E%3Ccircle cx='524' cy='388' r='16' fill='%23f8fafc'/%3E%3C/svg%3E" alt="Public health research illustration" />
+                </div>
+                <div class="post-meta">Public Health</div>
+                <h4>The next decade of public health will be data-rich and community-led</h4>
+                <p>Insights from global health networks point to stronger prevention, faster response, and better public trust.</p>
+                <a href="#">Read Story</a>
+              </article>
+            </div>
+          </section>
+
           <section class="section-title" aria-label="Clinical statistics">
             <h3>Clinical statistics</h3>
           </section>
@@ -843,6 +889,30 @@
           link.click();
           URL.revokeObjectURL(link.href);
         });
+      }
+
+      const blogGrid = document.getElementById('blogGrid');
+      if (blogGrid) {
+        const storedPosts = JSON.parse(localStorage.getItem('dr_muggu_insights_posts') || '[]');
+        if (storedPosts.length > 0) {
+          blogGrid.innerHTML = '';
+          storedPosts.slice(0, 3).forEach((post) => {
+            const article = document.createElement('article');
+            article.className = 'blog-card';
+            const excerpt = (post.content || '').replace(/<[^>]+>/g, '').trim().slice(0, 140);
+            const image = post.image_url
+              ? `<img src="${post.image_url}" alt="${post.title}" />`
+              : `<img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='440' viewBox='0 0 640 440'%3E%3Crect width='640' height='440' rx='28' fill='%230f172a'/%3E%3Cpath d='M120 300c50-110 140-160 240-160 62 0 116 28 160 84' stroke='%2306b6d4' stroke-width='10' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='120' cy='300' r='16' fill='%23f8fafc'/%3E%3Ccircle cx='360' cy='140' r='16' fill='%23f8fafc'/%3E%3Ccircle cx='520' cy='384' r='16' fill='%23f8fafc'/%3E%3C/svg%3E" alt="${post.title}" />`;
+            article.innerHTML = `
+              <div class="blog-thumb">${image}</div>
+              <div class="post-meta">${new Date(post.story_date).toLocaleDateString('en', { month: 'short', day: 'numeric', year: 'numeric' })}</div>
+              <h4>${post.title}</h4>
+              <p>${excerpt || 'A featured insight from Dr. Muggu.'}</p>
+              <a href="#article">Read Story</a>
+            `;
+            blogGrid.appendChild(article);
+          });
+        }
       }
     </script>
   </body>
