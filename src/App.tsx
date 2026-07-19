@@ -1,24 +1,31 @@
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
-import AdminLogin from "./pages/AdminLogin";
-import AdminDashboard from "./pages/AdminDashboard";
-import NotFound from "./pages/NotFound";
-import AllProjects from "./pages/AllProjects";
-import GetStarted from "./pages/GetStarted";
-import Contact from "./pages/Contact";
-import Founder from "./pages/Founder";
-import AdmissionForm from "./pages/AdmissionForm";
-import InternshipForm from "./pages/InternshipForm";
-import PrototypeInternshipProgram from "./pages/PrototypeInternshipProgram";
-import Courses from "./pages/Courses";
+import { Toaster } from '@/components/ui/toaster';
+import { Toaster as Sonner } from '@/components/ui/sonner';
+import { TooltipProvider } from '@/components/ui/tooltip';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Index from './pages/Index';
+import AdminLogin from './pages/AdminLogin';
+import AdminDashboard from './pages/AdminDashboard';
+import NotFound from './pages/NotFound';
+import AllProjects from './pages/AllProjects';
+import GetStarted from './pages/GetStarted';
+import Contact from './pages/Contact';
+import Founder from './pages/Founder';
+import AdmissionForm from './pages/AdmissionForm';
+import InternshipForm from './pages/InternshipForm';
+import PrototypeInternshipProgram from './pages/PrototypeInternshipProgram';
+import Courses from './pages/Courses';
+import InsightsPage from './pages/Insights';
+import AdminLayout from './components/admin/AdminLayout';
+import AdminHome from './pages/AdminHome';
+import BlogAdmin from './components/admin/BlogAdmin';
+import AdminMedia from './pages/AdminMedia';
+import AdminSettings from './pages/AdminSettings';
+import AdminProfile from './pages/AdminProfile';
 
-import { useState } from "react";
-import Preloader from "./components/Preloader";
-import ChatBot from "./components/ChatBot";
+import { useState } from 'react';
+import Preloader from './components/Preloader';
+import ChatBot from './components/ChatBot';
 
 const queryClient = new QueryClient();
 
@@ -36,8 +43,20 @@ const App = () => {
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Index />} />
+              <Route path="/insights" element={<InsightsPage />} />
+              <Route path="/insights/:slug" element={<InsightsPage />} />
               <Route path="/admin/login" element={<AdminLogin />} />
-              <Route path="/admin" element={<AdminDashboard />} />
+              <Route path="/admin" element={<AdminDashboard />}>
+                <Route element={<AdminLayout />}>
+                  <Route index element={<AdminHome />} />
+                  <Route path="blogs" element={<BlogAdmin />} />
+                  <Route path="blogs/new" element={<BlogAdmin />} />
+                  <Route path="published" element={<BlogAdmin />} />
+                  <Route path="media" element={<AdminMedia />} />
+                  <Route path="settings" element={<AdminSettings />} />
+                  <Route path="profile" element={<AdminProfile />} />
+                </Route>
+              </Route>
               <Route path="/projects" element={<AllProjects />} />
               <Route path="/get-started" element={<GetStarted />} />
               <Route path="/contact" element={<Contact />} />
@@ -47,7 +66,6 @@ const App = () => {
               <Route path="/prototype-internship" element={<PrototypeInternshipProgram />} />
               <Route path="/graduate-internship" element={<PrototypeInternshipProgram />} />
               <Route path="/courses" element={<Courses />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
             <ChatBot />
