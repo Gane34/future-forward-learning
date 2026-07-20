@@ -65,6 +65,12 @@ const estimateReadingTime = (content: string) => Math.max(2, Math.ceil(content.t
 
 const createId = () => (typeof crypto !== 'undefined' && 'randomUUID' in crypto ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(16).slice(2)}`);
 
+export const normalizeAttachmentList = (value: string | string[] | undefined) => {
+  if (Array.isArray(value)) return value.map((entry) => entry.trim()).filter(Boolean);
+  if (typeof value !== 'string') return [];
+  return value.split(',').map((entry) => entry.trim()).filter(Boolean);
+};
+
 export const getSlugFromTitle = (title: string) =>
   title
     .toLowerCase()
@@ -103,7 +109,7 @@ const normalizeBlogPost = (post: Partial<BlogPostRecord>): BlogPostRecord => {
     createdAt: post.createdAt || now,
     updatedAt: post.updatedAt || now,
     viewCount: post.viewCount || 0,
-    attachments: post.attachments || [],
+    attachments: normalizeAttachmentList(post.attachments),
   };
 };
 
