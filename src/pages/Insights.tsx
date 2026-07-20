@@ -2,8 +2,8 @@ import { useEffect, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import SEO from '@/components/SEO';
-import { getAllBlogPosts, getBlogPostBySlug, type BlogPostRecord } from '@/lib/blogService';
-import { CalendarDays, Clock3, Eye, Search, Sparkles, Tag as TagIcon, UserRound, ArrowLeft, ExternalLink, FileText, Mail, Newspaper, ChevronRight } from 'lucide-react';
+import { createNewsletterSubscriber, getAllBlogPosts, getAuthors, getDownloads, getMediaLibrary, type AuthorRecord, type BlogPostRecord, type DownloadRecord, type MediaAssetRecord } from '@/lib/blogService';
+import { CalendarDays, Clock3, Eye, Search, Sparkles, UserRound, ArrowLeft, ExternalLink, FileText, Mail, Newspaper, ChevronRight, BookOpen, Microscope, BrainCircuit, GraduationCap, LibraryBig, Video, Download, FileDown, Copy, Printer, BadgeCheck, Trophy, Cpu, FlaskConical, Presentation } from 'lucide-react';
 
 const formatDate = (value: string) =>
   new Date(value).toLocaleDateString('en-US', {
@@ -30,13 +30,26 @@ const InsightsPage = () => {
   const [activeCategory, setActiveCategory] = useState('All');
   const [activeTag, setActiveTag] = useState('All');
   const [visibleCount, setVisibleCount] = useState(6);
+  const [authors, setAuthors] = useState<AuthorRecord[]>([]);
+  const [downloads, setDownloads] = useState<DownloadRecord[]>([]);
+  const [mediaLibrary, setMediaLibrary] = useState<MediaAssetRecord[]>([]);
+  const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [newsletterState, setNewsletterState] = useState<'idle' | 'saved' | 'error'>('idle');
 
   useEffect(() => {
     const loadPosts = async () => {
       setLoading(true);
-      const allPosts = await getAllBlogPosts();
+      const [allPosts, allAuthors, allDownloads, allMedia] = await Promise.all([
+        getAllBlogPosts(),
+        getAuthors(),
+        getDownloads(),
+        getMediaLibrary(),
+      ]);
       const publishedPosts = allPosts.filter((post) => post.published).sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime());
       setPosts(publishedPosts);
+      setAuthors(allAuthors);
+      setDownloads(allDownloads);
+      setMediaLibrary(allMedia);
       if (slug) {
         const post = publishedPosts.find((entry) => entry.slug === slug) || null;
         setSelectedPost(post);
@@ -68,6 +81,14 @@ const InsightsPage = () => {
   const popularPosts = [...posts].sort((a, b) => b.viewCount - a.viewCount).slice(0, 4);
   const pdfResources = posts.flatMap((post) => (post.attachments || []).filter((attachment) => attachment.toLowerCase().includes('.pdf')).map((attachment) => ({ ...post, attachment })));
   const toc = selectedPost ? createTableOfContents(selectedPost.content) : [];
+  const researchPapers = posts.filter((post) => post.category.toLowerCase().includes('paper') || post.tags.some((tag) => tag.toLowerCase().includes('paper')));
+  const aiTutorials = posts.filter((post) => post.tags.some((tag) => tag.toLowerCase().includes('tutorial') || tag.toLowerCase().includes('ai')));
+  const medicalPosts = posts.filter((post) => post.tags.some((tag) => tag.toLowerCase().includes('medical') || tag.toLowerCase().includes('health')));
+  const studentInnovations = posts.filter((post) => post.tags.some((tag) => tag.toLowerCase().includes('student') || tag.toLowerCase().includes('innovation')));
+  const knowledgeCategories = Array.from(new Set(posts.map((post) => post.category).filter(Boolean))).slice(0, 8);
+  const featuredDownloads = downloads.slice(0, 4);
+  const featuredMedia = mediaLibrary.slice(0, 6);
+  const topAuthors = authors.slice(0, 4);
 
   const shareArticle = (post: BlogPostRecord) => {
     if (typeof window === 'undefined') return;
@@ -76,6 +97,24 @@ const InsightsPage = () => {
       void navigator.share({ title: post.title, text: post.excerpt, url: shareUrl });
     } else {
       window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(shareUrl)}`, '_blank', 'noopener,noreferrer');
+    }
+  };
+
+  const copyCitation = (post: BlogPostRecord) => {
+    if (typeof window === 'undefined') return;
+    const citation = `${post.author}. (${new Date(post.publishDate).getFullYear()}). ${post.title}. MMK AI Solutions Insights.`;
+    void navigator.clipboard.writeText(citation);
+  };
+
+  const handleNewsletterSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!newsletterEmail.trim()) return;
+    try {
+      await createNewsletterSubscriber({ email: newsletterEmail, name: newsletterEmail.split('@')[0], source: 'insights' });
+      setNewsletterState('saved');
+      setNewsletterEmail('');
+    } catch {
+      setNewsletterState('error');
     }
   };
 
@@ -144,6 +183,8 @@ const InsightsPage = () => {
               </div>
               <div className="mt-6 flex flex-wrap gap-3">
                 <button onClick={() => shareArticle(selectedPost)} className="rounded-full border border-white/10 bg-white/10 px-4 py-2 text-sm">Share</button>
+                <button onClick={() => copyCitation(selectedPost)} className="rounded-full border border-white/10 bg-white/10 px-4 py-2 text-sm">Copy citation</button>
+                <button onClick={() => window.print()} className="rounded-full border border-white/10 bg-white/10 px-4 py-2 text-sm">Print article</button>
               </div>
             </div>
           </div>
@@ -162,6 +203,28 @@ const InsightsPage = () => {
                   </div>
                 </div>
               ) : null}
+
+              <div className="rounded-[28px] border border-white/10 bg-white/5 p-8">
+                <h2 className="text-2xl font-semibold">Author profile</h2>
+                <div className="mt-6 flex flex-col gap-4 rounded-2xl border border-white/10 bg-background/50 p-4 md:flex-row md:items-center">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/20 text-primary">
+                    <UserRound className="h-8 w-8" />
+                  </div>
+                  <div>
+                    <div className="font-semibold">{selectedPost.author}</div>
+                    <div className="text-sm text-white/60">{selectedPost.authorDesignation}</div>
+                    <div className="mt-2 text-sm text-white/70">{selectedPost.excerpt}</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="rounded-[28px] border border-white/10 bg-white/5 p-8">
+                <h2 className="text-2xl font-semibold">References</h2>
+                <ul className="mt-4 space-y-3 text-sm text-white/70">
+                  <li>• MMK AI Solutions. Research and innovation notes for the current knowledge hub.</li>
+                  <li>• MVR AI & Robotics Academy. Community learning and student innovation framework.</li>
+                </ul>
+              </div>
 
               {selectedPost.attachments.length > 0 ? (
                 <div className="rounded-[28px] border border-white/10 bg-white/5 p-8">
@@ -196,6 +259,18 @@ const InsightsPage = () => {
                       <div className="font-medium">{post.title}</div>
                       <div className="mt-1 text-white/60">{post.category}</div>
                     </Link>
+                  ))}
+                </div>
+              </div>
+
+              <div className="rounded-[28px] border border-white/10 bg-white/5 p-6">
+                <h3 className="text-lg font-semibold">Related PDFs</h3>
+                <div className="mt-4 space-y-3">
+                  {pdfResources.slice(0, 3).map((resource) => (
+                    <a key={`${resource.id}-${resource.attachment}`} href={resource.attachment} target="_blank" rel="noreferrer" className="flex items-center justify-between rounded-2xl border border-white/10 bg-background/50 px-3 py-3 text-sm text-white/80">
+                      <span>{resource.title}</span>
+                      <FileDown className="h-4 w-4" />
+                    </a>
                   ))}
                 </div>
               </div>
@@ -286,6 +361,41 @@ const InsightsPage = () => {
 
         <section className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
           <div className="space-y-6">
+            <div className="rounded-[28px] border border-white/10 bg-white/5 p-6">
+              <div className="flex items-center gap-2 text-sm text-white/70"><BookOpen className="h-4 w-4" /> Research portal overview</div>
+              <div className="mt-4 grid gap-3 md:grid-cols-3">
+                <div className="rounded-2xl border border-white/10 bg-background/50 p-4">
+                  <div className="text-2xl font-semibold">{posts.length}</div>
+                  <div className="text-sm text-white/60">Articles</div>
+                </div>
+                <div className="rounded-2xl border border-white/10 bg-background/50 p-4">
+                  <div className="text-2xl font-semibold">{researchPapers.length}</div>
+                  <div className="text-sm text-white/60">Research papers</div>
+                </div>
+                <div className="rounded-2xl border border-white/10 bg-background/50 p-4">
+                  <div className="text-2xl font-semibold">{downloads.length}</div>
+                  <div className="text-sm text-white/60">Downloads</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+              {[
+                { title: 'Featured research', icon: Microscope, accent: 'from-primary/20 to-secondary/10' },
+                { title: 'Student innovations', icon: Trophy, accent: 'from-secondary/20 to-primary/10' },
+                { title: 'AI tutorials', icon: BrainCircuit, accent: 'from-white/10 to-transparent' },
+              ].map((item) => {
+                const Icon = item.icon;
+                return (
+                  <div key={item.title} className={`rounded-[24px] border border-white/10 bg-gradient-to-br ${item.accent} p-5`}>
+                    <Icon className="h-5 w-5 text-primary" />
+                    <div className="mt-3 font-semibold">{item.title}</div>
+                    <div className="mt-1 text-sm text-white/60">Curated stories and explanations for deep learning and applied AI.</div>
+                  </div>
+                );
+              })}
+            </div>
+
             <div className="flex items-center justify-between">
               <h2 className="text-2xl font-semibold">Latest articles</h2>
               <span className="text-sm text-white/60">Showing {visiblePosts.length} of {filteredPosts.length}</span>
@@ -321,6 +431,15 @@ const InsightsPage = () => {
 
           <aside className="space-y-6">
             <div className="rounded-[28px] border border-white/10 bg-white/5 p-6">
+              <h3 className="text-lg font-semibold">Knowledge categories</h3>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {knowledgeCategories.map((category) => (
+                  <button key={category} onClick={() => { setActiveCategory(category); setVisibleCount(6); }} className="rounded-full border border-white/10 bg-background/50 px-3 py-1.5 text-sm text-white/70">{category}</button>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-[28px] border border-white/10 bg-white/5 p-6">
               <h3 className="text-lg font-semibold">Popular posts</h3>
               <div className="mt-4 space-y-3">
                 {popularPosts.map((post) => (
@@ -339,7 +458,36 @@ const InsightsPage = () => {
               <div className="flex items-center gap-2 text-sm text-white/70"><Mail className="h-4 w-4" /> Newsletter</div>
               <h3 className="mt-3 text-xl font-semibold">Stay current with the latest research and stories.</h3>
               <p className="mt-2 text-sm text-white/70">Get updates when new articles, PDFs, and project notes are published.</p>
-              <a href="/contact" className="mt-4 inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-sm font-medium">Subscribe <ChevronRight className="h-4 w-4" /></a>
+              <form onSubmit={handleNewsletterSubmit} className="mt-4 space-y-3">
+                <input value={newsletterEmail} onChange={(event) => setNewsletterEmail(event.target.value)} placeholder="Enter your email" className="w-full rounded-full border border-white/10 bg-background/70 px-4 py-2 text-sm text-white outline-none" />
+                <button type="submit" className="inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-sm font-medium">Subscribe <ChevronRight className="h-4 w-4" /></button>
+              </form>
+              {newsletterState === 'saved' ? <p className="mt-2 text-sm text-green-400">Thanks for subscribing.</p> : null}
+              {newsletterState === 'error' ? <p className="mt-2 text-sm text-red-400">Please try again.</p> : null}
+            </div>
+
+            <div className="rounded-[28px] border border-white/10 bg-white/5 p-6">
+              <h3 className="text-lg font-semibold">Featured PDFs</h3>
+              <div className="mt-4 space-y-3">
+                {featuredDownloads.length === 0 ? <div className="text-sm text-white/60">No downloads available yet.</div> : featuredDownloads.map((download) => (
+                  <a key={download.id} href={download.url} target="_blank" rel="noreferrer" className="flex items-center justify-between rounded-2xl border border-white/10 bg-background/50 px-3 py-3 text-sm text-white/80">
+                    <span>{download.title}</span>
+                    <Download className="h-4 w-4" />
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-[28px] border border-white/10 bg-white/5 p-6">
+              <h3 className="text-lg font-semibold">Media library</h3>
+              <div className="mt-4 space-y-3">
+                {featuredMedia.length === 0 ? <div className="text-sm text-white/60">No media assets yet.</div> : featuredMedia.map((asset) => (
+                  <div key={asset.id} className="rounded-2xl border border-white/10 bg-background/50 p-3 text-sm text-white/80">
+                    <div className="font-medium">{asset.title}</div>
+                    <div className="mt-1 text-xs text-white/60">{asset.type} • {asset.category}</div>
+                  </div>
+                ))}
+              </div>
             </div>
 
             <div className="rounded-[28px] border border-white/10 bg-white/5 p-6">
