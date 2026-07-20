@@ -49,4 +49,28 @@ describe('blog storage helpers', () => {
     expect(result.excerpt).toBe('Body');
     expect(result.author).toBe('Admin');
   });
+
+  it('fills in the richer blog metadata defaults', () => {
+    const result = normalizeBlogPost({
+      id: '2',
+      title: 'Research note',
+      slug: '',
+      excerpt: '',
+      content: 'Body content that should be used to estimate reading time.',
+      coverImage: '',
+      category: 'Research',
+      tags: ['ai'],
+      author: '',
+      published: true,
+      featured: true,
+      createdAt: '',
+      updatedAt: '',
+      seoTitle: '',
+      seoDescription: ''
+    });
+
+    expect(result.readingTime).toBeGreaterThan(0);
+    expect(result.viewCount).toBe(0);
+    expect(result.galleryImages).toEqual([]);
+  });
 });
