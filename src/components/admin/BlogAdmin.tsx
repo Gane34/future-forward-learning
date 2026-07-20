@@ -23,7 +23,7 @@ import {
   type BlogTagRecord,
   BLOG_BUCKETS,
 } from '@/lib/blogService';
-import { CalendarDays, Clock3, Eye, ImageIcon, Plus, Save, Sparkles, Trash2, Copy, ExternalLink } from 'lucide-react';
+import { CalendarDays, Clock3, Eye, ImageIcon, Plus, Save, Sparkles, Trash2, Copy, ExternalLink, FileText } from 'lucide-react';
 
 const emptyForm = {
   title: '',
@@ -37,6 +37,7 @@ const emptyForm = {
   author: 'Dr. Murali Krishna',
   authorPhoto: '',
   authorDesignation: 'Research Lead',
+  attachments: '' as string,
   published: false,
   featured: false,
   seoTitle: '',
@@ -95,6 +96,7 @@ const BlogAdmin = () => {
       author: post.author,
       authorPhoto: post.authorPhoto,
       authorDesignation: post.authorDesignation,
+      attachments: post.attachments.join(', '),
       published: post.published,
       featured: post.featured,
       seoTitle: post.seoTitle,
@@ -110,7 +112,7 @@ const BlogAdmin = () => {
     if (!file) return;
 
     try {
-      const { publicUrl } = await uploadFile(mode === 'cover' ? BLOG_BUCKETS.images : BLOG_BUCKETS.authorImages, file);
+      const { publicUrl } = await uploadFile(mode === 'cover' ? 'images' : 'authorImages', file);
       if (mode === 'cover') {
         setCoverPreview(publicUrl);
         setForm((current) => ({ ...current, coverImage: publicUrl }));
@@ -124,6 +126,22 @@ const BlogAdmin = () => {
     }
   };
 
+  const handleAttachmentUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    try {
+      const { publicUrl } = await uploadFile('pdfs', file);
+      setForm((current) => ({
+        ...current,
+        attachments: current.attachments ? `${current.attachments}, ${publicUrl}` : publicUrl,
+      }));
+      toast({ title: 'PDF uploaded', description: 'The file is ready to attach to this post.' });
+    } catch {
+      toast({ title: 'Upload failed', description: 'The PDF could not be uploaded right now.', variant: 'destructive' });
+    }
+  };
+
   const saveCurrent = async (publish: boolean) => {
     if (!form.title.trim() || !form.content.trim()) {
       toast({ title: 'Missing fields', description: 'Add a title and content before saving.', variant: 'destructive' });
@@ -133,6 +151,7 @@ const BlogAdmin = () => {
     setSubmitting(true);
     const normalizedTags = form.tags.split(',').map((tag) => tag.trim()).filter(Boolean);
     const normalizedGallery = form.galleryImages.split(',').map((image) => image.trim()).filter(Boolean);
+    const normalizedAttachments = form.attachments.split(',').map((attachment) => attachment.trim()).filter(Boolean);
     const slug = getSlugFromTitle(form.title);
 
     const postPayload = {
@@ -160,7 +179,7 @@ const BlogAdmin = () => {
       createdAt: selectedPost?.createdAt || new Date().toISOString(),
       updatedAt: new Date().toISOString(),
       viewCount: selectedPost?.viewCount || 0,
-      attachments: selectedPost?.attachments || [],
+      attachments: normalizedAttachments,
     };
 
     try {
@@ -349,6 +368,18 @@ const BlogAdmin = () => {
             <div className="space-y-2">
               <Label htmlFor="galleryImages">Gallery images</Label>
               <Input id="galleryImages" value={form.galleryImages} onChange={(event) => setForm((current) => ({ ...current, galleryImages: event.target.value }))} placeholder="Paste comma-separated image URLs" />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="attachments">PDF attachments</Label>
+              <div className="flex flex-col gap-2">
+                <Input id="attachments" value={form.attachments} onChange={(event) => setForm((current) => ({ ...current, attachments: event.target.value }))} placeholder="Paste PDF URLs or upload files" />
+                <div className="flex items-center gap-2">
+                  <input id="pdf-upload" type="file" accept="application/pdf" className="hidden" onChange={(event) => void handleAttachmentUpload(event)} />
+                  <label htmlFor="pdf-upload" className="inline-flex cursor-pointer items-center rounded-full border border-border bg-background px-3 py-2 text-sm font-medium">
+                    <FileText className="mr-2 h-4 w-4" />Upload PDF
+                  </label>
+                </div>
+              </div>
             </div>
             <div className="space-y-2">
               <Label htmlFor="authorPhoto">Author photo</Label>

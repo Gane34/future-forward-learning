@@ -14,6 +14,9 @@ export interface BlogPost {
   updatedAt: string;
   seoTitle: string;
   seoDescription: string;
+  galleryImages: string[];
+  readingTime: number;
+  viewCount: number;
 }
 
 export interface BlogPostInput {
@@ -37,8 +40,8 @@ export interface BlogPostInput {
 const BLOG_POSTS_STORAGE_KEY = 'dr_muggu_insights_posts';
 const ADMIN_AUTH_STORAGE_KEY = 'admin_auth';
 const ADMIN_CREDENTIALS_STORAGE_KEY = 'admin_credentials';
-const ADMIN_USERNAME = import.meta.env.VITE_ADMIN_USERNAME?.trim() || 'admin';
-const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD?.trim() || 'admin123';
+const ADMIN_USERNAME = import.meta.env.VITE_ADMIN_USERNAME?.trim() || 'muggu murali krishna';
+const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD?.trim() || 'Muggu@1995';
 
 export const getBlogPostsStorageKey = () => BLOG_POSTS_STORAGE_KEY;
 export const getAdminAuthStorageKey = () => ADMIN_AUTH_STORAGE_KEY;
@@ -60,6 +63,8 @@ const hashPassword = async (password: string) => {
   return hashArray.map((value) => value.toString(16).padStart(2, '0')).join('');
 };
 
+const estimateReadingTime = (content: string) => Math.max(2, Math.ceil(content.trim().split(/\s+/).filter(Boolean).length / 180));
+
 export const createBlogPost = (input: BlogPostInput): BlogPost => {
   const now = new Date().toISOString();
   const title = input.title.trim();
@@ -69,7 +74,7 @@ export const createBlogPost = (input: BlogPostInput): BlogPost => {
     id: input.id || crypto.randomUUID(),
     title,
     slug,
-    excerpt: input.excerpt?.trim() || '',
+    excerpt: input.excerpt?.trim() || input.content.trim(),
     content: input.content.trim(),
     coverImage: input.coverImage || '',
     category: input.category?.trim() || 'General',
@@ -80,7 +85,10 @@ export const createBlogPost = (input: BlogPostInput): BlogPost => {
     createdAt: input.createdAt || now,
     updatedAt: input.updatedAt || now,
     seoTitle: input.seoTitle?.trim() || title,
-    seoDescription: input.seoDescription?.trim() || input.excerpt?.trim() || '',
+    seoDescription: input.seoDescription?.trim() || input.excerpt?.trim() || input.content.trim() || '',
+    galleryImages: [],
+    readingTime: estimateReadingTime(input.content),
+    viewCount: 0,
   };
 };
 
