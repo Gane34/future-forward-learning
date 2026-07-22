@@ -1,6 +1,6 @@
 import { supabase } from '@/integrations/supabase/client';
 
-const client = supabase as any;
+const client = supabase;
 
 export interface BlogPostRecord {
   id: string;
@@ -78,7 +78,7 @@ export const getSlugFromTitle = (title: string) =>
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/(^-|-$)/g, '');
 
-const normalizeBlogPost = (post: Partial<BlogPostRecord>): BlogPostRecord => {
+export const normalizeBlogPost = (post: Partial<BlogPostRecord>): BlogPostRecord => {
   const title = post.title?.trim() || 'Untitled article';
   const slug = (post.slug || getSlugFromTitle(title)).trim().toLowerCase();
   const content = post.content?.trim() || '';
@@ -111,6 +111,36 @@ const normalizeBlogPost = (post: Partial<BlogPostRecord>): BlogPostRecord => {
     viewCount: post.viewCount || 0,
     attachments: normalizeAttachmentList(post.attachments),
   };
+};
+
+export const normalizeSupabaseBlogRow = (row: Record<string, any>): BlogPostRecord => {
+  return normalizeBlogPost({
+    id: row.id,
+    title: row.title,
+    slug: row.slug,
+    subtitle: row.subtitle,
+    excerpt: row.excerpt,
+    content: row.content,
+    coverImage: row.cover_image || row.coverImage || '',
+    galleryImages: row.gallery_images || [],
+    category: row.category,
+    tags: row.tags || [],
+    author: row.author,
+    authorPhoto: row.author_photo || '',
+    authorDesignation: row.author_designation,
+    featured: row.featured,
+    published: Boolean(row.published ?? (row.status === 'published')),
+    seoTitle: row.seo_title,
+    seoDescription: row.seo_description,
+    metaKeywords: row.meta_keywords,
+    canonicalUrl: row.canonical_url,
+    readingTime: row.reading_time,
+    publishDate: row.publish_date || row.published_at || row.created_at,
+    createdAt: row.created_at,
+    updatedAt: row.updated_at,
+    viewCount: row.view_count || 0,
+    attachments: normalizeAttachmentList(row.attachments),
+  });
 };
 
 const readLocalBlogPosts = (): BlogPostRecord[] => {
@@ -171,33 +201,7 @@ export const getAllBlogPosts = async (): Promise<BlogPostRecord[]> => {
       .order('publish_date', { ascending: false });
 
     if (!error && data) {
-      return (data as any[]).map((item) => normalizeBlogPost({
-        id: item.id,
-        title: item.title,
-        slug: item.slug,
-        subtitle: item.subtitle,
-        excerpt: item.excerpt,
-        content: item.content,
-        coverImage: item.cover_image || item.coverImage,
-        galleryImages: item.gallery_images || [],
-        category: item.category,
-        tags: item.tags || [],
-        author: item.author,
-        authorPhoto: item.author_photo || '',
-        authorDesignation: item.author_designation,
-        featured: item.featured,
-        published: item.published,
-        seoTitle: item.seo_title,
-        seoDescription: item.seo_description,
-        metaKeywords: item.meta_keywords,
-        canonicalUrl: item.canonical_url,
-        readingTime: item.reading_time,
-        publishDate: item.publish_date || item.created_at,
-        createdAt: item.created_at,
-        updatedAt: item.updated_at,
-        viewCount: item.view_count || 0,
-        attachments: item.attachments || [],
-      }));
+      return (data as any[]).map((item) => normalizeSupabaseBlogRow(item));
     }
   } catch {
     // Fall back to local storage when Supabase is unavailable or the schema is not yet present.
@@ -220,33 +224,7 @@ export const getBlogPostBySlug = async (slug: string): Promise<BlogPostRecord | 
       .maybeSingle();
 
     if (!error && data) {
-      return normalizeBlogPost({
-        id: data.id,
-        title: data.title,
-        slug: data.slug,
-        subtitle: data.subtitle,
-        excerpt: data.excerpt,
-        content: data.content,
-        coverImage: data.cover_image || '',
-        galleryImages: data.gallery_images || [],
-        category: data.category,
-        tags: data.tags || [],
-        author: data.author,
-        authorPhoto: data.author_photo || '',
-        authorDesignation: data.author_designation,
-        featured: data.featured,
-        published: data.published,
-        seoTitle: data.seo_title,
-        seoDescription: data.seo_description,
-        metaKeywords: data.meta_keywords,
-        canonicalUrl: data.canonical_url,
-        readingTime: data.reading_time,
-        publishDate: data.publish_date || data.created_at,
-        createdAt: data.created_at,
-        updatedAt: data.updated_at,
-        viewCount: data.view_count || 0,
-        attachments: data.attachments || [],
-      });
+      return normalizeSupabaseBlogRow(data);
     }
   } catch {
     // Fallback below.
@@ -275,6 +253,8 @@ export const createBlogPost = async (input: Partial<BlogPostRecord> & { id?: str
       author_designation: post.authorDesignation,
       featured: post.featured,
       published: post.published,
+      status: (post.published ? 'published' : 'draft') as 'published' | 'draft',
+      published_at: post.published ? post.publishDate : null,
       seo_title: post.seoTitle,
       seo_description: post.seoDescription,
       meta_keywords: post.metaKeywords,
@@ -325,6 +305,8 @@ export const updateBlogPost = async (id: string, input: Partial<BlogPostRecord>)
       author_designation: merged.authorDesignation,
       featured: merged.featured,
       published: merged.published,
+      status: (merged.published ? 'published' : 'draft') as 'published' | 'draft',
+      published_at: merged.published ? merged.publishDate : null,
       seo_title: merged.seoTitle,
       seo_description: merged.seoDescription,
       meta_keywords: merged.metaKeywords,
@@ -366,8 +348,8 @@ export const deleteBlogPost = async (id: string) => {
 
 export const getCategories = async (): Promise<BlogCategoryRecord[]> => {
   try {
-    const { data, error } = await client.from('blog_categories').select('*').order('name');
-    if (!error && data) return data as BlogCategoryRecord[];
+    const { data, error } = await client.from('categories').select('id, name, slug').order('name');
+    if (!error && data) return (data as Array<{ id: string; name: string; slug?: string }>).map((item) => ({ id: item.id, name: item.name }));
   } catch {
     // Fallback below.
   }
@@ -377,8 +359,8 @@ export const getCategories = async (): Promise<BlogCategoryRecord[]> => {
 
 export const getTags = async (): Promise<BlogTagRecord[]> => {
   try {
-    const { data, error } = await client.from('blog_tags').select('*').order('name');
-    if (!error && data) return data as BlogTagRecord[];
+    const { data, error } = await client.from('tags').select('id, name, slug').order('name');
+    if (!error && data) return (data as Array<{ id: string; name: string; slug?: string }>).map((item) => ({ id: item.id, name: item.name }));
   } catch {
     // Fallback below.
   }
@@ -389,8 +371,8 @@ export const getTags = async (): Promise<BlogTagRecord[]> => {
 export const createCategory = async (name: string): Promise<BlogCategoryRecord> => {
   const category = { id: createId(), name };
   try {
-    const { data, error } = await client.from('blog_categories').insert({ id: category.id, name }).select().single();
-    if (!error && data) return data as BlogCategoryRecord;
+    const { data, error } = await client.from('categories').insert({ id: category.id, name, slug: getSlugFromTitle(name) }).select('id, name').single();
+    if (!error && data) return { id: data.id, name: data.name };
   } catch {
     // Fallback below.
   }
@@ -403,8 +385,8 @@ export const createCategory = async (name: string): Promise<BlogCategoryRecord> 
 export const createTag = async (name: string): Promise<BlogTagRecord> => {
   const tag = { id: createId(), name };
   try {
-    const { data, error } = await client.from('blog_tags').insert({ id: tag.id, name }).select().single();
-    if (!error && data) return data as BlogTagRecord;
+    const { data, error } = await client.from('tags').insert({ id: tag.id, name, slug: getSlugFromTitle(name) }).select('id, name').single();
+    if (!error && data) return { id: data.id, name: data.name };
   } catch {
     // Fallback below.
   }
