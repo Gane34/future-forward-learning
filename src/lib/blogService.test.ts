@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { normalizeAttachmentList, normalizeSupabaseBlogRow } from './blogService';
+import { getSeedBlogPosts, normalizeAttachmentList, normalizeSupabaseBlogRow } from './blogService';
 
 describe('normalizeAttachmentList', () => {
   it('splits comma-separated attachment values and removes blanks', () => {
@@ -7,6 +7,17 @@ describe('normalizeAttachmentList', () => {
       'https://example.com/guide.pdf',
       'https://example.com/notes.pdf',
     ]);
+  });
+});
+
+describe('getSeedBlogPosts', () => {
+  it('includes the new AI education outlook article as a seeded insights post', () => {
+    const posts = getSeedBlogPosts();
+
+    expect(posts).toHaveLength(1);
+    expect(posts[0].slug).toBe('impending-paradigm-shift-ai-education-india');
+    expect(posts[0].title).toContain('Artificial Intelligence in Indian Education');
+    expect(posts[0].published).toBe(true);
   });
 });
 
