@@ -40,6 +40,51 @@ export interface BlogTagRecord {
   name: string;
 }
 
+export interface AuthorRecord {
+  id: string;
+  name: string;
+  photo: string;
+  designation: string;
+  biography: string;
+  qualifications: string;
+  linkedIn: string;
+  email: string;
+  researchInterests: string[];
+  publications: string[];
+  articlesWritten: string[];
+}
+
+export interface MediaAssetRecord {
+  id: string;
+  title: string;
+  type: 'image' | 'pdf' | 'video' | 'infographic' | 'zip' | 'dataset';
+  url: string;
+  category: string;
+  description: string;
+  uploadedAt: string;
+  sizeLabel?: string;
+}
+
+export interface DownloadRecord {
+  id: string;
+  title: string;
+  url: string;
+  category: string;
+  author: string;
+  downloads: number;
+  year: number;
+  uploadedAt: string;
+}
+
+export interface NewsletterSubscriberRecord {
+  id: string;
+  email: string;
+  name: string;
+  interests: string[];
+  subscribedAt: string;
+  source: string;
+}
+
 export interface BlogFileUploadResult {
   path: string;
   publicUrl: string;
@@ -48,6 +93,10 @@ export interface BlogFileUploadResult {
 const BLOG_STORAGE_KEY = 'mmk_insights_posts_v2';
 const CATEGORY_STORAGE_KEY = 'mmk_insights_categories_v2';
 const TAG_STORAGE_KEY = 'mmk_insights_tags_v2';
+const AUTHOR_STORAGE_KEY = 'mmk_insights_authors_v2';
+const MEDIA_STORAGE_KEY = 'mmk_insights_media_v2';
+const DOWNLOAD_STORAGE_KEY = 'mmk_insights_downloads_v2';
+const NEWSLETTER_STORAGE_KEY = 'mmk_insights_newsletter_v2';
 
 const BLOG_IMAGE_BUCKET = 'blog-images';
 const BLOG_PDF_BUCKET = 'blog-pdfs';
@@ -228,6 +277,70 @@ const readLocalTags = (): BlogTagRecord[] => {
 const writeLocalTags = (tags: BlogTagRecord[]) => {
   if (typeof window === 'undefined') return;
   window.localStorage.setItem(TAG_STORAGE_KEY, JSON.stringify(tags));
+};
+
+const readLocalAuthors = (): AuthorRecord[] => {
+  if (typeof window === 'undefined') return [];
+  const stored = window.localStorage.getItem(AUTHOR_STORAGE_KEY);
+  if (!stored) return [];
+  try {
+    return JSON.parse(stored) as AuthorRecord[];
+  } catch {
+    return [];
+  }
+};
+
+const writeLocalAuthors = (authors: AuthorRecord[]) => {
+  if (typeof window === 'undefined') return;
+  window.localStorage.setItem(AUTHOR_STORAGE_KEY, JSON.stringify(authors));
+};
+
+const readLocalMedia = (): MediaAssetRecord[] => {
+  if (typeof window === 'undefined') return [];
+  const stored = window.localStorage.getItem(MEDIA_STORAGE_KEY);
+  if (!stored) return [];
+  try {
+    return JSON.parse(stored) as MediaAssetRecord[];
+  } catch {
+    return [];
+  }
+};
+
+const writeLocalMedia = (media: MediaAssetRecord[]) => {
+  if (typeof window === 'undefined') return;
+  window.localStorage.setItem(MEDIA_STORAGE_KEY, JSON.stringify(media));
+};
+
+const readLocalDownloads = (): DownloadRecord[] => {
+  if (typeof window === 'undefined') return [];
+  const stored = window.localStorage.getItem(DOWNLOAD_STORAGE_KEY);
+  if (!stored) return [];
+  try {
+    return JSON.parse(stored) as DownloadRecord[];
+  } catch {
+    return [];
+  }
+};
+
+const writeLocalDownloads = (downloads: DownloadRecord[]) => {
+  if (typeof window === 'undefined') return;
+  window.localStorage.setItem(DOWNLOAD_STORAGE_KEY, JSON.stringify(downloads));
+};
+
+const readLocalSubscribers = (): NewsletterSubscriberRecord[] => {
+  if (typeof window === 'undefined') return [];
+  const stored = window.localStorage.getItem(NEWSLETTER_STORAGE_KEY);
+  if (!stored) return [];
+  try {
+    return JSON.parse(stored) as NewsletterSubscriberRecord[];
+  } catch {
+    return [];
+  }
+};
+
+const writeLocalSubscribers = (subscribers: NewsletterSubscriberRecord[]) => {
+  if (typeof window === 'undefined') return;
+  window.localStorage.setItem(NEWSLETTER_STORAGE_KEY, JSON.stringify(subscribers));
 };
 
 export const getAllBlogPosts = async (): Promise<BlogPostRecord[]> => {
@@ -431,6 +544,136 @@ export const createTag = async (name: string): Promise<BlogTagRecord> => {
   const nextTags = [...readLocalTags(), tag].filter((entry, index, arr) => arr.findIndex((item) => item.name.toLowerCase() === entry.name.toLowerCase()) === index);
   writeLocalTags(nextTags);
   return tag;
+};
+
+export const getAuthors = async (): Promise<AuthorRecord[]> => {
+  try {
+    const { data, error } = await client.from('authors').select('*').order('name');
+    if (!error && data) return data as AuthorRecord[];
+  } catch {
+    // Fallback below.
+  }
+
+  return readLocalAuthors();
+};
+
+export const createAuthor = async (input: Partial<AuthorRecord>): Promise<AuthorRecord> => {
+  const author: AuthorRecord = {
+    id: input.id || createId(),
+    name: input.name?.trim() || 'New author',
+    photo: input.photo || '',
+    designation: input.designation?.trim() || 'Research Lead',
+    biography: input.biography?.trim() || '',
+    qualifications: input.qualifications?.trim() || '',
+    linkedIn: input.linkedIn?.trim() || '',
+    email: input.email?.trim() || '',
+    researchInterests: input.researchInterests || [],
+    publications: input.publications || [],
+    articlesWritten: input.articlesWritten || [],
+  };
+
+  try {
+    const { data, error } = await client.from('authors').insert(author).select().single();
+    if (!error && data) return data as AuthorRecord;
+  } catch {
+    // Fallback below.
+  }
+
+  const nextAuthors = [author, ...readLocalAuthors().filter((entry) => entry.id !== author.id)];
+  writeLocalAuthors(nextAuthors);
+  return author;
+};
+
+export const getMediaLibrary = async (): Promise<MediaAssetRecord[]> => {
+  try {
+    const { data, error } = await client.from('media_library').select('*').order('uploaded_at', { ascending: false });
+    if (!error && data) return data as MediaAssetRecord[];
+  } catch {
+    // Fallback below.
+  }
+
+  return readLocalMedia();
+};
+
+export const createMediaAsset = async (input: Partial<MediaAssetRecord>): Promise<MediaAssetRecord> => {
+  const asset: MediaAssetRecord = {
+    id: input.id || createId(),
+    title: input.title?.trim() || 'Media asset',
+    type: input.type || 'image',
+    url: input.url || '',
+    category: input.category?.trim() || 'General',
+    description: input.description?.trim() || '',
+    uploadedAt: input.uploadedAt || new Date().toISOString(),
+    sizeLabel: input.sizeLabel || 'New',
+  };
+
+  try {
+    const { data, error } = await client.from('media_library').insert(asset).select().single();
+    if (!error && data) return data as MediaAssetRecord;
+  } catch {
+    // Fallback below.
+  }
+
+  const nextMedia = [asset, ...readLocalMedia().filter((entry) => entry.id !== asset.id)];
+  writeLocalMedia(nextMedia);
+  return asset;
+};
+
+export const getDownloads = async (): Promise<DownloadRecord[]> => {
+  try {
+    const { data, error } = await client.from('downloads').select('*').order('downloads', { ascending: false });
+    if (!error && data) return data as DownloadRecord[];
+  } catch {
+    // Fallback below.
+  }
+
+  return readLocalDownloads();
+};
+
+export const createDownload = async (input: Partial<DownloadRecord>): Promise<DownloadRecord> => {
+  const asset: DownloadRecord = {
+    id: input.id || createId(),
+    title: input.title?.trim() || 'Resource download',
+    url: input.url || '',
+    category: input.category?.trim() || 'General',
+    author: input.author?.trim() || 'MMK AI Solutions',
+    downloads: input.downloads || 0,
+    year: input.year || new Date().getFullYear(),
+    uploadedAt: input.uploadedAt || new Date().toISOString(),
+  };
+
+  try {
+    const { data, error } = await client.from('downloads').insert(asset).select().single();
+    if (!error && data) return data as DownloadRecord;
+  } catch {
+    // Fallback below.
+  }
+
+  const nextDownloads = [asset, ...readLocalDownloads().filter((entry) => entry.id !== asset.id)];
+  writeLocalDownloads(nextDownloads);
+  return asset;
+};
+
+export const createNewsletterSubscriber = async (input: Partial<NewsletterSubscriberRecord>): Promise<NewsletterSubscriberRecord> => {
+  const subscriber: NewsletterSubscriberRecord = {
+    id: input.id || createId(),
+    email: input.email?.trim() || '',
+    name: input.name?.trim() || 'Reader',
+    interests: input.interests || [],
+    subscribedAt: input.subscribedAt || new Date().toISOString(),
+    source: input.source || 'insights',
+  };
+
+  try {
+    const { data, error } = await client.from('newsletter_subscribers').insert(subscriber).select().single();
+    if (!error && data) return data as NewsletterSubscriberRecord;
+  } catch {
+    // Fallback below.
+  }
+
+  const nextSubscribers = [subscriber, ...readLocalSubscribers().filter((entry) => entry.email.toLowerCase() !== subscriber.email.toLowerCase())];
+  writeLocalSubscribers(nextSubscribers);
+  return subscriber;
 };
 
 export const uploadFile = async (bucket: keyof typeof BLOG_BUCKETS, file: File, path?: string): Promise<BlogFileUploadResult> => {
